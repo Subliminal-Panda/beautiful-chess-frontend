@@ -1,0 +1,36 @@
+﻿html {
+    font-size: 1.6vmin;
+    background-color: rgb(116, 41, 255);
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    font-family: 'Baloo Bhai 2', cursive;
+}
+
+body {
+    overflow-x: hidden;
+    font-weight: normal;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Baloo Bhai 2', cursive;
+}
+
+.app {
+    display: grid;
+    justify-items: center;
+}
+
+.btn {
+    @include base-btn();
+}

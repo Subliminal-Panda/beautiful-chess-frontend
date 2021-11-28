@@ -1,0 +1,43 @@
+﻿@mixin base-btn {
+    cursor: pointer;
+    font-family: "Capriola", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    border: .2rem solid transparent;
+    border-radius: 0.5rem;
+    transition: all 0.5s ease-in-out;
+    background-color: $teal;
+    color: white;
+    padding: .25rem .5rem;
+
+    &:active, &:hover {
+        outline: none;
+        border: .2rem solid $dark-teal;
+        color: $blue;
+    }
+}
+
+@mixin input-element {
+    input {
+        color: $charcoal;
+        padding: .3rem 0;
+        width: 100%;
+        border: 0;
+        border-bottom: .1rem solid $teal;
+        background-color: transparent;
+        transition: 0.5s all ease-in-out;
+        font-family: "Capriola", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+
+        &:focus {
+            outline: none;
+            border-bottom: .1rem solid $dark-teal;
+        }
+    }
+}
+
+@mixin base-grid {
+    display: grid;
+    grid-gap: 1.5rem;
+}

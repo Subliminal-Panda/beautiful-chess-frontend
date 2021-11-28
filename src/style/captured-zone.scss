@@ -1,0 +1,149 @@
+﻿.captured-zone {
+    width: 100%;
+    min-height: 96vmin;
+    max-height: 96vmin;
+
+    border-radius: 1.5rem;
+    margin: 1.25vmin 0 1.25vmin 1.25vmin;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        font-size: 3rem;
+    }
+}
+
+
+
+
+
+.player-one-captured {
+    border: .5rem solid white;
+    background-color: rgb(165, 165, 165);
+}
+.player-two-captured {
+    border: .5rem solid rgb(0, 0, 0);
+    background-color: rgb(85, 85, 85);
+}
+
+.taken-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5.5rem;
+    padding: .5rem 0;
+}
+.captures {
+    width: 100%;
+    height: 100%;
+    justify-self: flex-end;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    // gap: 1rem;
+    grid-auto-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.details {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 3.6rem;
+    font-weight: 900;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 48vh;
+    width: 95%;
+}
+
+.divider {
+    width: 95%;
+    height: .6rem;
+    background-color: rgb(127, 127, 127);
+    border-radius: 1rem;
+}
+
+// .inactive-details {
+//     border-top: .5rem solid rgb(127, 127, 127);
+// }
+
+// .turn-info {
+//     height: 8rem;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+
+
+.player-one {
+    color: white;
+}
+.player-two {
+    color: black;
+}
+
+.details-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+// .one-active {
+//     margin: 0;
+//     width: calc(100vw - 105vmin);
+//     color: white;
+//     border-bottom: .5rem solid white;
+// }
+
+// .two-active {
+//     margin: 0;
+//     width: calc(100vw - 105vmin);
+//     color: black;
+//     border-bottom: .5rem solid black;
+// }
+
+.nameplate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1rem;
+    font-size: 5rem;
+    line-height: 6rem;
+    font-weight: 900;
+}
+
+.captured {
+    text-align: center;
+    line-height: 4rem;
+    grid-row: 1;
+    grid-column: 1 / span 8;
+    font-size: 5rem;
+    height: 4rem;
+}
+
+.single-captured {
+    display: none;
+}
+
+.game-end {
+    font-size: 5rem;
+
+    // line-height: 5rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
