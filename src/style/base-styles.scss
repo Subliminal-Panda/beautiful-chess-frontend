@@ -1,4 +1,34 @@
-﻿html {
+﻿@font-face {
+    font-family: 'Baloo Bhai Imported';
+    font-weight: 100;
+    src: local('Baloo Bhai Imported'), url(../assets/BalooBhai2-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Baloo Bhai Imported';
+    font-weight: 300;
+    src: local('Baloo Bhai Imported'), url(../assets/BalooBhai2-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Baloo Bhai Imported';
+    font-weight: 500;
+    src: local('Baloo Bhai Imported'), url(../assets/BalooBhai2-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Baloo Bhai Imported';
+    font-weight: 700;
+    src: local('Baloo Bhai Imported'), url(../assets/BalooBhai2-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Baloo Bhai Imported';
+    font-weight: 900;
+    src: local('Baloo Bhai Imported'), url(../assets/BalooBhai2-ExtraBold.ttf) format('truetype');
+}
+
+html {
     font-size: 1.6vmin;
     background-color: rgb(116, 41, 255);
 }
@@ -9,7 +39,7 @@
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    font-family: 'Baloo Bhai 2', cursive;
+    font-family: "Baloo Bhai Imported";
 }
 
 body {
@@ -22,8 +52,10 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+
+
 h1, h2, h3, h4, h5 {
-    font-family: 'Baloo Bhai 2', cursive;
+    font-family: "Baloo Bhai Imported";
 }
 
 .app {
