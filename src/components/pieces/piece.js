@@ -72,9 +72,9 @@ export default function Piece (props) {
     const toggleSelected = () => {
         if(!selection && !gameEnd && !moving) {
             if(!selected) {
-                setSelected(true)
-                setSelection(self)
                 if(moves.length > 0) {
+                    setSelected(true)
+                    setSelection(self)
                     makeGhosts(moves, pieceType ? pieceType : type , [initFile, initRank], team)
                 }
             }
