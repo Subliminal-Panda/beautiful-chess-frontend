@@ -40,7 +40,7 @@
     }
 
     .captures {
-        height: auto;
+        height: 100%;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
     }
@@ -133,7 +133,7 @@
     }
 
     .divider {
-        height: 26rem;
+        height: calc(15rem + 13vh);
         width: 1.5rem;
         background-color: rgb(127, 127, 127);
         border-radius: 1rem;
@@ -227,7 +227,9 @@
     }
 
     .captured-zone {
-        min-height: calc(100vh - 102vw);
+        min-height: calc(100% - 1rem);
+        max-height: calc(100% - 1rem);
+        height: calc(100% - 1.25rem);
     }
 
     .details-wrap {
@@ -300,6 +302,8 @@
 
     .captures {
         width: 100%;
+        min-height: none;
+        max-height: none;
         height: 100%;
         margin-bottom: 1rem;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -316,6 +320,7 @@
 @media screen and (max-aspect-ratio: 47/100) {
     .captures {
         height: 100%;
+        // height: calc(10rem + 20vh);
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
     }

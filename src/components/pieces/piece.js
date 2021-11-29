@@ -1038,14 +1038,6 @@ export default function Piece (props) {
            (navigator.msMaxTouchPoints > 0));
       }
 
-    // const findTouch = () => {
-    //     if ("ontouchstart" in window || navigator.msMaxTouchPoints) {
-    //         isTouch = true;
-    //     } else {
-    //         isTouch = false;
-    //     }
-    // }
-
     useEffect(() => {
         if(checked === false ) {
             if(castled[0] !== undefined && castled.length < 3) {
@@ -1053,7 +1045,6 @@ export default function Piece (props) {
             }
             determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
             checked = true
-            // findTouch();
         }
     })
 
