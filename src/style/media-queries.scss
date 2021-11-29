@@ -34,8 +34,8 @@
     }
 
     .new-game, .promotion-selection {
-        top: calc(55 * var(--vh));
-        right: calc(45 * var(--vh));
+        top: 55vh;
+        right: 45vh;
         transform: translate(50%, -50%);
     }
 
@@ -57,11 +57,11 @@
         height: fit-content;
     }
 
-    // .single-captured {
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    // }
+    .single-captured {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .turn-info {
     height: 6rem;
@@ -75,13 +75,13 @@
     }
 
     .game-board-wrap {
-        min-height: calc(var(--vh) * 86);
-        min-width: calc(var(--vh) * 86);
+        min-height: 86vh;
+        min-width: 86vh;
         margin: 0 1.25vmin 1.25vmin;
     }
     .game-board {
-        min-height: calc(var(--vh) * 83);
-        min-width: calc(var(--vh) * 83);
+        min-height: 83vh;
+        min-width: 83vh;
     }
 
     .inactive-details > .nameplate {
@@ -97,8 +97,8 @@
     }
 
     .details-wrap {
-        min-height: calc(88 * var(--vh));
-        max-height: calc(88 * var(--vh));
+        min-height: 88vh;
+        max-height: 88vh;
         align-items: center;
         justify-content: space-evenly;
     }
@@ -112,8 +112,8 @@
 @media screen and (max-aspect-ratio: 138/100) {
 
     .new-game, .promotion-selection {
-        top: calc(55 * var(--vh));
-        right: calc(50 * var(--vh));
+        top: 45vh;
+        right: 50vw;
         transform: translate(50%, -50%);
     }
 
@@ -143,13 +143,22 @@
         margin-bottom: 1rem;
     }
 
+    .turn-info {
+        order: 2;
+        margin-top: 0;
+    }
+
+    .game-board-wrap {
+        margin-top: 1.75vmin;
+    }
+
 
 
 
 
     .captured-zone {
         order: 2;
-        width: calc(86 * var(--vh));
+        width: 86vh;
         min-height: 33rem;
         max-height: 33rem;
         margin: 0 1.25rem 1.25rem 1.25rem
@@ -158,7 +167,7 @@
 
 @media screen and (max-aspect-ratio: 1/1) {
     .new-game, .promotion-selection {
-        top: calc(55 * var(--vh));
+        top: 45vh;
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -166,7 +175,7 @@
 
 @media screen and (max-aspect-ratio: 23/25) {
     .new-game, .promotion-selection {
-        top: 59vw;
+        top: 50vw;
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -184,7 +193,8 @@
     }
 
     .table-wrap {
-        min-height: calc(100 * var(--vh));
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
         display: flex;
         justify-content: space-between;
     }
@@ -198,7 +208,6 @@
         justify-content: space-evenly;
     }
     .details-wrap {
-        min-height: 100%;
         max-height: 100%;
     }
 
@@ -278,7 +287,7 @@
     }
 
     .table-wrap {
-        height: calc(45 * var(--vh));
+        height: 45vh;
         justify-content: flex-start;
     }
     .divider {
@@ -299,7 +308,7 @@
     }
 
     .taken-wrapper {
-        font-size: calc(5.5 * var(--vh));
+        font-size: 5.5vh;
     }
 
 }

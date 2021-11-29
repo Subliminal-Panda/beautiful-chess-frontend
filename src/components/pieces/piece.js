@@ -45,6 +45,7 @@ export default function Piece (props) {
     let quickerMoved = moved
     let checked = true
     let availMoves = []
+    let isTouch = false;
 
     const record = ( typeToRecord , team, initPosition, currentFile, currentRank, moved, attacking, availMoves, lookPast) => {
         locations.forEach((pc, idx) => {
@@ -148,7 +149,6 @@ export default function Piece (props) {
             let disallowed = false;
             if(pinDown) {
                 disallowed = true;
-                // console.log("disallowed, piece is pinned.", pinDown)
                 if(!horiz) {
                     if(!pinDown[0]) {
                         disallowed = false;
@@ -1032,6 +1032,14 @@ export default function Piece (props) {
         })
     }
 
+    const findTouch = () => {
+        if ("ontouchstart" in window || navigator.msMaxTouchPoints) {
+            isTouch = true;
+        } else {
+            isTouch = false;
+        }
+    }
+
     useEffect(() => {
         if(checked === false ) {
             if(castled[0] !== undefined && castled.length < 3) {
@@ -1039,6 +1047,7 @@ export default function Piece (props) {
             }
             determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
             checked = true
+            findTouch();
         }
     })
 
@@ -1058,8 +1067,8 @@ export default function Piece (props) {
             {ghosts}
             <div
             onClick={ activePlayer === team ? () => toggleSelected() : null }
-            // onMouseOver={ !selection ? activePlayer === team ? () => handleHover() : null : null }
-            // onMouseOut={ activePlayer === team ? () => handleUnhover() : null }
+            onMouseOver={ !isTouch && !selection ? activePlayer === team ? () => handleHover() : null : null }
+            onMouseOut={ !isTouch && (activePlayer === team) ? () => handleUnhover() : null }
             className={ choosingPromotion ? `${team}-getting-promoted chess-piece ${team}-piece` : hover ? ( selected ? `${team}-hovered-piece ${team}-selected-piece chess-piece ${team}-piece` : `${team}-hovered-piece chess-piece ${team}-piece` ) : selected ? `${team}-selected-piece chess-piece ${team}-piece` : `chess-piece ${team}-piece` }
             style={{
                 gridArea: currentPosition,

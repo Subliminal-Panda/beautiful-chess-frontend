@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useContext } from 'react';
+﻿import React, { useState, useEffect, useContext, useRef } from 'react';
 
 import CapturedZone from './capturedZone';
 import Board from './board';
@@ -24,10 +24,16 @@ export default function Table (props) {
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
-    const [ vh, setVh ] = useState(window.innerHeight * .01)
+
+
+    const vh = useRef(window.innerHeight * .01)
+    const vw = useRef(window.innerWidth * .01)
+    const aspect = useRef((vh.current/vw.current).toFixed(2))
 
     window.addEventListener('resize', () => {
-        setVh(window.innerHeight * .01)
+        vh.current = (window.innerHeight * .01)
+        vw.current = (window.innerWidth * .01)
+        aspect.current = ((vh.current/vw.current).toFixed(2))
     })
 
     const resetGame = () => {
@@ -62,7 +68,7 @@ export default function Table (props) {
 
 
     return (
-        <div className="table-wrap" style={{ height: `${vh * 100}px`}}>
+        <div className="table-wrap" style={ aspect.current > 1 ? { height: `${vh.current * 100}px`} : null }>
             <CapturedZone />
             <div className="game-wrap">
                 <div className="turn-info">

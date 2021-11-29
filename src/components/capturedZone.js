@@ -21,14 +21,9 @@ export default function CapturedZone(props) {
     const [ inactive, setInactive ] = useState(playerTwo)
     const [ vh, setVh ] = useState(window.innerHeight * .01)
 
-
-    let allStyles = window.getComputedStyle(document.documentElement);
-    let viewHeight = allStyles.getPropertyValue("--vh");
-
     window.addEventListener('resize', () => {
         setVh(window.innerHeight * .01)
         document.documentElement.style.setProperty("--vh", `${vh}px`)
-        console.log("view height:", vh)
     })
 
     useEffect(() => {
@@ -59,19 +54,18 @@ export default function CapturedZone(props) {
         playerTaken.forEach((pc) => {
             if(pc[1] === "black") {
                 renderedOne.push(
-                    <div className="taken-wrapper" style={{color: `${pc[1]}`}} >
+                    <div key={`taken${pc}`} className="taken-wrapper" style={{color: `${pc[1]}`}} >
                         <FontAwesomeIcon className="taken" icon={pc[0]}></FontAwesomeIcon>
                     </div>
                 )
             } else if(pc[1] === "white") {
                 renderedTwo.push(
-                    <div className="taken-wrapper" style={{color: `${pc[1]}`}} >
+                    <div key={`taken${pc}`} className="taken-wrapper" style={{color: `${pc[1]}`}} >
                         <FontAwesomeIcon className="taken" icon={pc[0]}></FontAwesomeIcon>
                     </div>
                 )
             }
         })
-        console.log(vh)
         setCapturesOne(renderedOne)
         setCapturesTwo(renderedTwo)
     }
