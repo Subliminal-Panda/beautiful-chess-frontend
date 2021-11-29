@@ -83,7 +83,7 @@ export default function CapturedZone(props) {
             <div className="details-wrap" >
 
 
-                <div style={{height: `${vh * 48}px` }} className={ active === playerOne ? "player-one one-active active-details details" : active === playerTwo ? "player-two two-active active-details details" : null }>
+                <div className={ active === playerOne ? "player-one one-active active-details details" : active === playerTwo ? "player-two two-active active-details details" : null }>
 
                     <div className="nameplate">
                         { gameEnd ?
@@ -113,7 +113,7 @@ export default function CapturedZone(props) {
 
                 <div className="divider" />
 
-                <div style={{height: `${vh * 48}px` }} className={ inactive === playerOne ? "player-one inactive-details details" : inactive === playerTwo ? "player-two inactive-details details" : null }>
+                <div className={ inactive === playerOne ? "player-one inactive-details details" : inactive === playerTwo ? "player-two inactive-details details" : null }>
 
                     <div className="nameplate">
                         {inactive}
