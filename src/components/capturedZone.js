@@ -6,7 +6,6 @@ import CurrentGameContext from './currentGame';
 export default function CapturedZone(props) {
 
     const { taken, setTaken } = useContext(CurrentGameContext)
-    const { locations, setLocations } = useContext(CurrentGameContext)
     const { activePlayer, setActivePlayer } = useContext(CurrentGameContext)
     const { inCheck, setInCheck } = useContext(CurrentGameContext)
     const { gameEnd, setGameEnd } = useContext(CurrentGameContext)
@@ -40,8 +39,6 @@ export default function CapturedZone(props) {
             setInactive(playerOne)
         }
     }
-
-
 
     const renderTaken = () => {
         const renderedOne = []

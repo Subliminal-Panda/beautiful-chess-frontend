@@ -26,14 +26,14 @@ export default function Table (props) {
     const [ inactive, setInactive ] = useState(playerTwo)
 
 
-    const vh = useRef(window.innerHeight * .01)
-    const vw = useRef(window.innerWidth * .01)
-    const aspect = useRef((vh.current/vw.current).toFixed(2))
+    const [ vh, setVh ] = useState(window.innerHeight * .01)
+    const [ vw, setVw ] = useState(window.innerWidth * .01)
+    const [ aspect, setAspect ] = useState((vh/vw).toFixed(2))
 
     window.addEventListener('resize', () => {
-        vh.current = (window.innerHeight * .01)
-        vw.current = (window.innerWidth * .01)
-        aspect.current = ((vh.current/vw.current).toFixed(2))
+        setVh(window.innerHeight * .01)
+        setVw(window.innerWidth * .01)
+        setAspect((vh/vw).toFixed(2))
     })
 
     const resetGame = () => {
@@ -68,7 +68,7 @@ export default function Table (props) {
 
 
     return (
-        <div className="table-wrap" style={ aspect.current > 1 ? { height: `${vh.current * 100}px`} : null }>
+        <div className="table-wrap" style={ aspect > 1 ? { height: `${vw * 100}px`} : { height: `${vh * 100}px`} }>
             <CapturedZone />
             <div className="game-wrap">
                 <div className="turn-info">

@@ -8,6 +8,10 @@ export default function Piece (props) {
 
     //add en passant rules
 
+    //add checks for draw: stalemate, repetition, insufficient material, 50 move rule
+
+    //add resignation option
+
     //I think that should do it!!
 
     const { initRank, initFile, team, type } = props;
@@ -40,12 +44,10 @@ export default function Piece (props) {
     const [ selected, setSelected ] = useState(false);
     const [ ghosts, setGhosts ] = useState([])
     const [ moves, setMoves ] = useState([])
-    const [ movesSearched, setMovesSearched ] = useState(0)
 
     let quickerMoved = moved
     let checked = true
     let availMoves = []
-    let isTouch = false;
 
     const record = ( typeToRecord , team, initPosition, currentFile, currentRank, moved, attacking, availMoves, lookPast) => {
         locations.forEach((pc, idx) => {
@@ -76,7 +78,9 @@ export default function Piece (props) {
                 if(moves.length > 0) {
                     setSelected(true)
                     setSelection(self)
-                    makeGhosts(moves, pieceType ? pieceType : type , [initFile, initRank], team)
+                    if(ghosts.length < 1) {
+                        makeGhosts(moves, pieceType ? pieceType : type , [initFile, initRank], team)
+                    }
                 }
             }
         }
@@ -904,7 +908,7 @@ export default function Piece (props) {
             setSelection(false)
             setMoving(false)
             toggleActivePlayer()
-        }, 250)
+        }, 150)
     }
 
     const capturing = (newFile, newRank) => {
@@ -938,6 +942,7 @@ export default function Piece (props) {
         setSelection(self);
         setMoving(true)
     }
+
     const handlePromote = (icon) => {
         setSelection(self)
         setHover(false)
@@ -955,7 +960,7 @@ export default function Piece (props) {
             setMoving(false)
             setSelection(false)
             toggleActivePlayer()
-        }, 250)
+        }, 150)
     }
 
 
@@ -1032,7 +1037,7 @@ export default function Piece (props) {
         })
     }
 
-    function isTouchDevice() {
+    const isTouchDevice = () => {
         return (('ontouchstart' in window) ||
            (navigator.maxTouchPoints > 0) ||
            (navigator.msMaxTouchPoints > 0));
@@ -1055,7 +1060,6 @@ export default function Piece (props) {
 
         useEffect(() => {
         determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
-        setMovesSearched(0)
         checked = false
     },[moving, locations, promoted, activePlayer, inCheck])
 
