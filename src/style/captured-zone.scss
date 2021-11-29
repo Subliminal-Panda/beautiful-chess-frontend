@@ -43,7 +43,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    // gap: 1rem;
     grid-auto-flow: row;
     justify-content: center;
     align-items: center;
@@ -61,6 +60,7 @@
     justify-content: flex-start;
     align-items: center;
     height: 48vh;
+    height: calc(48 * $view-height/100);
     width: 95%;
 }
 
@@ -70,17 +70,6 @@
     background-color: rgb(127, 127, 127);
     border-radius: 1rem;
 }
-
-// .inactive-details {
-//     border-top: .5rem solid rgb(127, 127, 127);
-// }
-
-// .turn-info {
-//     height: 8rem;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
 
 
 
@@ -99,20 +88,6 @@
     justify-content: center;
     align-items: center;
 }
-
-// .one-active {
-//     margin: 0;
-//     width: calc(100vw - 105vmin);
-//     color: white;
-//     border-bottom: .5rem solid white;
-// }
-
-// .two-active {
-//     margin: 0;
-//     width: calc(100vw - 105vmin);
-//     color: black;
-//     border-bottom: .5rem solid black;
-// }
 
 .nameplate {
     display: flex;
@@ -141,8 +116,6 @@
 
 .game-end {
     font-size: 5rem;
-
-    // line-height: 5rem;
     gap: 1rem;
     display: flex;
     flex-direction: column;

@@ -70,9 +70,8 @@ export default function Piece (props) {
     }
 
     const toggleSelected = () => {
-        // console.log("ME:", pieceType , team, self, currentFile, currentRank, quickerMoved, moves)
         if(!selection && !gameEnd && !moving) {
-            if(!selected && hover) {
+            if(!selected) {
                 setSelected(true)
                 setSelection(self)
             }
@@ -255,7 +254,6 @@ export default function Piece (props) {
                                     disallowed = true;
                                     ("disallowed, king is in check", inCheck)
                                 }
-                                // console.log("attack on king:", atk)
                             })
                         }
                         if(!ally) {
@@ -386,7 +384,6 @@ export default function Piece (props) {
                 }
                 setInCheck(checks)
             } else if(enemyKing && directionOfAttack[3][1] !== team) {
-                // console.log("a piece is pinned:", directionOfAttack, "pinned piece:", directionOfAttack[3])
                 pinned.push(directionOfAttack)
             }
         }
@@ -834,7 +831,6 @@ export default function Piece (props) {
                 }
             }
         record(typeToMove , team, self, currentFile, currentRank, quickerMoved, attacking, availMoves, lookPast)
-        // console.log("I'm recording:", typeToMove , team, self, currentFile, currentRank, quickerMoved, attacking, availMoves, lookPast)
         updateAttacks();
         if(typeToMove === faChessKnight && pinDown) {
             availMoves = []
