@@ -34,9 +34,9 @@
     }
 
     .new-game, .promotion-selection {
-        top: calc(var(--vh) * 55);
-        right: calc(var(--vh) * 45);
-        // transform: translate(50%, -50%);
+        top: 55vh;
+        right: 45vh;
+        transform: translate(50%, -50%);
     }
 
     .captures {
@@ -57,11 +57,11 @@
         height: fit-content;
     }
 
-    // .single-captured {
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    // }
+    .single-captured {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .turn-info {
     height: 6rem;
@@ -97,8 +97,8 @@
     }
 
     .details-wrap {
-        min-height: calc(var(--vh) * 88);
-        max-height: calc(var(--vh) * 88);
+        min-height: 88vh;
+        max-height: 88vh;
         align-items: center;
         justify-content: space-evenly;
     }
@@ -112,7 +112,7 @@
 @media screen and (max-aspect-ratio: 138/100) {
 
     .new-game, .promotion-selection {
-        top: calc(var(--vh) * 55);
+        top: 55vh;
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -149,7 +149,7 @@
 
     .captured-zone {
         order: 2;
-        width: calc(var(--vh) * 86);
+        width: 86vh;
         min-height: 33rem;
         max-height: 33rem;
         margin: 0 1.25rem 1.25rem 1.25rem
@@ -158,7 +158,7 @@
 
 @media screen and (max-aspect-ratio: 1/1) {
     .new-game, .promotion-selection {
-        top: calc(var(--vh) * 55);
+        top: 55vh;
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -184,7 +184,7 @@
     }
 
     .table-wrap {
-        min-height: calc(var(--vh) * 100);
+        min-height: 100vh;
         display: flex;
         justify-content: space-between;
     }
@@ -193,7 +193,7 @@
 @media screen and (max-aspect-ratio: 6/10) {
 
     .captured-zone {
-        min-height: calc((var(--vh) * 96) - (95vw + 6rem));
+        min-height: calc(96vh - (95vw + 6rem));
         flex-direction: column;
         justify-content: space-evenly;
     }
@@ -218,7 +218,7 @@
     }
 
     .captured-zone {
-        min-height: calc((var(--vh) * 100) - 102vw);
+        min-height: calc(100vh - 102vw);
     }
 
     .details-wrap {
@@ -278,7 +278,7 @@
     }
 
     .table-wrap {
-        height: calc(var(--vh) * 45);
+        height: 45vh;
         justify-content: flex-start;
     }
     .divider {
@@ -299,7 +299,7 @@
     }
 
     .taken-wrapper {
-        font-size: calc(var(--vh) * 45);
+        font-size: 45vh;
     }
 
 }

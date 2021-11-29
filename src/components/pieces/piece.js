@@ -82,6 +82,7 @@ export default function Piece (props) {
         if(selected) {
             setSelected(false)
             setSelection(false)
+            setGhosts([])
         }
     }
 
