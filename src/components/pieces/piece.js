@@ -1032,13 +1032,19 @@ export default function Piece (props) {
         })
     }
 
-    const findTouch = () => {
-        if ("ontouchstart" in window || navigator.msMaxTouchPoints) {
-            isTouch = true;
-        } else {
-            isTouch = false;
-        }
-    }
+    function isTouchDevice() {
+        return (('ontouchstart' in window) ||
+           (navigator.maxTouchPoints > 0) ||
+           (navigator.msMaxTouchPoints > 0));
+      }
+
+    // const findTouch = () => {
+    //     if ("ontouchstart" in window || navigator.msMaxTouchPoints) {
+    //         isTouch = true;
+    //     } else {
+    //         isTouch = false;
+    //     }
+    // }
 
     useEffect(() => {
         if(checked === false ) {
@@ -1047,7 +1053,7 @@ export default function Piece (props) {
             }
             determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
             checked = true
-            findTouch();
+            // findTouch();
         }
     })
 
@@ -1067,8 +1073,8 @@ export default function Piece (props) {
             {ghosts}
             <div
             onClick={ activePlayer === team ? () => toggleSelected() : null }
-            onMouseOver={ !isTouch && !selection ? activePlayer === team ? () => handleHover() : null : null }
-            onMouseOut={ !isTouch && (activePlayer === team) ? () => handleUnhover() : null }
+            onMouseOver={ !isTouchDevice() && !selection ? activePlayer === team ? () => handleHover() : null : null }
+            onMouseOut={ (activePlayer === team) ? () => handleUnhover() : null }
             className={ choosingPromotion ? `${team}-getting-promoted chess-piece ${team}-piece` : hover ? ( selected ? `${team}-hovered-piece ${team}-selected-piece chess-piece ${team}-piece` : `${team}-hovered-piece chess-piece ${team}-piece` ) : selected ? `${team}-selected-piece chess-piece ${team}-piece` : `chess-piece ${team}-piece` }
             style={{
                 gridArea: currentPosition,
