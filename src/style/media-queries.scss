@@ -34,8 +34,8 @@
     }
 
     .new-game, .promotion-selection {
-        top: 55vh;
-        right: 45vh;
+        top: calc(55 * var(--vh));
+        right: calc(45 * var(--vh));
         transform: translate(50%, -50%);
     }
 
@@ -97,8 +97,8 @@
     }
 
     .details-wrap {
-        min-height: 88vh;
-        max-height: 88vh;
+        min-height: calc(88 * var(--vh));
+        max-height: calc(88 * var(--vh));
         align-items: center;
         justify-content: space-evenly;
     }
@@ -112,8 +112,8 @@
 @media screen and (max-aspect-ratio: 138/100) {
 
     .new-game, .promotion-selection {
-        top: 55vh;
-        right: 50vw;
+        top: calc(55 * var(--vh));
+        right: calc(50 * var(--vh));
         transform: translate(50%, -50%);
     }
 
@@ -149,7 +149,7 @@
 
     .captured-zone {
         order: 2;
-        width: 86vh;
+        width: calc(86 * var(--vh));
         min-height: 33rem;
         max-height: 33rem;
         margin: 0 1.25rem 1.25rem 1.25rem
@@ -158,7 +158,7 @@
 
 @media screen and (max-aspect-ratio: 1/1) {
     .new-game, .promotion-selection {
-        top: 55vh;
+        top: calc(55 * var(--vh));
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -184,7 +184,7 @@
     }
 
     .table-wrap {
-        min-height: 100vh;
+        min-height: calc(100 * var(--vh));
         display: flex;
         justify-content: space-between;
     }
@@ -278,7 +278,7 @@
     }
 
     .table-wrap {
-        height: 45vh;
+        height: calc(45 * var(--vh));
         justify-content: flex-start;
     }
     .divider {
@@ -299,7 +299,7 @@
     }
 
     .taken-wrapper {
-        font-size: 45vh;
+        font-size: calc(5.5 * var(--vh));
     }
 
 }
