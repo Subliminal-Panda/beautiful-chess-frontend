@@ -74,6 +74,9 @@ export default function Piece (props) {
             if(!selected) {
                 setSelected(true)
                 setSelection(self)
+                if(moves.length > 0) {
+                    makeGhosts(moves, pieceType ? pieceType : type , [initFile, initRank], team)
+                }
             }
         }
         if(selected) {
@@ -1054,8 +1057,8 @@ export default function Piece (props) {
             {ghosts}
             <div
             onClick={ activePlayer === team ? () => toggleSelected() : null }
-            onMouseOver={ !selection ? activePlayer === team ? () => handleHover() : null : null }
-            onMouseOut={ activePlayer === team ? () => handleUnhover() : null }
+            // onMouseOver={ !selection ? activePlayer === team ? () => handleHover() : null : null }
+            // onMouseOut={ activePlayer === team ? () => handleUnhover() : null }
             className={ choosingPromotion ? `${team}-getting-promoted chess-piece ${team}-piece` : hover ? ( selected ? `${team}-hovered-piece ${team}-selected-piece chess-piece ${team}-piece` : `${team}-hovered-piece chess-piece ${team}-piece` ) : selected ? `${team}-selected-piece chess-piece ${team}-piece` : `chess-piece ${team}-piece` }
             style={{
                 gridArea: currentPosition,
