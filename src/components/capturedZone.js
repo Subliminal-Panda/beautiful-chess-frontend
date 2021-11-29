@@ -19,13 +19,22 @@ export default function CapturedZone(props) {
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
+    const [ vh, setVh ] = useState(window.innerHeight * .01)
+
+
+    let allStyles = window.getComputedStyle(document.documentElement);
+    let viewHeight = allStyles.getPropertyValue("--vh");
+
+    window.addEventListener('resize', () => {
+        setVh(window.innerHeight * .01)
+        document.documentElement.style.setProperty("--vh", `${vh}px`)
+        console.log("view height:", vh)
+    })
 
     useEffect(() => {
         renderTaken();
         findInactive();
     },[activePlayer, moving])
-
-
 
     const findInactive = () => {
         if(activePlayer === "white") {
@@ -62,6 +71,7 @@ export default function CapturedZone(props) {
                 )
             }
         })
+        console.log(vh)
         setCapturesOne(renderedOne)
         setCapturesTwo(renderedTwo)
     }
@@ -73,7 +83,7 @@ export default function CapturedZone(props) {
             <div className="details-wrap" >
 
 
-                <div className={ active === playerOne ? "player-one one-active active-details details" : active === playerTwo ? "player-two two-active active-details details" : null }>
+                <div style={{height: `${vh * 48}px` }} className={ active === playerOne ? "player-one one-active active-details details" : active === playerTwo ? "player-two two-active active-details details" : null }>
 
                     <div className="nameplate">
                         { gameEnd ?
@@ -103,7 +113,7 @@ export default function CapturedZone(props) {
 
                 <div className="divider" />
 
-                <div className={ inactive === playerOne ? "player-one inactive-details details" : inactive === playerTwo ? "player-two inactive-details details" : null }>
+                <div style={{height: `${vh * 48}px` }} className={ inactive === playerOne ? "player-one inactive-details details" : inactive === playerTwo ? "player-two inactive-details details" : null }>
 
                     <div className="nameplate">
                         {inactive}

@@ -24,6 +24,11 @@ export default function Table (props) {
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
+    const [ vh, setVh ] = useState(window.innerHeight * .01)
+
+    window.addEventListener('resize', () => {
+        setVh(window.innerHeight * .01)
+    })
 
     const resetGame = () => {
         setGameEnd(false)
@@ -57,7 +62,7 @@ export default function Table (props) {
 
 
     return (
-        <div className="table-wrap">
+        <div className="table-wrap" style={{ height: `${vh * 100}px`}}>
             <CapturedZone />
             <div className="game-wrap">
                 <div className="turn-info">

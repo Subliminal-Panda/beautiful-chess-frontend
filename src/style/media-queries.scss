@@ -34,11 +34,9 @@
     }
 
     .new-game, .promotion-selection {
-        top: 55vh;
-        top: calc(55 * $view-height/100);
-        right: 45vh;
-        right: calc(45 * $view-height/100);
-        transform: translate(50%, -50%);
+        top: calc(var(--vh) * 55);
+        right: calc(var(--vh) * 45);
+        // transform: translate(50%, -50%);
     }
 
     .captures {
@@ -77,17 +75,13 @@
     }
 
     .game-board-wrap {
-        min-height: 86vh;
-        min-height: calc(86 * $view-height/100);
-        min-width: 86vh;
-        min-width: calc(86 * $view-height/100);
+        min-height: calc(var(--vh) * 86);
+        min-width: calc(var(--vh) * 86);
         margin: 0 1.25vmin 1.25vmin;
     }
     .game-board {
-        min-height: 83vh;
-        min-height: calc(83 * $view-height/100);
-        min-width: 83vh;
-        min-width: calc(83 * $view-height/100);
+        min-height: calc(var(--vh) * 83);
+        min-width: calc(var(--vh) * 83);
     }
 
     .inactive-details > .nameplate {
@@ -103,10 +97,8 @@
     }
 
     .details-wrap {
-        min-height: 88vh;
-        min-height: calc(88 * $view-height/100);
-        max-height: 88vh;
-        max-height: calc(88 * $view-height/100);
+        min-height: calc(var(--vh) * 88);
+        max-height: calc(var(--vh) * 88);
         align-items: center;
         justify-content: space-evenly;
     }
@@ -120,8 +112,7 @@
 @media screen and (max-aspect-ratio: 138/100) {
 
     .new-game, .promotion-selection {
-        top: 55vh;
-        top: calc(55 * $view-height/100);
+        top: calc(var(--vh) * 55);
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -158,8 +149,7 @@
 
     .captured-zone {
         order: 2;
-        width: 86vh;
-        width: calc(86 * $view-height/100);
+        width: calc(var(--vh) * 86);
         min-height: 33rem;
         max-height: 33rem;
         margin: 0 1.25rem 1.25rem 1.25rem
@@ -168,8 +158,7 @@
 
 @media screen and (max-aspect-ratio: 1/1) {
     .new-game, .promotion-selection {
-        top: 55vh;
-        top: calc(55 * $view-height/100);
+        top: calc(var(--vh) * 55);
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -195,8 +184,7 @@
     }
 
     .table-wrap {
-        min-height: 100vh;
-        min-height: calc(100 * $view-height/100);
+        min-height: calc(var(--vh) * 100);
         display: flex;
         justify-content: space-between;
     }
@@ -205,8 +193,7 @@
 @media screen and (max-aspect-ratio: 6/10) {
 
     .captured-zone {
-        min-height: calc(96vh - (95vw + 6rem));
-        min-height: calc((96 * $view-height/100) - (95vw + 6rem));
+        min-height: calc((var(--vh) * 96) - (95vw + 6rem));
         flex-direction: column;
         justify-content: space-evenly;
     }
@@ -231,8 +218,7 @@
     }
 
     .captured-zone {
-        min-height: calc(100vh - 102vw);
-        min-height: calc((100 * $view-height/100) - 102vw);
+        min-height: calc((var(--vh) * 100) - 102vw);
     }
 
     .details-wrap {
@@ -292,8 +278,7 @@
     }
 
     .table-wrap {
-        height: 100vh;
-        height: calc(100 * $view-height/100);
+        height: calc(var(--vh) * 45);
         justify-content: flex-start;
     }
     .divider {
@@ -314,8 +299,7 @@
     }
 
     .taken-wrapper {
-        font-size: 5.5vh;
-        font-size: calc(5.5 * $view-height/100);
+        font-size: calc(var(--vh) * 45);
     }
 
 }
