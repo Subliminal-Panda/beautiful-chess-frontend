@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Table from "./table";
 import CurrentGameContext from './currentGame';
@@ -18,7 +19,6 @@ export default function App () {
   const [ moving, setMoving ] = useState(false)
   const [ pinned, setPinned ] = useState([])
   const [ gameEnd, setGameEnd ] = useState(false)
-
 
 
   return (

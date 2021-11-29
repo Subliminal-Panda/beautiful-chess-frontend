@@ -52,7 +52,7 @@ export default function Table (props) {
     }
 
     useEffect(() => {
-      findInactive();
+        findInactive();
     },[activePlayer, moving])
 
 
@@ -64,7 +64,6 @@ export default function Table (props) {
                 { gameEnd ?
                     <div className="game-end">
                         <div>{`${gameEnd[0]}. ${gameEnd[1]} wins.`.toUpperCase()}</div>
-                        {/* <div>{`${gameEnd[1]} wins`.toUpperCase()}</div> */}
                     </div>
                     : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                     <div className="in-check">
@@ -79,7 +78,6 @@ export default function Table (props) {
                 <Board />
                 { gameEnd ? <div onClick={() => resetGame()} className="new-game">Rematch?</div> : null }
             </div>
-            {/* <CapturedZone player={playerTwo} /> */}
         </div>
     )
 }

@@ -138,8 +138,8 @@ export default function Board (props) {
             }
         }
         setInCheck(checks)
-        console.log("checks:", checks)
-        console.log("incheck:", inCheck)
+        // console.log("checks:", checks)
+        // console.log("incheck:", inCheck)
         findCheckMate();
     }
 
@@ -159,7 +159,7 @@ export default function Board (props) {
                     setGameEnd(["checkmate", "black"])
                 }
             } else {
-                console.log("movable pieces while in check:", movablePieces, inCheck)
+                // console.log("movable pieces while in check:", movablePieces, inCheck)
             }
     }
 
