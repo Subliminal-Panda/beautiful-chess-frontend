@@ -62,7 +62,7 @@ export default function Table (props) {
 
 
     return (
-        <div className="table-wrap" >
+        <div className="table-wrap" style={{ height: `${vh * 100}px`}}>
             <CapturedZone />
             <div className="game-wrap">
                 <div className="turn-info">
