@@ -9,16 +9,17 @@
         font-size: 5rem;
     }
     .in-check {
-        font-size: 5rem;
+        font-size: 3.5rem;
     }
 
     .captured {
         grid-column: 1 / span 5;
-        font-size: 4rem;
+        font-size: 3.25rem;
     }
     .nameplate {
         margin-top: 1rem;
-        font-size: 4rem;
+        font-size: 3rem;
+        font-stretch: ultra-condensed;
         line-height: 4.5rem;
     }
     .details {
@@ -30,7 +31,9 @@
 @media screen and (max-aspect-ratio: 153/100) {
 
     .in-check {
-        font-size: 5rem;
+        flex-direction: row;
+        gap: 1rem;
+        font-size: 3.75rem;
     }
 
     .new-game, .promotion-selection {
@@ -66,12 +69,21 @@
     .turn-info {
     height: 6rem;
     display: block;
-    font-weight: 900;
-    font-size: 6rem;
+    font-size: 5.5rem;
     line-height: 6rem;
     order: 0;
     margin-top: 1.25vmin;
     overflow: hidden;
+    }
+
+    .on-turn {
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        line-height: 5rem;
+        font-size: 3.5rem;
     }
 
     .game-board-wrap {
@@ -256,13 +268,13 @@
         justify-content: center;
         gap: 1.25rem;
         * {
-            font-size: 4.5rem;
+            font-size: 3rem;
         }
     }
 
-    .captured {
-        display: block;
-    }
+    // .captured {
+    //     display: block;
+    // }
 
     .single-captured {
         display: none;
@@ -280,9 +292,9 @@
         flex-direction: row;
         justify-content: center;
         gap: 1.25rem;
-        font-size: 4.5rem;
+        font-size: 3rem;
         * {
-            font-size: 4.5rem;
+            font-size: 3rem;
         }
     }
 

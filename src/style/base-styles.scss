@@ -40,6 +40,7 @@ html {
     padding: 0;
     box-sizing: inherit;
     font-family: "Baloo Bhai Imported";
+    font-weight: 500;
 }
 
 body {
@@ -54,9 +55,9 @@ body {
 
 
 
-h1, h2, h3, h4, h5 {
-    font-family: "Baloo Bhai Imported";
-}
+// h1, h2, h3, h4, h5 {
+//     font-family: "Baloo Bhai Imported";
+// }
 
 .app {
     display: grid;

@@ -143,21 +143,20 @@ export default function Board (props) {
 
     const findCheckMate = () => {
         const movablePieces = []
-            locations.forEach((loc) => {
-                if(loc[7][0] !== undefined) {
-                    if(loc[1] === inCheck[0] || loc[1] === inCheck[1])
-                    movablePieces.push(loc)
-                }
-            })
-            if(movablePieces[0] === undefined) {
-                if(activePlayer === "black" && inCheck[1] === "black") {
-                    setGameEnd(["checkmate", "white"])
-                }
-                if(activePlayer === "white" && inCheck[0] === "white") {
-                    setGameEnd(["checkmate", "black"])
-                }
-            } else {
+        locations.forEach((loc) => {
+            if(loc[7][0] !== undefined) {
+                if(loc[1] === inCheck[0] || loc[1] === inCheck[1])
+                movablePieces.push(loc)
             }
+        })
+        if(movablePieces[0] === undefined) {
+            if(activePlayer === "black" && inCheck[1] === "black") {
+                setGameEnd(["checkmate", "white"])
+            }
+            if(activePlayer === "white" && inCheck[0] === "white") {
+                setGameEnd(["checkmate", "black"])
+            }
+        }
     }
 
     useEffect(() => {

@@ -3,6 +3,8 @@
 import CapturedZone from './capturedZone';
 import Board from './board';
 import CurrentGameContext from './currentGame';
+import { navigate } from 'hookrouter';
+import Login from './login';
 
 export default function Table (props) {
 
@@ -21,6 +23,8 @@ export default function Table (props) {
     const { moving, setMoving } = useContext(CurrentGameContext)
     const { pinned, setPinned } = useContext(CurrentGameContext)
     const { newGame, setNewGame } = useContext(CurrentGameContext)
+    const { loginWhite, setLoginWhite } = useContext(CurrentGameContext)
+    const { loginBlack, setLoginBlack } = useContext(CurrentGameContext)
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
@@ -68,27 +72,33 @@ export default function Table (props) {
 
 
     return (
-        <div className="table-wrap" style={ aspect > 1 ? { height: `${vw * 100}px`} : { height: `${vh * 100}px`} }>
-            <CapturedZone />
-            <div className="game-wrap">
-                <div className="turn-info">
-                { gameEnd ?
-                    <div className="game-end">
-                        <div>{`${gameEnd[0]}. ${gameEnd[1]} wins.`.toUpperCase()}</div>
+        <div>
+        { (loginWhite && loginBlack) ?
+            <div className="table-wrap" style={ aspect > 1 ? { height: `${vw * 100}px`} : { height: `${vh * 100}px`} }>
+                <CapturedZone />
+                <div className="game-wrap">
+                    <div className="turn-info">
+                    { gameEnd ?
+                        <div className="game-end">
+                            <div>{`${gameEnd[0]}. ${gameEnd[1]} wins.`.toUpperCase()}</div>
+                        </div>
+                        : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
+                        <div className="in-check">
+                        <div>{active},</div><div>CHECK!</div>
+                        </div>
+                        :
+                        <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } >
+                            {active},
+                            <div>your move.</div>
+                        </div>
+                    }
                     </div>
-                    : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
-                    <div className="in-check">
-                        CHECK!
-                    </div>
-                    :
-                    <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } >
-                        {active}'s move.
-                    </div>
-                }
+                    <Board />
+                    { gameEnd ? <div onClick={() => resetGame()} className="new-game">Rematch?</div> : null }
                 </div>
-                <Board />
-                { gameEnd ? <div onClick={() => resetGame()} className="new-game">Rematch?</div> : null }
             </div>
+            : <Login />
+        }
         </div>
     )
 }

@@ -84,9 +84,8 @@ export default function CapturedZone(props) {
                         </div>
                         : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                         <div className="in-check">
-                            CHECK!
-                        </div>
-                        : <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } >{active}'s move.</div>
+                        <div>{active}</div><div>CHECK!</div></div>
+                        : <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } ><div>{active}</div><div>your move.</div></div>
                         }
                         { gameEnd ? null : <h1 className={ active === playerOne ? "player-one captured" : active === playerTwo ? "player-two captured" : null }>Captured:</h1>}
                     </div>

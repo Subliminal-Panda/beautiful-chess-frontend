@@ -73,6 +73,7 @@ export default function Piece (props) {
     }
 
     const toggleSelected = () => {
+        console.log(activePlayer)
         if(!selection && !gameEnd && !moving) {
             if(!selected) {
                 if(moves.length > 0) {
@@ -730,6 +731,7 @@ export default function Piece (props) {
                     if(ally) {friendlyFire.push([[currentFile - 1],[currentRank - 2]])}
                 }
             }
+
             if(enemyKing) {
                 assassin = true;
                 assassinAttempts.push([directionOfAttack, self, currentFile, currentRank, team])
@@ -761,19 +763,16 @@ export default function Piece (props) {
             oth === mv
         )))
         availMoves = usableMoves.filter((mv, idx, arr) => idx === arr.findIndex((oth) => (
-            oth[0][0] === mv[0][0] && oth[1][0] === mv [1][0]
+            (oth[0][0] === mv[0][0]) && (oth[1][0] === mv [1][0])
         )))
-        if(typeToMove !== faChessKing) {
 
+        if(typeToMove !== faChessKing) {
             if(inCheck[0] === team || inCheck[1] === team) {
                 const inCheckMoves = []
                 const filteredAttempts = assassinAttempts.filter((atk, index, arr) =>
                     index === arr.findIndex((oth) => (
-                        oth[2] === atk[2]
+                        (oth[2] === atk[2]) && (atk[4] !== activePlayer)
                 )))
-                filteredAttempts.filter((atk) => {
-                    atk[4] !== activePlayer
-                })
                 if(filteredAttempts.length > 1) {
                     availMoves = []
                 }
@@ -788,11 +787,12 @@ export default function Piece (props) {
                         }
                     })
                 })
-            availMoves = inCheckMoves.filter((mv, idx, arr) => idx === arr.findIndex((oth) => (
+                availMoves = inCheckMoves.filter((mv, idx, arr) => idx === arr.findIndex((oth) => (
                 oth[0][0] === mv[0][0] && oth[1][0] === mv [1][0]
                 )))
             }
         }
+
         if(typeToMove  === faChessPawn) {
             pawnMoves.forEach((mv) => {
                 attacking.push(mv)
@@ -823,21 +823,22 @@ export default function Piece (props) {
                 attacking.push(mv)
             })
         }
+
         if(assassin) {
             setAssassinAttempts(assassinAttempts.filter((atk, index, arr) =>
             index === arr.findIndex((oth) => (
                 oth[2] === atk[2]
                 ))))
+        } else {
+            if(assassinAttempts !== undefined) {
+                assassinAttempts.forEach((atmpt, idx, arr) => {
+                    if(atmpt[1] === self) {
+                        arr.splice(idx, 1)
+                    }
+                })
             }
-            if(!assassin) {
-                if(assassinAttempts !== undefined) {
-                    assassinAttempts.forEach((atmpt, idx, arr) => {
-                        if(atmpt[1] === self) {
-                            arr.splice(idx, 1)
-                        }
-                    })
-                }
-            }
+        }
+
         record(typeToMove , team, self, currentFile, currentRank, quickerMoved, attacking, availMoves, lookPast)
         updateAttacks();
         if(typeToMove === faChessKnight && pinDown) {
@@ -1041,7 +1042,12 @@ export default function Piece (props) {
         return (('ontouchstart' in window) ||
            (navigator.maxTouchPoints > 0) ||
            (navigator.msMaxTouchPoints > 0));
-      }
+    }
+
+    useEffect(() => {
+        determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
+        checked = false
+    },[]);
 
     useEffect(() => {
         if(checked === false ) {
@@ -1052,11 +1058,6 @@ export default function Piece (props) {
             checked = true
         }
     })
-
-    useEffect(() => {
-        determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
-        checked = false
-    },[]);
 
         useEffect(() => {
         determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);

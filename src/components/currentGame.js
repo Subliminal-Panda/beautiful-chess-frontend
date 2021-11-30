@@ -1,6 +1,10 @@
 ﻿import React, { createContext } from 'react';
 
 const CurrentGameContext = createContext({
+    loginWhite: '',
+    setLoginWhite: () => {},
+    loginBlack: '',
+    setLoginBlack: () => {},
     newGame: '',
     setNewGame: () => {},
     playerOne: "",
