@@ -15,7 +15,7 @@ export default function Login() {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [ confirmPassword, setConfirmPassword ] = useState('');
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -23,10 +23,12 @@ export default function Login() {
         if(event.target.name === "username") {
             setUsername(event.target.value)
             console.log(event.target.value)
-        } else if(event.target.name = "password") {
-            setPassword(event.target.value)
+        } else if(event.target.name === "confirm") {
+            setConfirmPassword(event.target.value)
             console.log(event.target.value)
-            console.log(username);
+        } else if(event.target.name === "password") {
+            setPassword(event.target.value)
+            console.log(event.target.value, event.target.name)
         }
     }
 
@@ -37,7 +39,7 @@ export default function Login() {
             setError(true);
             setErrorMessage('Error: All fields must be filled in!');
         } else {
-            fetch('endpoint here', {
+            fetch('http://127.0.0.1:5000/user/verify', {
                 method: "POST",
                 headers: {"content-type" : "application/json"},
                 body: JSON.stringify({
@@ -48,12 +50,14 @@ export default function Login() {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if(data === 'User NOT verified.') {
+                if( (data === 'User not found.') || (data === 'Incorrect password.')) {
                     setError(true);
-                    setErrorMessage('Invalid username or password.');
-                } else if(data === 'User has been verified.') {
+                    setErrorMessage(data);
+                } else if(data[0] === 'User verified:') {
                     Cookies.set('username', username);
-                    console.log(Cookies)
+                    console.log("cookies:", Cookies)
+                    console.log(data)
+                    handleContinue();
                 }
             })
             .catch(error => {
@@ -83,14 +87,17 @@ export default function Login() {
                         password
                     })
                 })
+                .then(res => res.json())
                 .then(data => {
-                    if(data === 'Error: That username is Taken.') {
+                    if(data[0] === 'Error: That username is already taken.') {
                         setError(true);
-                        setErrorMessage('Error: That username is Taken.');
+                        setErrorMessage(data);
                     } else {
                         setError(false);
                         setErrorMessage('');
                         Cookies.set('username', username);
+                        console.log(data)
+                        handleContinue();
                     }
                 })
                 .catch(error => {
@@ -103,19 +110,23 @@ export default function Login() {
 
     }
 
-    const guestContinue = () => {
+    const handleContinue = () => {
         if( !loginWhite ) {
+            setLoginWhite(username)
             if(username) {
                 setPlayerOne(username)
                 setUsername('')
+                setPassword('')
+                setConfirmPassword('')
             }
-            setLoginWhite(username)
         } else if( !loginBlack ) {
+            setLoginBlack(username)
             if(username) {
                 setPlayerTwo(username)
                 setUsername('')
+                setPassword('')
+                setConfirmPassword('')
             }
-            setLoginBlack(username)
             navigate('/game')
         }
         console.log("user:", username, "white logged in?", loginWhite, "black logged in?", loginBlack, "player one", playerOne, "player two", playerTwo)
@@ -132,38 +143,68 @@ export default function Login() {
 
     return (
 
-        <div>
-            <h1>{`${ !loginWhite ? "Player one" : !loginBlack ? "Player two" : "error loading login info" }: what can I call you?`}</h1>
+        <div className="login-page">
             <form
             onSubmit={ handleSubmit }
             className="login-form-wrap"
             >
-                <div className="form-group">
-                    <FontAwesomeIcon icon={ faChessRook } />
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Enter a username"
-                        value={ username }
-                        onChange={ handleChange }
-                    />
+                <h1>{`${ !loginWhite ? "Player 1" : !loginBlack ? "Player 2" : null }, what can I call you?`}</h1>
+                <div className="button-form-wrap">
+                    <div className="form-group">
+                        <FontAwesomeIcon icon={ faChessRook } />
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Enter a username"
+                            value={ username }
+                            onChange={ handleChange }
+                        />
+                    </div>
+                    { username ?
+                    <div className="button-wrapper">
+                        <button className="btn guest" onClick={() => handleContinue()} type="button">Guest</button>
+                        <h2>or:</h2>
+                    </div>
+                    : null }
                 </div>
-                { username ? <button className="btn guest" onClick={() => guestContinue()} type="button">Continue as guest?</button> : null }
-
-                { username ? <div className="form-group">
-                    <FontAwesomeIcon icon={ faLock } />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Or... enter your password"
-                        value={ password }
-                        onChange={ handleChange }
-                    />
-                </div> : null }
-
-                <div>
-                    { password ? <button className="btn login" type="submit">Log In</button> : null }
-                    { password ? <button className="btn signup" onClick={() => handleSignUp()} type="button">Sign up</button> : null }
+                <div className="button-form-wrap">
+                    { username ?
+                        <div className="form-group">
+                            <FontAwesomeIcon icon={ faLock } />
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter a password"
+                                value={ password }
+                                onChange={ handleChange }
+                            />
+                        </div>
+                    : null }
+                    { username ?
+                    <div className="button-wrapper">
+                        <button className="btn login" type="submit">Log In</button>
+                        <h2>or:</h2>
+                    </div>
+                    : null }
+                </div>
+                <div className="button-form-wrap">
+                    { username ?
+                        <div className="form-group">
+                            <FontAwesomeIcon icon={ faLock } />
+                            <input
+                                type="password"
+                                name="confirm"
+                                placeholder="Confirm password to sign up."
+                                value={ confirmPassword }
+                                onChange={ handleChange }
+                            />
+                        </div>
+                    : null }
+                        { username ?
+                    <div className="button-wrapper">
+                        <button className="btn signup" onClick={() => handleSignUp()} type="button">Sign up</button>
+                    </div>
+                    : null }
                 </div>
             </form>
         </div>
