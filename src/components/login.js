@@ -172,7 +172,7 @@ export default function Login() {
                 id: "guest",
                 username: username
             })
-            // navigate('/game')
+            navigate('/game')
         }
         setUsername('')
         setPassword('')

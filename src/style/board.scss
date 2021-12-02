@@ -1,6 +1,8 @@
 ﻿.game-board {
     min-width: 92vmin;
     min-height: 92vmin;
+    max-width: 92vmin;
+    max-height: 92vmin;
     display: grid;
     justify-content: center;
     align-items: center;
