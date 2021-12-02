@@ -1,8 +1,10 @@
-﻿.game-board {
-    min-width: 92vh;
-    min-height: 92vh;
-    max-width: 92vh;
-    max-height: 92vh;
+﻿$board-size: 92vh;
+
+.game-board {
+    min-width: $board-size;
+    min-height: $board-size;
+    max-width: $board-size;
+    max-height: $board-size;
     display: grid;
     justify-content: center;
     align-items: center;

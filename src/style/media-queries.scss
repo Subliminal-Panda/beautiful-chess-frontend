@@ -283,7 +283,11 @@
     }
 }
 
+$portrait-board-size: 92vw;
+
 @media screen and (max-aspect-ratio: 1/1) {
+
+
 
     .new-game, .promotion-selection {
         top: 50vw;
@@ -292,10 +296,10 @@
     }
 
     .game-board {
-        min-width: 92vw;
-        min-height: 92vw;
-        max-width: 92vw;
-        max-height: 92vw;
+        min-width: $portrait-board-size;
+        min-height: $portrait-board-size;
+        max-width: $portrait-board-size;
+        max-height: $portrait-board-size;
     }
 
     .game-board-wrap {
