@@ -119,17 +119,17 @@
     }
 
     .game-board-wrap {
-        min-height: 86vmin;
-        min-width: 86vmin;
-        max-height: 86vmin;
-        max-width: 86vmin;
+        min-height: 86vh;
+        min-width: 86vh;
+        max-height: 86vh;
+        max-width: 86vh;
         margin: 0 1.25vmin 1.25vmin;
     }
     .game-board {
-        min-height: 83vmin;
-        min-width: 83vmin;
-        max-height: 83vmin;
-        max-width: 83vmin;
+        min-height: 83vh;
+        min-width: 83vh;
+        max-height: 83vh;
+        max-width: 83vh;
     }
 
     .inactive-details > .nameplate {
@@ -290,7 +290,7 @@
 @media screen and (max-aspect-ratio: 1/1) {
 
     .new-game, .promotion-selection {
-        top: 45.5vw;
+        top: 45.5vh;
         right: 50vw;
         transform: translate(50%, -50%);
     }
