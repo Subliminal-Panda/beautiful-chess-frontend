@@ -119,13 +119,17 @@
     }
 
     .game-board-wrap {
-        min-height: 86vh;
-        min-width: 86vh;
+        min-height: 86vmin;
+        min-width: 86vmin;
+        max-height: 86vmin;
+        max-width: 86vmin;
         margin: 0 1.25vmin 1.25vmin;
     }
     .game-board {
-        min-height: 83vh;
-        min-width: 83vh;
+        min-height: 83vmin;
+        min-width: 83vmin;
+        max-height: 83vmin;
+        max-width: 83vmin;
     }
 
     .inactive-details > .nameplate {
@@ -189,7 +193,7 @@
 @media screen and (max-aspect-ratio: 125/100) {
 
     .new-game, .promotion-selection {
-        top: 45vh;
+        top: 45.5vh;
         right: 50vw;
         transform: translate(50%, -50%);
     }
@@ -283,42 +287,34 @@
     }
 }
 
-$portrait-board-size: 91vw;
+@media screen and (max-aspect-ratio: 1/1) {
 
-// @media screen and (max-aspect-ratio: 1/1) {
-
-
-
-//     .new-game, .promotion-selection {
-//         top: 50vw;
-//         right: 50vw;
-//         transform: translate(50%, -50%);
-//     }
-
-//     .game-board {
-//         min-width: 92vw;
-//         min-height: 92vw;
-//         max-width: 92vw;
-//         max-height: 92vw;
-//     }
-
-//     .game-board-wrap {
-//         max-width: 96vw;
-//         max-height: 96vw;
-//         min-width: 96vw;
-//         min-height: 96vw;
-//     }
-// }
+    .new-game, .promotion-selection {
+        top: 46vw;
+        right: 50vw;
+        transform: translate(50%, -50%);
+    }
+}
 
 @media screen and (max-aspect-ratio: 23/25) {
+
+    .new-game, .promotion-selection {
+        top: 50vw;
+        right: 50vw;
+        transform: translate(50%, -50%);
+    }
 
     .game-board-wrap {
         min-height: 95vmin;
         min-width: 95vmin;
+        max-height: 95vmin;
+        max-width: 95vmin;
     }
     .game-board {
-        min-height: $portrait-board-size;
-        min-width: $portrait-board-size;
+        min-height: 91vmin;
+        min-width: 91vmin;
+        max-height: 91vmin;
+        max-width: 91vmin;
     }
 
     .captured-zone {
