@@ -1,8 +1,6 @@
 
 import React, { useState } from 'react';
-import Table from "./table";
 import CurrentGameContext from './currentGame';
-import Login from './login';
 import routes from './routes';
 import { useRoutes } from 'hookrouter';
 
@@ -10,8 +8,8 @@ export default function App () {
   const [ newGame, setNewGame ] = useState(true)
   const [ playerOneData, setPlayerOneData ] = useState(false)
   const [ playerTwoData, setPlayerTwoData ] = useState(false)
-  const [ playerOne, setPlayerOne ] = useState("White")
-  const [ playerTwo, setPlayerTwo ] = useState("Black")
+  const [ playerOne, setPlayerOne ] = useState(false)
+  const [ playerTwo, setPlayerTwo ] = useState(false)
   const [ activePlayer, setActivePlayer ] = useState("black")
   const [ selection, setSelection ] = useState(false)
   const [ pieces, setPieces ] = useState([])

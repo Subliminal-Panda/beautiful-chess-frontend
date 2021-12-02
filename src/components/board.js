@@ -169,61 +169,64 @@ export default function Board (props) {
 
     const updateScores = (winner, loser, color) => {
         if(!updated.current) {
-
-            fetch(`http://127.0.0.1:5000/user/update/${winner.id}`, {
-                method: "PUT",
-                headers: {"content-type" : "application/json"},
-                body: JSON.stringify({
-                    "chess_checkmate_wins": 1
+            if(winner.id === "guest" && color === "white") {
+                setPlayerOneData({...playerOneData, chess_checkmate_wins: playerOneData.chess_checkmate_wins + 1 })
+            } else if(winner.id === "guest" && color === "black") {
+                setPlayerTwoData({...playerTwoData, chess_checkmate_wins: playerTwoData.chess_checkmate_wins + 1 })
+            } else {
+                fetch(`http://127.0.0.1:5000/user/update/${winner.id}`, {
+                    method: "PUT",
+                    headers: {"content-type" : "application/json"},
+                    body: JSON.stringify({
+                        "chess_checkmate_wins": 1
+                    })
                 })
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if(data[0] === "user updated:") {
-                    console.log("updated user score:", data)
-                    if(color === "white") {
-                        setPlayerOneData(data[1])
-                        console.log("winner updated:", data[1])
-                    } else if(color === "black") {
-                        setPlayerTwoData(data[1])
-                        console.log("winner updated:", data[1])
-                    } else {
-                        console.log("for some reason I'm not updating winner. Game end:", gameEnd)
+                .then(res => res.json())
+                .then(data => {
+                    if(data[0] === "user updated:") {
+                        if(color === "white") {
+                            setPlayerOneData(data[1])
+                        } else if(color === "black") {
+                            setPlayerTwoData(data[1])
+                        } else {
+                            console.log("for some reason I'm not updating winner. color:", color)
+                        }
+                        return(data)
                     }
-                    return(data)
-                }
-            })
-            .catch(error => {
-                console.log('Problem updating score.', error);
-            })
-            fetch(`http://127.0.0.1:5000/user/update/${loser.id}`, {
-                method: "PUT",
-                headers: {"content-type" : "application/json"},
-                body: JSON.stringify({
-                    "chess_checkmate_losses": 1
                 })
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if(data[0] === "user updated:") {
-                    console.log("updated user score:", data)
-                    if(color === "white") {
-                        setPlayerTwoData(data[1])
-                        console.log("loser updated:", data[1])
-                    } else if(color === "black") {
-                        setPlayerOneData(data[1])
-                        console.log("loser updated:", data[1])
-                    } else {
-                        console.log("for some reason I'm not updating loser. Game end:", gameEnd)
+                .catch(error => {
+                    console.log('Problem updating score.', error);
+                })
+            }
+            if(loser.id === "guest" && color === "black") {
+                setPlayerOneData({...playerOneData, chess_checkmate_losses: playerOneData.chess_checkmate_losses + 1 })
+            } else if(loser.id === "guest" && color === "white") {
+                setPlayerTwoData({...playerTwoData, chess_checkmate_losses: playerTwoData.chess_checkmate_losses + 1 })
+            } else {
+                fetch(`http://127.0.0.1:5000/user/update/${loser.id}`, {
+                    method: "PUT",
+                    headers: {"content-type" : "application/json"},
+                    body: JSON.stringify({
+                        "chess_checkmate_losses": 1
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data[0] === "user updated:") {
+                        if(color === "white") {
+                            setPlayerTwoData(data[1])
+                        } else if(color === "black") {
+                            setPlayerOneData(data[1])
+                        } else {
+                            console.log("for some reason I'm not updating loser. color:", color)
+                        }
+                        return(data)
                     }
-                    return(data)
-                }
-            })
-            .catch(error => {
-                console.log('Problem updating score.', error);
-            })
+                })
+                .catch(error => {
+                    console.log('Problem updating score.', error);
+                })
+            }
             updated.current= true
         } else {
             console.log("scores were already updated once! winner:", winner, "loser:", loser)

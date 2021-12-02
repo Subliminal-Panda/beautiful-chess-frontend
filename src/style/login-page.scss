@@ -8,19 +8,34 @@
     align-items: center;
 
     h1 {
-        font-size: 13vh;
-        line-height: 13vh;
+        font-size: 12vh;
+        line-height: 12vh;
+        margin: .5rem;
     }
+    .button-form-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
 
+    }
     .error {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        text-justify: center;
         color: $warning;
-        font-size: 4vh;
+        font-size: 7vh;
+        padding: none;
+        margin: none;
+        line-height: 7vh;
     }
 
     input {
         caret-color: $grey ;
-        font-size: 7vh;
-        line-height: 7vh;
+        font-size: 5.5vh;
+        line-height: 5.5vh;
         border-radius: 3vh;
         padding: 0 1.5vh;
         margin: .25vh;
@@ -54,8 +69,8 @@
         align-items: center;
 
         h2 {
-            font-size: 8vh;
-            line-height: 8vh;
+            font-size: 7vh;
+            line-height: 7vh;
             grid-column: 3;
         }
     }
@@ -64,12 +79,13 @@
         border: .3rem solid black;
         color: black;
         width: 20vh;
-        font-size: 6vh;
-        // line-height: 2.5vw;
+        font-size: 5vh;
+        line-height: 5vh;
         border-radius: 3vh;
         margin: auto;
         text-align: center;
-        padding: 0 2rem;
+        align-items: center;
+        padding: .5rem 2rem;
         grid-column: 2;
     }
 }

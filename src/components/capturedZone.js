@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import CurrentGameContext from './currentGame';
 
-export default function CapturedZone(props) {
+export default function CapturedZone() {
 
     const { taken, setTaken } = useContext(CurrentGameContext)
     const { activePlayer, setActivePlayer } = useContext(CurrentGameContext)
@@ -14,7 +14,6 @@ export default function CapturedZone(props) {
     const { playerOneData, setPlayerOneData } = useContext(CurrentGameContext)
     const { playerTwoData, setPlayerTwoData } = useContext(CurrentGameContext)
     const { moving, setMoving } = useContext(CurrentGameContext)
-    const { locations, setLocations } = useContext(CurrentGameContext)
 
     const [ capturesOne, setCapturesOne ] = useState([])
     const [ capturesTwo, setCapturesTwo ] = useState([])
@@ -66,19 +65,16 @@ export default function CapturedZone(props) {
         })
         setCapturesOne(renderedOne)
         setCapturesTwo(renderedTwo)
-        console.log(playerOneData)
     }
 
     useEffect(() => {
         if(playerOneData && (winsOne !== playerOneData.chess_checkmate_wins || lossesOne !== playerOneData.chess_checkmate_losses)) {
             setWinsOne(playerOneData.chess_checkmate_wins)
             setLossesOne(playerOneData.chess_checkmate_losses)
-            console.log("data from captured zone:", playerOneData, playerTwoData)
         }
         if(playerTwoData && (winsTwo !== playerTwoData.chess_checkmate_wins || lossesTwo !== playerTwoData.chess_checkmate_losses)) {
             setWinsTwo(playerTwoData.chess_checkmate_wins)
             setLossesTwo(playerTwoData.chess_checkmate_losses)
-            console.log("data from captured zone:", playerOneData, playerTwoData)
         }
     })
 
@@ -95,7 +91,6 @@ export default function CapturedZone(props) {
                         { gameEnd ?
                         <div className="game-end">
                             <div>{`${gameEnd[0]}.`.toUpperCase()}</div>
-                            {/* <div>{`${gameEnd[1]} wins.`.toUpperCase()}</div> */}
                         </div>
                         : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                         <div className="in-check">

@@ -25,22 +25,9 @@ export default function Table (props) {
     const { moving, setMoving } = useContext(CurrentGameContext)
     const { pinned, setPinned } = useContext(CurrentGameContext)
     const { newGame, setNewGame } = useContext(CurrentGameContext)
-    const { loginWhite, setLoginWhite } = useContext(CurrentGameContext)
-    const { loginBlack, setLoginBlack } = useContext(CurrentGameContext)
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
-
-
-    // const [ vh, setVh ] = useState(window.innerHeight * .01)
-    // const [ vw, setVw ] = useState(window.innerWidth * .01)
-    // const [ aspect, setAspect ] = useState((vh/vw).toFixed(2))
-
-    // window.addEventListener('resize', () => {
-    //     setVh(window.innerHeight * .01)
-    //     setVw(window.innerWidth * .01)
-    //     setAspect((vh/vw).toFixed(2))
-    // })
 
     const resetGame = () => {
         setGameEnd(false)
@@ -80,7 +67,7 @@ export default function Table (props) {
 
     return (
         <div className="page-wrap">
-        { (playerOneData && playerTwoData) ?
+        { ((playerOneData && playerTwoData && playerOne && playerTwo)) ?
             <div className="table-wrap">
                 <CapturedZone />
                 <div className="game-wrap">

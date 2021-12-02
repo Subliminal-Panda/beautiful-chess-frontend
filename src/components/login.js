@@ -37,11 +37,12 @@ export default function Login() {
     }
 
     const handleSubmit = (e) => {
+        setError(false)
         e.preventDefault();
         firstInput.current.focus()
         if(username === '' || password === '' ) {
             setError(true);
-            setLoginError('You need a username and password!');
+            setLoginError('You need a username and password.');
 
         } else if(username === playerOne) {
             setError(true);
@@ -57,21 +58,20 @@ export default function Login() {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if( (data === 'User not found.') || (data === 'Incorrect password.')) {
                     setError(true);
-                    // setErrorMessage(data);
                 } else if(data[0] === 'User verified:') {
                     tempUserData.current=(data[1])
                     Cookies.set('username', username);
                     console.log("cookies:", Cookies)
-                    console.log(data)
                     setSignupError('')
                     return(data)
                 }
             })
             .then(data => {
-                handleLogin(data[1]);
+                if((data[0] === 'User verified:') && (!error)) {
+                    handleLogin(data[1]);
+                }
             })
             .catch(error => {
                 console.log('Problem logging in.', error);
@@ -83,14 +83,14 @@ export default function Login() {
     }
 
     const handleSignUp = () => {
-            // e.preventDefault();
+            setError(false)
             firstInput.current.focus()
             if(username === playerOne) {
                 setError(true);
                 setSignupError("players must have different names.")
             }else if(username === '' || password === '' ) {
                 setError(true);
-                setSignupError('You need a username and password!');
+                setSignupError('You need a username and password.');
             } else if(password !== confirmPassword) {
                 setError(true);
                 setSignupError("Your passwords don't match.");
@@ -107,23 +107,23 @@ export default function Login() {
                 .then(data => {
                     if(data[0] === 'That username is taken.') {
                         setError(true);
-                        // setErrorMessage(data);
+                        setSignupError('That username is taken.');
                     } else {
                         tempUserData.current=(data[1])
                         setError(false);
                         setSignupError('');
                         Cookies.set('username', username);
-                        console.log(data)
+                        console.log("cookies:", Cookies)
+                        handleLogin(data);
                         return(data)
                     }
-                })
-                .then(data => {
-                    handleLogin(data[1]);
                 })
                 .catch(error => {
                     console.log('Error creating your user', error);
                     setError(true);
-                    setSignupError('Unable to add user.');
+                    if(!signupError && error) {
+                        setSignupError(error);
+                    }
                 })
             }
 
@@ -132,43 +132,67 @@ export default function Login() {
 
 
     const handleGuest = () => {
+        setError(false)
         if(username === playerOne) {
             setError(true);
             setGuestError("players must have different names.")
         } else if( !loginWhite && username ) {
             setLoginWhite("guest")
             setPlayerOne(username)
-            setPlayerOneData("guest")
+            setPlayerOneData({
+                chess_agreement_draws: 0,
+                chess_checkmate_losses: 0,
+                chess_checkmate_wins: 0,
+                chess_fifty_move_draws: 0,
+                chess_insufficient_material_draws: 0,
+                chess_repetition_draws: 0,
+                chess_resignation_losses: 0,
+                chess_resignation_wins: 0,
+                chess_stalemate_draws: 0,
+                chess_timeout_losses: 0,
+                chess_timeout_wins: 0,
+                id: "guest",
+                username: username
+            })
         } else if( !loginBlack && username ) {
             setLoginBlack("guest")
             setPlayerTwo(username)
-            setPlayerTwoData("guest")
+            setPlayerTwoData({
+                chess_agreement_draws: 0,
+                chess_checkmate_losses: 0,
+                chess_checkmate_wins: 0,
+                chess_fifty_move_draws: 0,
+                chess_insufficient_material_draws: 0,
+                chess_repetition_draws: 0,
+                chess_resignation_losses: 0,
+                chess_resignation_wins: 0,
+                chess_stalemate_draws: 0,
+                chess_timeout_losses: 0,
+                chess_timeout_wins: 0,
+                id: "guest",
+                username: username
+            })
+            // navigate('/game')
         }
         setUsername('')
         setPassword('')
         setConfirmPassword('')
-        console.log(firstInput.current)
         firstInput.current.focus()
-        navigate('/game')
     }
 
     const handleLogin = (data) => {
-        // navigate('/game')
         if( !loginWhite && username ) {
+            setPlayerOneData(data)
             setLoginWhite("user")
             setPlayerOne(username)
-            setPlayerOneData(data)
         } else if( !loginBlack && username ) {
+            setPlayerTwoData(data)
             setLoginBlack("user")
             setPlayerTwo(username)
-            setPlayerTwoData(data)
         }
         setUsername('')
         setPassword('')
         setConfirmPassword('')
-        console.log(firstInput.current)
-        console.log("user data:", data)
-
     }
 
     const nameListener = () => {
@@ -187,6 +211,7 @@ export default function Login() {
         setError(false);
         setLoginError('');
         setSignupError('');
+        setGuestError('')
         nameListener();
     },[username, password])
 
@@ -209,17 +234,17 @@ export default function Login() {
                             ref={firstInput}
                             type="text"
                             name="username"
-                            maxlength="12"
+                            maxLength="12"
                             placeholder="Enter a username"
                             value={ username }
                             onChange={ handleChange }
                         />
                     </div>
                     <div className="button-wrapper">
-                        <div className="error">{guestError}</div>
                         <button className="btn guest" onClick={() => handleGuest()} type="button">Guest</button>
                         <h2>or:</h2>
                     </div>
+                        <div className="error">{guestError}</div>
                 </div>
                 <div className="button-form-wrap">
                         <div className="form-group">
@@ -233,10 +258,10 @@ export default function Login() {
                             />
                         </div>
                     <div className="button-wrapper">
-                        <div className="error">{loginError}</div>
                         <button className="btn login" type="submit">Log In</button>
                         <h2>or:</h2>
                     </div>
+                        <div className="error">{loginError}</div>
                 </div>
                 <div className="button-form-wrap">
                         <div className="form-group">
@@ -250,9 +275,9 @@ export default function Login() {
                             />
                         </div>
                     <div className="button-wrapper">
-                        <div className="error">{signupError}</div>
                         <button className="btn signup" onClick={() => handleSignUp()} type="button">Sign up</button>
                     </div>
+                        <div className="error">{signupError}</div>
                 </div>
             </form>
         </div>

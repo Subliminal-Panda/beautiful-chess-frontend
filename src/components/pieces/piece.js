@@ -6,13 +6,35 @@ import CurrentGameContext from '../currentGame';
 
 export default function Piece (props) {
 
-    //add en passant rules
+    // go through and fix everything eslint says
 
-    //add checks for draw: stalemate, repetition, insufficient material, 50 move rule
+    // add en passant rules
 
-    //add resignation option
+    // add checks for draw: stalemate, repetition, insufficient material, 50 move rule
 
-    //I think that should do it!!
+    // add resignation option
+
+    // split white and black piece styles into separate scss files
+
+    // break down media queries
+
+    // break apart this monstrosity of a piece js file!
+
+    // add a place to access a "global leader board"
+
+    // eventually settings, more secure authentication and score updating
+
+    // eventually sounds, animations, some fun music maybe- similar to super stickman golf style elevator music (maybe even different music when in check?)
+
+    // secure method of changing username and password
+
+    // update favicon, logo and other minor metadata things
+
+    // double check that the styles work on real mobile (not just google dev mobile view)
+
+    // add some subtle textures to board squares, background of login page
+
+    // I think that should do it!!
 
     const { initRank, initFile, team, type } = props;
 

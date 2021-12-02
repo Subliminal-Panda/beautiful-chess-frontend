@@ -19,7 +19,7 @@
     }
     .nameplate {
         margin-top: 1rem;
-        font-size: 3rem;
+        font-size: 2.75rem;
         font-stretch: ultra-condensed;
         line-height: 4.5rem;
     }
@@ -36,14 +36,14 @@
         }
 
         input {
-            font-size: 3.5vw;
-            line-height: 3.5vw;
+            font-size: 3vw;
+            line-height: 3vw;
             border-radius: 1.5vw;
         }
 
         .button-wrapper {
             grid-template-columns: 27vw 1fr 27vw;
-            margin: 2vh;
+            margin: 1.5vh 1vh 1vh;
 
             h2 {
                 font-size: 7vh;
@@ -51,6 +51,10 @@
         }
         button {
             border-radius: 1.5vw;
+        }
+        .error {
+            line-height: 3.75vw;
+            font-size: 3.75vw;
         }
     }
 }
@@ -169,8 +173,14 @@
 
         button {
             font-size: 5vh;
+            line-height: 5vh;
             width: 13vw;
             border-radius: 1.75vmax;
+        }
+
+        .error {
+            line-height: 4vw;
+            font-size: 4vw;
         }
     }
 
@@ -261,8 +271,14 @@
 
         button {
             font-size: 4.5vw;
+            line-height: 4.5vw;
             width: 15vw;
             border-radius: 2vw;
+        }
+
+        .error {
+            font-size: 5vw;
+            line-height: 5vw;
         }
     }
 }
@@ -323,9 +339,8 @@
         }
 
         .button-wrapper {
-            grid-template-columns: 30vw 1fr 30vw;
             gap: 2rem;
-            margin: 1.5vmax;
+            margin: 1.5vw;
 
             h2{
                 font-size: 6vw;
@@ -334,8 +349,13 @@
 
         button {
             font-size: 5.5vw;
+            line-height: 5.5vw;
             width: 18vw;
             border-radius: 2.5vw;
+        }
+        .error {
+            font-size: 5.25vw;
+            line-height: 5.25vw;
         }
     }
 }
@@ -390,11 +410,12 @@
         width: 100%;
         height: 7rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        gap: 1.25rem;
+        gap: 0rem;
         * {
             font-size: 3rem;
+            line-height: 3rem;
         }
     }
 
@@ -413,16 +434,16 @@
     }
 
     .inactive-details > .nameplate {
-        margin-top: 1rem;
+        margin-top: .5rem;
         width: 100%;
         height: 7rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        gap: 1.25rem;
-        font-size: 3rem;
+        gap: 0rem;
         * {
             font-size: 3rem;
+            line-height: 3rem;
         }
     }
 
