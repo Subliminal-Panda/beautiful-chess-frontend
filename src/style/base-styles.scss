@@ -53,9 +53,9 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.app {
-    display: grid;
-    justify-items: center;
+.app, .page-wrap, .table-wrap {
+    width: 100%;
+    height: 100%;
 }
 
 .btn {

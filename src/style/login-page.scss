@@ -8,17 +8,23 @@
     align-items: center;
 
     h1 {
-        font-size: 6.5vw;
-        line-height: 6.5vw;
+        font-size: 13vh;
+        line-height: 13vh;
+    }
+
+    .error {
+        color: $warning;
+        font-size: 4vh;
     }
 
     input {
-        font-size: 3.5vw;
-        line-height: 3.5vw;
-        border-radius: 1.5vw;
-        padding: 0 1.5vw;
-        margin: .5vw;
-        width: 57vw;
+        caret-color: $grey ;
+        font-size: 7vh;
+        line-height: 7vh;
+        border-radius: 3vh;
+        padding: 0 1.5vh;
+        margin: .25vh;
+        width: 74vw;
         outline: none;
         border: .25rem solid black;
 
@@ -29,41 +35,41 @@
     }
 
     svg {
-        font-size: 4vw;
+        font-size: 6vh;
+        margin-right: 3vh;
     }
 
     .form-group {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        width: 70vw;
+        width: 80vw;
     }
 
     .button-wrapper {
         display: grid;
-        width: 70vw;
-        grid-template-columns: 24vw 1fr 24vw;
-        margin: .5vw;
+        width: 80vw;
+        grid-template-columns: 30vw 1fr 30vw;
+        margin: 1vh;
         align-items: center;
 
         h2 {
-            font-size: 3.5vw;
-            line-height: 3.5vw;
+            font-size: 8vh;
+            line-height: 8vh;
             grid-column: 3;
-            // justify-self: left;
         }
     }
 
     button {
         border: .3rem solid black;
         color: black;
-        width: 10vw;
-        font-size: 3vw;
-        line-height: 3vw;
-        border-radius: 1.5vw;
+        width: 20vh;
+        font-size: 6vh;
+        // line-height: 2.5vw;
+        border-radius: 3vh;
         margin: auto;
-
-        padding: .75rem 2rem;
+        text-align: center;
+        padding: 0 2rem;
         grid-column: 2;
     }
 }

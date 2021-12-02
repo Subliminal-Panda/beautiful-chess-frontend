@@ -73,7 +73,6 @@ export default function Piece (props) {
     }
 
     const toggleSelected = () => {
-        console.log(activePlayer)
         if(!selection && !gameEnd && !moving) {
             if(!selected) {
                 if(moves.length > 0) {

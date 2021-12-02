@@ -11,19 +11,20 @@ export default function CapturedZone(props) {
     const { gameEnd, setGameEnd } = useContext(CurrentGameContext)
     const { playerOne, setPlayerOne } = useContext(CurrentGameContext)
     const { playerTwo, setPlayerTwo } = useContext(CurrentGameContext)
+    const { playerOneData, setPlayerOneData } = useContext(CurrentGameContext)
+    const { playerTwoData, setPlayerTwoData } = useContext(CurrentGameContext)
     const { moving, setMoving } = useContext(CurrentGameContext)
+    const { locations, setLocations } = useContext(CurrentGameContext)
 
     const [ capturesOne, setCapturesOne ] = useState([])
     const [ capturesTwo, setCapturesTwo ] = useState([])
+    const [ winsOne, setWinsOne ] = useState(0)
+    const [ lossesOne, setLossesOne ] = useState(0)
+    const [ winsTwo, setWinsTwo ] = useState(0)
+    const [ lossesTwo, setLossesTwo ] = useState(0)
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
-    const [ vh, setVh ] = useState(window.innerHeight * .01)
-
-    window.addEventListener('resize', () => {
-        setVh(window.innerHeight * .01)
-        document.documentElement.style.setProperty("--vh", `${vh}px`)
-    })
 
     useEffect(() => {
         renderTaken();
@@ -65,11 +66,25 @@ export default function CapturedZone(props) {
         })
         setCapturesOne(renderedOne)
         setCapturesTwo(renderedTwo)
+        console.log(playerOneData)
     }
+
+    useEffect(() => {
+        if(playerOneData && (winsOne !== playerOneData.chess_checkmate_wins || lossesOne !== playerOneData.chess_checkmate_losses)) {
+            setWinsOne(playerOneData.chess_checkmate_wins)
+            setLossesOne(playerOneData.chess_checkmate_losses)
+            console.log("data from captured zone:", playerOneData, playerTwoData)
+        }
+        if(playerTwoData && (winsTwo !== playerTwoData.chess_checkmate_wins || lossesTwo !== playerTwoData.chess_checkmate_losses)) {
+            setWinsTwo(playerTwoData.chess_checkmate_wins)
+            setLossesTwo(playerTwoData.chess_checkmate_losses)
+            console.log("data from captured zone:", playerOneData, playerTwoData)
+        }
+    })
 
     return (
         <div className={ active === playerTwo ? "player-two-captured captured-zone" : "player-one-captured captured-zone" }>
-            <h1 className={ active === playerOne ? "player-one single-captured captured" : active === playerTwo ? "player-two single-captured captured" : null }>Captured:</h1>
+            <h1 className={ active === playerOne ? "player-one single-captured captured" : active === playerTwo ? "player-two single-captured captured" : null }>Won: { active === playerOne ? winsOne : winsTwo } Lost: {active === playerOne ? lossesOne : lossesTwo }</h1>
 
             <div className="details-wrap" >
 
@@ -80,14 +95,14 @@ export default function CapturedZone(props) {
                         { gameEnd ?
                         <div className="game-end">
                             <div>{`${gameEnd[0]}.`.toUpperCase()}</div>
-                            <div>{`${gameEnd[1]} wins.`.toUpperCase()}</div>
+                            {/* <div>{`${gameEnd[1]} wins.`.toUpperCase()}</div> */}
                         </div>
                         : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                         <div className="in-check">
                         <div>{active}:</div><div>CHECK!</div></div>
                         : <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } ><div>{active}:</div><div>your move.</div></div>
                         }
-                        { gameEnd ? null : <h1 className={ active === playerOne ? "player-one captured" : active === playerTwo ? "player-two captured" : null }>Captured:</h1>}
+                        { <h1 className={ active === playerOne ? "player-one captured" : active === playerTwo ? "player-two captured" : null }>Won: { active === playerOne ? winsOne : winsTwo } Lost: {active === playerOne ? lossesOne : lossesTwo }</h1>}
                     </div>
 
 
@@ -107,7 +122,7 @@ export default function CapturedZone(props) {
 
                     <div className="nameplate">
                         {inactive}:
-                        <h1 className={ inactive === playerOne ? "player-one captured" : inactive === playerTwo ? "player-two captured" : null }>Captured:</h1>
+                        <h1 className={ inactive === playerOne ? "player-one captured" : inactive === playerTwo ? "player-two captured" : null }>Won: { inactive === playerOne ? winsOne : winsTwo } Lost: { inactive === playerOne ? lossesOne : lossesTwo }</h1>
                     </div>
 
                     <div className="captures">

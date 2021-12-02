@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useContext } from 'react';
+﻿import React, { useEffect, useState, useContext, useRef } from 'react';
 import Square from './Square';
 import Piece from './pieces/piece';
 import { faChessKing, faChessQueen, faChessRook, faChessBishop, faChessKnight, faChessPawn } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,8 @@ export default function Board (props) {
     const [ checked, setChecked ] = useState(false)
 
     const { activePlayer, setActivePlayer } = useContext(CurrentGameContext)
+    const { playerOneData, setPlayerOneData } = useContext(CurrentGameContext)
+    const { playerTwoData, setPlayerTwoData } = useContext(CurrentGameContext)
     const { pieces, setPieces } = useContext(CurrentGameContext)
     const { underAttack, setUnderAttack } = useContext(CurrentGameContext)
     const { locations, setLocations } = useContext(CurrentGameContext)
@@ -23,6 +25,8 @@ export default function Board (props) {
     const { moving, setMoving } = useContext(CurrentGameContext)
     const { gameEnd, setGameEnd } = useContext(CurrentGameContext)
     const { newGame, setNewGame } = useContext(CurrentGameContext)
+
+    const updated = useRef(false)
 
     const makeSquares = () => {
         let squareSet = []
@@ -152,10 +156,77 @@ export default function Board (props) {
         if(movablePieces[0] === undefined) {
             if(activePlayer === "black" && inCheck[1] === "black") {
                 setGameEnd(["checkmate", "white"])
+                updateScores(playerOneData, playerTwoData, "white")
+                // setActivePlayer("white")
             }
             if(activePlayer === "white" && inCheck[0] === "white") {
                 setGameEnd(["checkmate", "black"])
+                updateScores(playerTwoData, playerOneData, "black")
+                // setActivePlayer("black")
             }
+        }
+    }
+
+    const updateScores = (winner, loser, color) => {
+        if(!updated.current) {
+
+            fetch(`http://127.0.0.1:5000/user/update/${winner.id}`, {
+                method: "PUT",
+                headers: {"content-type" : "application/json"},
+                body: JSON.stringify({
+                    "chess_checkmate_wins": 1
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data[0] === "user updated:") {
+                    console.log("updated user score:", data)
+                    if(color === "white") {
+                        setPlayerOneData(data[1])
+                        console.log("winner updated:", data[1])
+                    } else if(color === "black") {
+                        setPlayerTwoData(data[1])
+                        console.log("winner updated:", data[1])
+                    } else {
+                        console.log("for some reason I'm not updating winner. Game end:", gameEnd)
+                    }
+                    return(data)
+                }
+            })
+            .catch(error => {
+                console.log('Problem updating score.', error);
+            })
+            fetch(`http://127.0.0.1:5000/user/update/${loser.id}`, {
+                method: "PUT",
+                headers: {"content-type" : "application/json"},
+                body: JSON.stringify({
+                    "chess_checkmate_losses": 1
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data[0] === "user updated:") {
+                    console.log("updated user score:", data)
+                    if(color === "white") {
+                        setPlayerTwoData(data[1])
+                        console.log("loser updated:", data[1])
+                    } else if(color === "black") {
+                        setPlayerOneData(data[1])
+                        console.log("loser updated:", data[1])
+                    } else {
+                        console.log("for some reason I'm not updating loser. Game end:", gameEnd)
+                    }
+                    return(data)
+                }
+            })
+            .catch(error => {
+                console.log('Problem updating score.', error);
+            })
+            updated.current= true
+        } else {
+            console.log("scores were already updated once! winner:", winner, "loser:", loser)
         }
     }
 
@@ -180,6 +251,7 @@ export default function Board (props) {
             makeSquares();
             setBoard();
             setNewGame(false);
+            updated.current = false;
         }
     }, [newGame])
 
