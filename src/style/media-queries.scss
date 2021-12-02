@@ -284,19 +284,30 @@
 }
 
 @media screen and (max-aspect-ratio: 1/1) {
-    .new-game, .promotion-selection {
-        top: 45vh;
-        right: 50vw;
-        transform: translate(50%, -50%);
-    }
- }
 
-@media screen and (max-aspect-ratio: 23/25) {
     .new-game, .promotion-selection {
         top: 50vw;
         right: 50vw;
         transform: translate(50%, -50%);
     }
+
+    .game-board {
+        min-width: 92vw;
+        min-height: 92vw;
+        max-width: 92vw;
+        max-height: 92vw;
+    }
+
+    .game-board-wrap {
+        max-width: 96vw;
+        max-height: 96vw;
+        min-width: 96vw;
+        min-height: 96vw;
+    }
+}
+
+@media screen and (max-aspect-ratio: 23/25) {
+
     .game-board-wrap {
         min-height: 95vmin;
         min-width: 95vmin;
