@@ -111,11 +111,15 @@ export default function Login() {
                     } else {
                         tempUserData.current=(data[1])
                         setError(false);
-                        setSignupError('');
                         Cookies.set('username', username);
                         console.log("cookies:", Cookies)
-                        handleLogin(data);
+                        setSignupError('');
                         return(data)
+                    }
+                })
+                .then(data => {
+                    if((data[0] !== 'That username is taken.') && (!error)) {
+                        handleLogin(data[1]);
                     }
                 })
                 .catch(error => {
@@ -135,10 +139,12 @@ export default function Login() {
         setError(false)
         if(username === playerOne) {
             setError(true);
-            setGuestError("players must have different names.")
+            setGuestError("Players must have different names.")
+        } else if(!username) {
+            setError(true);
+            setGuestError("You need a username.")
         } else if( !loginWhite && username ) {
             setLoginWhite("guest")
-            setPlayerOne(username)
             setPlayerOneData({
                 chess_agreement_draws: 0,
                 chess_checkmate_losses: 0,
@@ -154,9 +160,9 @@ export default function Login() {
                 id: "guest",
                 username: username
             })
+            setPlayerOne(username)
         } else if( !loginBlack && username ) {
             setLoginBlack("guest")
-            setPlayerTwo(username)
             setPlayerTwoData({
                 chess_agreement_draws: 0,
                 chess_checkmate_losses: 0,
@@ -172,21 +178,24 @@ export default function Login() {
                 id: "guest",
                 username: username
             })
+            setPlayerTwo(username)
         }
-        setUsername('')
-        setPassword('')
-        setConfirmPassword('')
+        if(username && (username !== playerOne)) {
+            setUsername('')
+            setPassword('')
+            setConfirmPassword('')
+        }
         firstInput.current.focus()
     }
 
     const handleLogin = (data) => {
         if( !loginWhite && username ) {
-            setPlayerOneData(data)
             setLoginWhite("user")
+            setPlayerOneData(data)
             setPlayerOne(username)
         } else if( !loginBlack && username ) {
-            setPlayerTwoData(data)
             setLoginBlack("user")
+            setPlayerTwoData(data)
             setPlayerTwo(username)
         }
         setUsername('')
@@ -220,7 +229,7 @@ export default function Login() {
     },[])
 
     useEffect(() => {
-        if(playerOne && playerTwo && playerOneData && playerTwoData) {
+        if(playerOne && playerTwo && playerOneData && playerTwoData && loginBlack && loginWhite) {
             navigate('/game')
         }
     })
