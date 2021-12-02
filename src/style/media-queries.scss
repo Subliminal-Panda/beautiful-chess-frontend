@@ -283,32 +283,32 @@
     }
 }
 
-$portrait-board-size: 92vw;
+$portrait-board-size: 91vw;
 
-@media screen and (max-aspect-ratio: 1/1) {
+// @media screen and (max-aspect-ratio: 1/1) {
 
 
 
-    .new-game, .promotion-selection {
-        top: 50vw;
-        right: 50vw;
-        transform: translate(50%, -50%);
-    }
+//     .new-game, .promotion-selection {
+//         top: 50vw;
+//         right: 50vw;
+//         transform: translate(50%, -50%);
+//     }
 
-    .game-board {
-        min-width: $portrait-board-size;
-        min-height: $portrait-board-size;
-        max-width: $portrait-board-size;
-        max-height: $portrait-board-size;
-    }
+//     .game-board {
+//         min-width: 92vw;
+//         min-height: 92vw;
+//         max-width: 92vw;
+//         max-height: 92vw;
+//     }
 
-    .game-board-wrap {
-        max-width: 96vw;
-        max-height: 96vw;
-        min-width: 96vw;
-        min-height: 96vw;
-    }
-}
+//     .game-board-wrap {
+//         max-width: 96vw;
+//         max-height: 96vw;
+//         min-width: 96vw;
+//         min-height: 96vw;
+//     }
+// }
 
 @media screen and (max-aspect-ratio: 23/25) {
 
@@ -317,8 +317,8 @@ $portrait-board-size: 92vw;
         min-width: 95vmin;
     }
     .game-board {
-        min-height: 91vmin;
-        min-width: 91vmin;
+        min-height: $portrait-board-size;
+        min-width: $portrait-board-size;
     }
 
     .captured-zone {
