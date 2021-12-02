@@ -62,7 +62,7 @@ export default function Table (props) {
     useEffect(() => {
         console.log("player one data:", playerOneData, "player two data:", playerTwoData)
 
-    }, [playerOneData, playerTwoData])
+    }, [playerOneData, playerTwoData, playerOne, playerTwo])
 
 
     return (

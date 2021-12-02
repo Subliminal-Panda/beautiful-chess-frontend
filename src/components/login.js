@@ -48,7 +48,7 @@ export default function Login() {
             setError(true);
             setLoginError("players must have different names.")
         } else {
-            fetch('http://127.0.0.1:5000/user/verify', {
+            fetch('https://beautiful-chess-backend.herokuapp.com/user/verify', {
                 method: "POST",
                 headers: {"content-type" : "application/json"},
                 body: JSON.stringify({
@@ -95,7 +95,7 @@ export default function Login() {
                 setError(true);
                 setSignupError("Your passwords don't match.");
             } else {
-                fetch('http://127.0.0.1:5000/user/add', {
+                fetch('https://beautiful-chess-backend.herokuapp.com/user/add', {
                     method: "POST",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({
@@ -172,7 +172,6 @@ export default function Login() {
                 id: "guest",
                 username: username
             })
-            navigate('/game')
         }
         setUsername('')
         setPassword('')
@@ -193,6 +192,7 @@ export default function Login() {
         setUsername('')
         setPassword('')
         setConfirmPassword('')
+
     }
 
     const nameListener = () => {
@@ -218,6 +218,12 @@ export default function Login() {
     useEffect(() => {
         firstInput.current.focus()
     },[])
+
+    useEffect(() => {
+        if(playerOne && playerTwo && playerOneData && playerTwoData) {
+            navigate('/game')
+        }
+    })
 
     return (
 

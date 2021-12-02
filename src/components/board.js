@@ -174,7 +174,7 @@ export default function Board (props) {
             } else if(winner.id === "guest" && color === "black") {
                 setPlayerTwoData({...playerTwoData, chess_checkmate_wins: playerTwoData.chess_checkmate_wins + 1 })
             } else {
-                fetch(`http://127.0.0.1:5000/user/update/${winner.id}`, {
+                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${winner.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({
@@ -203,7 +203,7 @@ export default function Board (props) {
             } else if(loser.id === "guest" && color === "white") {
                 setPlayerTwoData({...playerTwoData, chess_checkmate_losses: playerTwoData.chess_checkmate_losses + 1 })
             } else {
-                fetch(`http://127.0.0.1:5000/user/update/${loser.id}`, {
+                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${loser.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({

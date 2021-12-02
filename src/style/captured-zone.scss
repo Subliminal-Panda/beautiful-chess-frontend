@@ -2,10 +2,8 @@
     width: 100%;
     min-height: 96vmin;
     max-height: 96vmin;
-
     border-radius: 1.5rem;
     margin: 1.25vmin 0 1.25vmin 1.25vmin;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,12 +22,11 @@
     line-height: 4rem;
 }
 
-
-
 .player-one-captured {
     border: .5rem solid white;
     background-color: rgb(165, 165, 165);
 }
+
 .player-two-captured {
     border: .5rem solid rgb(0, 0, 0);
     background-color: rgb(85, 85, 85);
@@ -76,11 +73,10 @@
     border-radius: 1rem;
 }
 
-
-
 .player-one {
     color: white;
 }
+
 .player-two {
     color: black;
 }
@@ -99,7 +95,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     margin-top: 1rem;
     font-size: 4rem;
     line-height: 6rem;
