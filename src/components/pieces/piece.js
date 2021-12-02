@@ -930,7 +930,7 @@ export default function Piece (props) {
             setSelection(false)
             setMoving(false)
             toggleActivePlayer()
-        }, 150)
+        }, 300)
     }
 
     const capturing = (newFile, newRank) => {
@@ -982,7 +982,7 @@ export default function Piece (props) {
             setMoving(false)
             setSelection(false)
             toggleActivePlayer()
-        }, 150)
+        }, 300)
     }
 
 
