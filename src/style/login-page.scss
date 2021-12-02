@@ -1,7 +1,15 @@
-﻿.login-form-wrap {
-    background-color: $offwhite;
+﻿.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
+    background-color: $offwhite;
+}
+
+.login-form-wrap {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

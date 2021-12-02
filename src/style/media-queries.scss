@@ -355,6 +355,7 @@
 
             h2{
                 font-size: 6vw;
+                line-height: 6vw;
             }
         }
 
@@ -368,6 +369,10 @@
             font-size: 5.25vw;
             line-height: 5.25vw;
         }
+    }
+
+    .login-form-wrap {
+        height: 85vh;
     }
 }
 
@@ -485,6 +490,10 @@
         font-size: 5.5vh;
     }
 
+    .login-form-wrap {
+        height: 75vh;
+    }
+
 }
 
 @media screen and (max-aspect-ratio: 46/100) {
@@ -500,6 +509,12 @@
 
         * {
             font-size: 12vw;
+        }
+    }
+
+    .login-form-wrap {
+        * {
+            font-size: 8vw;
         }
     }
 }
