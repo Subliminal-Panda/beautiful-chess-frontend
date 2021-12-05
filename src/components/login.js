@@ -1,4 +1,4 @@
-﻿import { faChessRook, faLock } from '@fortawesome/free-solid-svg-icons';
+﻿import { faChessRook, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import Cookies from 'js-cookie';
@@ -18,6 +18,7 @@ export default function Login() {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
+    const [ retrieving, setRetrieving ] = useState(false);
     const [error, setError] = useState(false);
     const [guestError, setGuestError] = useState('');
     const [loginError, setLoginError] = useState('');
@@ -39,8 +40,7 @@ export default function Login() {
     const handleSubmit = (e) => {
         setError(false)
         e.preventDefault();
-        firstInput.current.focus()
-        if(username === '' || password === '' ) {
+        if(username === '' || password=== '' || username === ' ' || password=== ' ') {
             setError(true);
             setLoginError('You need a username and password.');
 
@@ -48,6 +48,7 @@ export default function Login() {
             setError(true);
             setLoginError("players must have different names.")
         } else {
+            setRetrieving(true)
             fetch('https://beautiful-chess-backend.herokuapp.com/user/verify', {
                 method: "POST",
                 headers: {"content-type" : "application/json"},
@@ -74,9 +75,11 @@ export default function Login() {
                 }
             })
             .catch(error => {
+                setRetrieving(false)
                 console.log('Problem logging in.', error);
                 setError(true);
                 setLoginError('Sorry, wrong credentials.');
+                navigate("/game")
             })
         }
 
@@ -84,17 +87,17 @@ export default function Login() {
 
     const handleSignUp = () => {
             setError(false)
-            firstInput.current.focus()
             if(username === playerOne) {
                 setError(true);
                 setSignupError("players must have different names.")
-            }else if(username === '' || password === '' ) {
+            }else if(username === '' || password=== '' || username === ' ' || password=== ' ') {
                 setError(true);
                 setSignupError('You need a username and password.');
             } else if(password !== confirmPassword) {
                 setError(true);
                 setSignupError("Your passwords don't match.");
             } else {
+                setRetrieving(true)
                 fetch('https://beautiful-chess-backend.herokuapp.com/user/add', {
                     method: "POST",
                     headers: {"content-type" : "application/json"},
@@ -123,10 +126,11 @@ export default function Login() {
                     }
                 })
                 .catch(error => {
+                    setRetrieving(false)
                     console.log('Error creating your user', error);
                     setError(true);
                     if(!signupError && error) {
-                        setSignupError(error);
+                        setSignupError('Error creating your user');
                     }
                 })
             }
@@ -140,10 +144,10 @@ export default function Login() {
         if(username === playerOne) {
             setError(true);
             setGuestError("Players must have different names.")
-        } else if(!username) {
+        } else if(username === '' || username === ' ') {
             setError(true);
             setGuestError("You need a username.")
-        } else if( !loginWhite && username ) {
+        } else if( !loginWhite ) {
             setLoginWhite("guest")
             setPlayerOneData({
                 chess_agreement_draws: 0,
@@ -161,7 +165,7 @@ export default function Login() {
                 username: username
             })
             setPlayerOne(username)
-        } else if( !loginBlack && username ) {
+        } else if( !loginBlack ) {
             setLoginBlack("guest")
             setPlayerTwoData({
                 chess_agreement_draws: 0,
@@ -180,7 +184,7 @@ export default function Login() {
             })
             setPlayerTwo(username)
         }
-        if(username && (username !== playerOne)) {
+        if(username && (username !== playerOne) && username !== " " && username !== "") {
             setUsername('')
             setPassword('')
             setConfirmPassword('')
@@ -189,19 +193,23 @@ export default function Login() {
     }
 
     const handleLogin = (data) => {
-        if( !loginWhite && username ) {
-            setLoginWhite("user")
+        if( !playerOneData && !playerOne && (username !== '') ) {
             setPlayerOneData(data)
             setPlayerOne(username)
-        } else if( !loginBlack && username ) {
-            setLoginBlack("user")
+            setLoginWhite("user")
+        } else if( !playerTwoData && !playerTwo && (username !== '') ) {
             setPlayerTwoData(data)
             setPlayerTwo(username)
+            setLoginBlack("user")
         }
+        setRetrieving(false)
+        console.log("data:", data)
+        if(!playerOneData || !playerTwoData || !playerOne || !playerTwo) {
         setUsername('')
         setPassword('')
         setConfirmPassword('')
-
+        firstInput.current.focus()
+        }
     }
 
     const nameListener = () => {
@@ -229,72 +237,79 @@ export default function Login() {
     },[])
 
     useEffect(() => {
-        if(playerOne && playerTwo && playerOneData && playerTwoData && loginBlack && loginWhite) {
+        if(playerOneData && playerTwoData && playerOne && playerTwo) {
             navigate('/game')
         }
     })
 
     return (
 
-        <div className="login-page">
-            <form
-            onSubmit={ handleSubmit }
-            className="login-form-wrap"
-            >
-                <h1>{`${ !loginWhite ? "Player 1" : !loginBlack ? "Player 2" : null }, what can I call you?`}</h1>
-                <div className="button-form-wrap" >
-                    <div className="form-group">
-                        <FontAwesomeIcon icon={ faChessRook } />
-                        <input
-                            ref={firstInput}
-                            type="text"
-                            name="username"
-                            maxLength="12"
-                            placeholder="Enter a username"
-                            value={ username }
-                            onChange={ handleChange }
-                        />
-                    </div>
-                    <div className="button-wrapper">
-                        <button className="btn guest" onClick={() => handleGuest()} type="button">Guest</button>
-                        <h2>or:</h2>
-                    </div>
-                        <div className="error">{guestError}</div>
+        <div className="login-page" style={ playerOneData && playerOne ? {backgroundColor: "rgb(130, 85, 255)"} : null}>
+            { retrieving ?
+                <div className="content-loader">
+                    <FontAwesomeIcon  className={ playerOneData && playerOne ? "loading-two" : "loading"} icon={faSpinner} spin />
+                    <h1 className={ playerOneData && playerOne ? "loading-two" : "loading"}>Retrieving user data...</h1>
                 </div>
-                <div className="button-form-wrap">
+                :
+                <form
+                onSubmit={ handleSubmit }
+                className="login-form-wrap"
+                >
+                    <h1 style={ !loginWhite ? {color: "black"} : !loginBlack ? {color: "white"} : null}>{`${ !playerOneData && !playerOne ? "Player 1" : !playerTwoData && !playerTwo ? "Player 2" : null }, what can I call you?`}</h1>
+                    <div className="button-form-wrap" >
                         <div className="form-group">
-                            <FontAwesomeIcon icon={ faLock } />
+                            <FontAwesomeIcon icon={ faChessRook } />
                             <input
-                                type="password"
-                                name="password"
-                                placeholder="Enter a password"
-                                value={ password }
+                                ref={firstInput}
+                                type="text"
+                                name="username"
+                                maxLength="12"
+                                placeholder="Enter a username"
+                                value={ username }
                                 onChange={ handleChange }
                             />
                         </div>
-                    <div className="button-wrapper">
-                        <button className="btn login" type="submit">Log In</button>
-                        <h2>or:</h2>
-                    </div>
-                        <div className="error">{loginError}</div>
-                </div>
-                <div className="button-form-wrap">
-                        <div className="form-group">
-                            <FontAwesomeIcon icon={ faLock } />
-                            <input
-                                type="password"
-                                name="confirm"
-                                placeholder="Confirm password to sign up."
-                                value={ confirmPassword }
-                                onChange={ handleChange }
-                            />
+                        <div className="button-wrapper">
+                            <button className="btn guest" onClick={() => handleGuest()} type="button">Guest</button>
+                            <h2>or:</h2>
                         </div>
-                    <div className="button-wrapper">
-                        <button className="btn signup" onClick={() => handleSignUp()} type="button">Sign up</button>
+                            <div className="error">{guestError}</div>
                     </div>
-                        <div className="error">{signupError}</div>
-                </div>
-            </form>
+                    <div className="button-form-wrap">
+                            <div className="form-group">
+                                <FontAwesomeIcon icon={ faLock } />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Enter a password"
+                                    value={ password }
+                                    onChange={ handleChange }
+                                />
+                            </div>
+                        <div className="button-wrapper">
+                            <button className="btn login" type="submit">Log In</button>
+                            <h2>or:</h2>
+                        </div>
+                            <div className="error">{loginError}</div>
+                    </div>
+                    <div className="button-form-wrap">
+                            <div className="form-group">
+                                <FontAwesomeIcon icon={ faLock } />
+                                <input
+                                    type="password"
+                                    name="confirm"
+                                    placeholder="Confirm password to sign up."
+                                    value={ confirmPassword }
+                                    onChange={ handleChange }
+                                />
+                            </div>
+                        <div className="button-wrapper">
+                            <button className="btn signup" onClick={() => handleSignUp()} type="button">Sign up</button>
+                        </div>
+                            <div className="error">{signupError}</div>
+                    </div>
+                </form>
+            }
         </div>
     )
 }

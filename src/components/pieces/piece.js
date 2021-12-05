@@ -8,6 +8,8 @@ export default function Piece (props) {
 
     // go through and fix everything eslint says
 
+    // fix environment variable
+
     // add en passant rules
 
     // add checks for draw: stalemate, repetition, insufficient material, 50 move rule
@@ -18,19 +20,17 @@ export default function Piece (props) {
 
     // break down media queries
 
-    // break apart this monstrosity of a piece js file!
+    // break apart this monstrosity of a piece js file, especially determineMoves()!
 
     // add a place to access a "global leader board"
 
-    // eventually settings, more secure authentication and score updating
+    // eventually user settings, more secure authentication and score updating
 
     // eventually sounds, animations, some fun music maybe- similar to super stickman golf style elevator music (maybe even different music when in check?)
 
     // secure method of changing username and password
 
     // update favicon, logo and other minor metadata things
-
-    // double check that the styles work on real mobile (not just google dev mobile view)
 
     // add some subtle textures to board squares, background of login page
 
@@ -278,11 +278,9 @@ export default function Piece (props) {
                             assassinAttempts.forEach((atk) => {
                                 if(atk[0][1] === vert && atk[0][0] === horiz) {
                                     disallowed = true;
-                                    ("disallowed, king is in check", inCheck)
                                 }
                                 if(atk[0][1] == vert && atk[0][0] == horiz) {
                                     disallowed = true;
-                                    ("disallowed, king is in check", inCheck)
                                 }
                             })
                         }

@@ -97,3 +97,20 @@
         grid-column: 2;
     }
 }
+
+.content-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    .loading {
+        font-size: 7rem;
+        color: $blue;
+    }
+    .loading-two {
+        font-size: 7rem;
+        color: $offwhite;
+    }
+}

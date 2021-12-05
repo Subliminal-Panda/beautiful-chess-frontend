@@ -4,7 +4,7 @@ import Piece from './pieces/piece';
 import { faChessKing, faChessQueen, faChessRook, faChessBishop, faChessKnight, faChessPawn } from '@fortawesome/free-solid-svg-icons';
 import CurrentGameContext from './currentGame';
 
-export default function Board (props) {
+export default function Board () {
 
     const ranks = ["1","2","3","4","5","6","7","8"]
     const files = ["a","b","c","d","e","f","g","h"]

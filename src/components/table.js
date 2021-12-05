@@ -3,7 +3,6 @@
 import CapturedZone from './capturedZone';
 import Board from './board';
 import CurrentGameContext from './currentGame';
-import { navigate } from 'hookrouter';
 import Login from './login';
 
 export default function Table (props) {
@@ -59,10 +58,7 @@ export default function Table (props) {
         findInactive();
     },[activePlayer, moving])
 
-    useEffect(() => {
-        console.log("player one data:", playerOneData, "player two data:", playerTwoData)
 
-    }, [playerOneData, playerTwoData, playerOne, playerTwo])
 
 
     return (
