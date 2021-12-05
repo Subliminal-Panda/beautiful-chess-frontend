@@ -105,12 +105,41 @@
     align-items: center;
     gap: 2rem;
 
+    .loader-wrap {
+        display: grid;
+        grid-template-columns: 1;
+        grid-template-rows: 1;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-justify: center;
+    }
+
     .loading {
         font-size: 7rem;
         color: $blue;
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+        top: 0;
+        left: 0;
     }
     .loading-two {
         font-size: 7rem;
         color: $offwhite;
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .dots {
+        font-size: 15rem;
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+        top: 0;
+        left: -4rem;
+        transform: rotate(30deg)
     }
 }

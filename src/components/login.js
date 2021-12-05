@@ -1,4 +1,4 @@
-﻿import { faChessRook, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
+﻿import { faChessKing, faChessQueen, faChessRook, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import Cookies from 'js-cookie';
@@ -247,7 +247,10 @@ export default function Login() {
         <div className="login-page" style={ playerOneData && playerOne ? {backgroundColor: "rgb(130, 85, 255)"} : null}>
             { retrieving ?
                 <div className="content-loader">
-                    <FontAwesomeIcon  className={ playerOneData && playerOne ? "loading-two" : "loading"} icon={faSpinner} spin />
+                    <div className="loader-wrap">
+                        <FontAwesomeIcon  className={ playerOneData && playerOne ? "loading-two" : "loading"} icon={faChessQueen} spin />
+                        {/* <FontAwesomeIcon  className={ playerOneData && playerOne ? "loading-two dots" : "loading dots"} icon={faSpinner} spin /> */}
+                    </div>
                     <h1 className={ playerOneData && playerOne ? "loading-two" : "loading"}>Logging in...</h1>
                 </div>
                 :
