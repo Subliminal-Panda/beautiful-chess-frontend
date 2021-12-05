@@ -147,7 +147,7 @@ export default function Login() {
         } else if(username === '' || username === ' ') {
             setError(true);
             setGuestError("You need a username.")
-        } else if( !loginWhite ) {
+        } else if( !playerOneData && !playerOne && (username !== '') ) {
             setLoginWhite("guest")
             setPlayerOneData({
                 chess_agreement_draws: 0,
@@ -165,7 +165,7 @@ export default function Login() {
                 username: username
             })
             setPlayerOne(username)
-        } else if( !loginBlack ) {
+        } else if( !playerTwoData && !playerTwo && (username !== '') ) {
             setLoginBlack("guest")
             setPlayerTwoData({
                 chess_agreement_draws: 0,
@@ -185,11 +185,13 @@ export default function Login() {
             setPlayerTwo(username)
         }
         if(username && (username !== playerOne) && username !== " " && username !== "") {
-            setUsername('')
-            setPassword('')
-            setConfirmPassword('')
+            if(!playerOneData || !playerTwoData || !playerOne || !playerTwo) {
+                setUsername('')
+                setPassword('')
+                setConfirmPassword('')
+                firstInput.current.focus()
+            }
         }
-        firstInput.current.focus()
     }
 
     const handleLogin = (data) => {
@@ -237,7 +239,8 @@ export default function Login() {
     },[])
 
     useEffect(() => {
-        if(playerOneData && playerTwoData && playerOne && playerTwo) {
+        if(playerOneData && playerOne) {
+            console.log("navigating to game. data:", playerOneData, playerOne, playerTwoData, playerTwo)
             navigate('/game')
         }
     })
@@ -258,7 +261,7 @@ export default function Login() {
                 onSubmit={ handleSubmit }
                 className="login-form-wrap"
                 >
-                    <h1 style={ !loginWhite ? {color: "black"} : !loginBlack ? {color: "white"} : null}>{`${ !playerOneData && !playerOne ? "Player 1" : !playerTwoData && !playerTwo ? "Player 2" : null }, what can I call you?`}</h1>
+                    <h1 style={ !loginWhite ? {color: "black"} : !loginBlack ? {color: "white"} : null}>{`${ !playerOneData || !playerOne ? "Player 1," : !playerTwoData || !playerTwo ? "Player 2," : '' } what can I call you?`}</h1>
                     <div className="button-form-wrap" >
                         <div className="form-group">
                             <FontAwesomeIcon icon={ faChessRook } />

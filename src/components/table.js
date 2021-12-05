@@ -63,7 +63,7 @@ export default function Table (props) {
 
     return (
         <div className="page-wrap">
-        { ((playerOneData && playerTwoData && playerOne && playerTwo)) ?
+        { playerOneData && playerTwoData && playerOne && playerTwo ?
             <div className="table-wrap">
                 <CapturedZone />
                 <div className="game-wrap">
