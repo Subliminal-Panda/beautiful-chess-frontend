@@ -248,7 +248,7 @@ export default function Login() {
             { retrieving ?
                 <div className="content-loader">
                     <FontAwesomeIcon  className={ playerOneData && playerOne ? "loading-two" : "loading"} icon={faSpinner} spin />
-                    <h1 className={ playerOneData && playerOne ? "loading-two" : "loading"}>Retrieving user data...</h1>
+                    <h1 className={ playerOneData && playerOne ? "loading-two" : "loading"}>Logging in...</h1>
                 </div>
                 :
                 <form
