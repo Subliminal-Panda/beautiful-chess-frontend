@@ -361,10 +361,12 @@ export default function Piece (props) {
                         friendlyFire = friendlyFire.filter((mv, idx, arr) => idx === arr.findIndex((oth) => (
                             oth === mv
                         )))
-                        if(pawn) {
+                        if(pawn && horizontal !== currentFile) {
                             friendlyFire.push([[horizontal], [vertical]])
                         } else if(blockedBy[0] === undefined || blockedBy.length < 2) {
-                            friendlyFire.push([[horizontal], [vertical]])
+                            if(!pawn) {
+                                friendlyFire.push([[horizontal], [vertical]])
+                            }
                         } else if(blockedBy.length < 3 && blockedBy.length > 1) {
                             lookPast.push([[horizontal], [vertical]])
                         }
