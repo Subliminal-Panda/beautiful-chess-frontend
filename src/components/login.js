@@ -1,4 +1,4 @@
-﻿import { faChessKing, faChessQueen, faChessRook, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
+﻿import { faChessKing, faChessQueen, faChessRook, faInfo, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import Cookies from 'js-cookie';
@@ -61,6 +61,9 @@ export default function Login() {
             .then(data => {
                 if( (data === 'User not found.') || (data === 'Incorrect password.')) {
                     setError(true);
+                    setRetrieving(false)
+                    setLoginError(data)
+                    return(data)
                 } else if(data[0] === 'User verified:') {
                     tempUserData.current=(data[1])
                     Cookies.set('username', username);
@@ -78,7 +81,7 @@ export default function Login() {
                 setRetrieving(false)
                 console.log('Problem logging in.', error);
                 setError(true);
-                setLoginError('Sorry, wrong credentials.');
+                setLoginError('Problem logging in.');
                 navigate("/game")
             })
         }
@@ -111,6 +114,8 @@ export default function Login() {
                     if(data[0] === 'That username is taken.') {
                         setError(true);
                         setSignupError('That username is taken.');
+                        setRetrieving(false)
+                        return(data)
                     } else {
                         tempUserData.current=(data[1])
                         setError(false);
@@ -120,16 +125,22 @@ export default function Login() {
                         return(data)
                     }
                 })
-                .then(data => {
-                    if((data[0] !== 'That username is taken.') && (!error)) {
-                        handleLogin(data[1]);
+                .then(info => {
+                    if((info[0] !== undefined) && (info[0] !== 'That username is taken.') && (!error)) {
+                        handleLogin(info[1]);
                     }
+                    console.log("info:", info)
+                    return(info)
                 })
-                .catch(error => {
+                .catch(err => {
                     setRetrieving(false)
-                    console.log('Error creating your user', error);
+                    console.log('Error creating your user', err);
                     setError(true);
-                    if(!signupError && error) {
+                    if((err[0] !== undefined) && (err[0] === 'That username is taken.')) {
+                        setError(true);
+                        setSignupError('That username is taken.');
+                    } else if(!signupError && err) {
+                        console.log("error:", err)
                         setSignupError('Error creating your user');
                     }
                 })
@@ -210,7 +221,7 @@ export default function Login() {
         setUsername('')
         setPassword('')
         setConfirmPassword('')
-        firstInput.current.focus()
+        // firstInput.current.focus()
         }
     }
 
