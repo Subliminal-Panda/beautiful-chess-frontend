@@ -217,12 +217,9 @@ export default function Login() {
         }
         setRetrieving(false)
         console.log("data:", data)
-        if(!playerOneData || !playerTwoData || !playerOne || !playerTwo) {
         setUsername('')
         setPassword('')
         setConfirmPassword('')
-        // firstInput.current.focus()
-        }
     }
 
     const nameListener = () => {
@@ -254,7 +251,7 @@ export default function Login() {
             console.log("navigating to game. data:", playerOneData, playerOne, playerTwoData, playerTwo)
             navigate('/game')
         }
-    })
+    },[playerOneData, playerOne])
 
     return (
 

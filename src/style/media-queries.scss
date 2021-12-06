@@ -14,18 +14,14 @@
     }
 
     .captured {
-        grid-column: 1 / span 5;
-        font-size: 2.8rem;
+        gap: .75rem;
+        font-size: 2.25rem;
     }
     .nameplate {
         margin-top: 1rem;
         font-size: 2.75rem;
         font-stretch: ultra-condensed;
         line-height: 4.5rem;
-    }
-    .details {
-
-        min-height: fit-content;
     }
 
     .login-form-wrap {
@@ -60,6 +56,9 @@
 }
 
 @media screen and (max-aspect-ratio: 148/100) {
+    .captured-zone {
+        justify-content: space-evenly;
+    }
 
     .in-check, .game-end {
         flex-direction: row;
@@ -75,7 +74,7 @@
     }
 
     .captures {
-        height: 100%;
+        // height: 28vh;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
     }
@@ -88,14 +87,18 @@
         display: none;
     }
 
-    .details {
-        height: fit-content;
-    }
-
     .single-captured {
-        display: flex;
+        display: grid;
+        margin-top: 2rem;
+        height: 8rem;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr 1fr;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        grid-gap: 0;
+        gap: 0.75rem;
+        font-size: 3rem;
     }
 
     .turn-info {
@@ -137,7 +140,9 @@
     }
 
     .details {
-        min-height: fit-content;
+        height: auto;
+        justify-self: flex-end;
+        // min-height: none;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -145,10 +150,13 @@
     }
 
     .details-wrap {
-        min-height: 88vh;
-        max-height: 88vh;
+        min-height: 75vh;
+        max-height: 83vh;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
+    }
+    .details {
+        height: fit-content;
     }
 
     .game-end {
@@ -218,18 +226,24 @@
     }
 
     .captures {
-        height: calc(22rem + 2vh);
+        height: auto;
     }
 
     .divider {
-        height: calc(24rem + 2vh);
+        height: calc(20rem + 10vh);
         width: 1.5rem;
         background-color: rgb(127, 127, 127);
         border-radius: 1rem;
     }
 
     .single-captured {
-        margin-bottom: 1rem;
+        display: flex;
+        height: auto;
+        // max-width: 60vw;
+        max-width: fit-content;
+        min-width: fit-content;
+        gap: 1.5rem;
+        margin: 0;
     }
 
     .turn-info {
@@ -294,6 +308,17 @@
         right: 50vw;
         transform: translate(50%, -50%);
     }
+
+    .captures {
+        height: calc(19rem + 5vh);
+    }
+
+    .divider {
+        height: calc(21rem + 5vh);
+        width: 1.5rem;
+        background-color: rgb(127, 127, 127);
+        border-radius: 1rem;
+    }
 }
 
 @media screen and (max-aspect-ratio: 23/25) {
@@ -321,11 +346,21 @@
         width: 95vmin;
     }
 
-    .table-wrap {
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-        display: flex;
-        justify-content: space-between;
+    // .table-wrap {
+    //     min-height: 100vh;
+    //     min-height: -webkit-fill-available;
+    //     display: flex;
+    //     justify-content: space-between;
+    // }
+    .captures {
+        height: calc(17rem + 7vh);
+    }
+
+    .divider {
+        height: calc(19rem + 7vh);
+        width: 1.5rem;
+        background-color: rgb(127, 127, 127);
+        border-radius: 1rem;
     }
 
     .login-form-wrap {
@@ -379,12 +414,22 @@
 @media screen and (max-aspect-ratio: 6/10) {
 
     .captured-zone {
-        min-height: calc(96vh - (95vw + 6rem));
+        min-height: calc(94.5vh - (95vw + 6rem));
         flex-direction: column;
         justify-content: space-evenly;
     }
     .details-wrap {
         max-height: 100%;
+    }
+    .captures {
+        height: 24vh;
+    }
+
+    .divider {
+        height: 25vh;
+        width: 1.5rem;
+        background-color: rgb(127, 127, 127);
+        border-radius: 1rem;
     }
 
 }
@@ -407,14 +452,18 @@
     }
 
     .captured-zone {
-        max-height: calc(99vh - 100vw);
-        min-height: calc(99vh - 100vw);
+        max-height: calc(98vh - 100vw);
+        min-height: calc(98vh - 100vw);
     }
 
     .details-wrap {
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
+    }
+
+    .details {
+        height: calc((98vh - 100vw)/2);
     }
 
     .game-board-wrap {
@@ -464,7 +513,7 @@
     }
 
     .table-wrap {
-        height: 45vh;
+        // height: 45vh;
         justify-content: flex-start;
     }
     .divider {

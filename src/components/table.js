@@ -64,7 +64,7 @@ export default function Table (props) {
     return (
         <div className="page-wrap">
         { playerOneData && playerTwoData && playerOne && playerTwo ?
-            <div className="table-wrap">
+            <div className="table-wrap" style={ activePlayer === "white" ? {backgroundColor: "rgb(251, 255, 188)"} : null}>
                 <CapturedZone />
                 <div className="game-wrap">
                     <div className="turn-info">
@@ -77,7 +77,7 @@ export default function Table (props) {
                         <div>{active}:</div><div>CHECK!</div>
                         </div>
                         :
-                        <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } >
+                        <div className={ inactive === playerTwo ? "player-two on-turn" : "player-one on-turn" } >
                             {active}:
                             <div>your move.</div>
                         </div>

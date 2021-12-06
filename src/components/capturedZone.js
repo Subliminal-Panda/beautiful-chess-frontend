@@ -80,7 +80,12 @@ export default function CapturedZone() {
 
     return (
         <div className={ active === playerTwo ? "player-two-captured captured-zone" : "player-one-captured captured-zone" }>
-            <h1 className={ active === playerOne ? "player-one single-captured captured" : active === playerTwo ? "player-two single-captured captured" : null }>Won: { active === playerOne ? winsOne : winsTwo } Lost: {active === playerOne ? lossesOne : lossesTwo }</h1>
+            <div className={ active === playerOne ? "player-one single-captured captured" : active === playerTwo ? "player-two single-captured captured" : null }>
+                <div>Won: </div>
+                <div>{ active === playerOne ? winsOne : winsTwo }</div>
+                <div>Lost: </div>
+                <div>{active === playerOne ? lossesOne : lossesTwo }</div>
+            </div>
 
             <div className="details-wrap" >
 
@@ -97,7 +102,12 @@ export default function CapturedZone() {
                         <div>{active}:</div><div>CHECK!</div></div>
                         : <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } ><div>{active}:</div><div>your move.</div></div>
                         }
-                        { <h1 className={ active === playerOne ? "player-one captured" : active === playerTwo ? "player-two captured" : null }>Won: { active === playerOne ? winsOne : winsTwo } Lost: {active === playerOne ? lossesOne : lossesTwo }</h1>}
+                        <div className={ active === playerOne ? "player-one captured" : active === playerTwo ? "player-two captured" : null }>
+                            <div>Won: </div>
+                            <div>{ active === playerOne ? winsOne : winsTwo }</div>
+                            <div>Lost: </div>
+                            <div>{active === playerOne ? lossesOne : lossesTwo }</div>
+                        </div>
                     </div>
 
 
@@ -117,7 +127,12 @@ export default function CapturedZone() {
 
                     <div className="nameplate">
                         {inactive}:
-                        <h1 className={ inactive === playerOne ? "player-one captured" : inactive === playerTwo ? "player-two captured" : null }>Won: { inactive === playerOne ? winsOne : winsTwo } Lost: { inactive === playerOne ? lossesOne : lossesTwo }</h1>
+                        <div className={ inactive === playerOne ? "player-one captured" : inactive === playerTwo ? "player-two captured" : null }>
+                            <div>Won: </div>
+                            <div>{ inactive === playerOne ? winsOne : winsTwo }</div>
+                            <div>Lost: </div>
+                            <div>{ inactive === playerOne ? lossesOne : lossesTwo }</div>
+                        </div>
                     </div>
 
                     <div className="captures">

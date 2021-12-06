@@ -8,6 +8,10 @@ export default function Piece (props) {
 
     // go through and fix everything eslint says
 
+    // web socket functionality (that'll be a big overhaul)
+
+    // click & drag functionality (probably also quite a bit of rewriting)
+
     // fix environment variable
 
     // add en passant rules
@@ -20,7 +24,7 @@ export default function Piece (props) {
 
     // break down media queries
 
-    // break apart this monstrosity of a piece js file, especially determineMoves()!
+    // break apart this monstrosity of a piece.js file, especially determineMoves()!
 
     // add a place to access a "global leader board"
 

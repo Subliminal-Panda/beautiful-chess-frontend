@@ -1,7 +1,7 @@
 ﻿.captured-zone {
     width: 100%;
-    min-height: 96vmin;
-    max-height: 96vmin;
+    min-height: 95vmin;
+    max-height: 95vmin;
     border-radius: 1.5rem;
     margin: 1.25vmin 0 1.25vmin 1.25vmin;
     display: flex;
@@ -23,13 +23,16 @@
 }
 
 .player-one-captured {
-    border: .5rem solid white;
-    background-color: rgb(165, 165, 165);
+    border: .75rem solid $blue;-webkit-text-stroke-width: .1rem;
+    // -webkit-text-stroke-color: rgb(0, 0, 0);
+    background-color: rgb(175, 175, 175);
 }
 
 .player-two-captured {
-    border: .5rem solid rgb(0, 0, 0);
-    background-color: rgb(85, 85, 85);
+    border: .75rem solid $offwhite;
+    // -webkit-text-stroke-width: .15rem;
+    // -webkit-text-stroke-color: rgb(26, 26, 26);
+    background-color: rgb(64, 57, 80);
 }
 
 .taken-wrapper {
@@ -74,11 +77,11 @@
 }
 
 .player-one {
-    color: white;
+    color: $offwhite;
 }
 
 .player-two {
-    color: black;
+    color: $blue;
 }
 
 .details-wrap {
@@ -101,10 +104,11 @@
 }
 
 .captured {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
     text-align: center;
     line-height: 3.5rem;
-    grid-row: 1;
-    grid-column: 1 / span 8;
     font-size: 3.5rem;
     height: 4rem;
 }
