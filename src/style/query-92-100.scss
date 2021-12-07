@@ -1,0 +1,73 @@
+﻿@media screen and (max-aspect-ratio: 92/100) {
+
+    .new-game, .promotion-selection {
+        top: 50vw;
+        right: 50vw;
+        transform: translate(50%, -50%);
+    }
+
+    .game-board-wrap {
+        min-height: 95vmin;
+        min-width: 95vmin;
+        max-height: 95vmin;
+        max-width: 95vmin;
+    }
+    .game-board {
+        min-height: 91vmin;
+        min-width: 91vmin;
+        max-height: 91vmin;
+        max-width: 91vmin;
+    }
+
+    .captured-zone {
+        width: 95vmin;
+        flex-grow: 1;
+    }
+
+    .login-form-wrap {
+
+        h1 {
+            font-size: 7.5vw;
+        }
+
+        .form-group {
+            width: 90vw;
+        }
+
+        input {
+            width: 78vw;
+            font-size: 5.5vw;
+            line-height: 5.5vw;
+            border-radius: 2.5vw;
+        }
+
+        svg {
+            font-size: 6vw;
+        }
+
+        .button-wrapper {
+            gap: 2rem;
+            margin: 1.5vw;
+
+            h2{
+                font-size: 6vw;
+                line-height: 6vw;
+            }
+        }
+
+        button {
+            font-size: 5.5vw;
+            line-height: 5.5vw;
+            width: 18vw;
+            border-radius: 2.5vw;
+        }
+        .error {
+            font-size: 5.25vw;
+            line-height: 5.25vw;
+        }
+    }
+
+    .login-form-wrap {
+        height: 85vh;
+    }
+}

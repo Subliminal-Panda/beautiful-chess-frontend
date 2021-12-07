@@ -1,0 +1,126 @@
+﻿@media screen and (max-aspect-ratio: 148/100) {
+    .captured-zone {
+        .details-wrap {
+            .details {
+                .nameplate {
+                    flex-grow: 1;
+                    .name {
+                        display: none;
+                    }
+                    .on-turn, .in-check, .game-end {
+                        display: none;
+                    }
+
+                    .game-end {
+                        font-size: 4vw;
+                    }
+
+                    .captured {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        grid-template-rows: 1fr 1fr;
+                        div {
+                            font-size: 3.5vw;
+                            line-height: 3.5vw;
+                        }
+                    }
+                }
+
+                .captures {
+                    flex-grow: 4;
+                    grid-template-rows: 1fr 1fr 1fr;
+
+                    .captures-pawns {
+                        grid-row: 1;
+                    }
+                    .captures-queens {
+                        grid-row: 3;
+                    }
+                    .captures-knights {
+                        grid-row: 2;
+                    }
+                    .captures-bishops {
+                        grid-row: 2;
+                    }
+                    .captures-rooks {
+                        grid-row: 3;
+                    }
+                }
+            }
+        }
+    }
+
+    .new-game, .promotion-selection {
+        top: 55vh;
+        right: 45vh;
+        transform: translate(50%, -50%);
+    }
+
+    .turn-info {
+        display: flex;
+        height: 6rem;
+        font-size: 5.5rem;
+        line-height: 6rem;
+        order: 0;
+        margin-top: 1.25vmin;
+        overflow: hidden;
+        .on-turn, .in-check, .game-end {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 5rem;
+            font-size: 3.5rem;
+        }
+    }
+
+    .game-board-wrap {
+        min-height: 85.5vh;
+        min-width: 85.5vh;
+        max-height: 85.5vh;
+        max-width: 85.5vh;
+        margin: 0 1.25vmin 1.25vmin;
+    }
+    .game-board {
+        min-height: 83vh;
+        min-width: 83vh;
+        max-height: 83vh;
+        max-width: 83vh;
+    }
+
+    .login-form-wrap {
+
+        input {
+            font-size: 3.5vw;
+            line-height: 3.5vw;
+            border-radius: 1.75vmax;
+        }
+
+        svg {
+            font-size: 4vw;
+        }
+
+        .button-wrapper {
+            grid-template-columns: 25vw 1fr 25vw;
+
+            h2 {
+                font-size: 6vh;
+            }
+        }
+
+        button {
+            font-size: 5vh;
+            line-height: 5vh;
+            width: 13vw;
+            border-radius: 1.75vmax;
+        }
+
+        .error {
+            line-height: 4vw;
+            font-size: 4vw;
+        }
+    }
+
+}

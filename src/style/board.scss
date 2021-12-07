@@ -51,26 +51,3 @@
 button {
     margin-bottom: .5rem;
 }
-
-.turn-info {
-    display: none;
-}
-
-.in-check {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    -webkit-text-stroke-width: .15rem;
-    -webkit-text-stroke-color: black;
-    color: $warning;
-}
-
-.game-end {
-    -webkit-text-stroke-width: .15rem;
-    -webkit-text-stroke-color: black;
-    display: flex;
-    flex-direction: column;
-    font-size: 4.5rem;
-    color: $warning;
-}

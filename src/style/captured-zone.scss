@@ -1,79 +1,141 @@
 ﻿.captured-zone {
     width: 100%;
-    min-height: 95vmin;
-    max-height: 95vmin;
+    height: 95vh;
     border-radius: 1.5rem;
     margin: 1.25vmin 0 1.25vmin 1.25vmin;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
-    h2 {
-        font-size: 3rem;
+    .details-wrap {
+        flex-grow: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .details {
+            flex-grow: 1;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+
+            .nameplate {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                margin-top: 1rem;
+                font-size: 4rem;
+                line-height: 6rem;
+
+                .on-turn, .in-check, .game-end {
+                    flex-grow: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    line-height: 4rem;
+                }
+
+                .in-check, .game-end {
+                    -webkit-text-stroke-width: .15rem;
+                    -webkit-text-stroke-color: black;
+                    color: $warning;
+                }
+
+                .game-end {
+                    font-size: 4.5rem;
+                    gap: 1rem;
+                }
+
+                .captured {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: space-evenly;
+                    text-align: center;
+                    line-height: 4rem;
+                    font-size: 4rem;
+                }
+            }
+
+            .captures {
+                width: min-content;
+                margin: 2rem;
+                padding-right: 4rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 3.5rem;
+
+                .captures-pieces {
+                    display: grid;
+                    grid-auto-columns: 3vh;
+                    grid-template-rows: 1fr;
+
+                    * {
+                        grid-row: 1;
+                        font-size: 10vh;
+                    }
+
+                    .taken-wrapper {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        font-size: 5.5rem;
+                        padding: .5rem 0;
+                    }
+
+                    .taken-white {
+                        filter:
+                        drop-shadow( 0 .25vh rgb(175, 175, 175))
+                        drop-shadow( 0 -.25vh rgb(175, 175, 175))
+                        drop-shadow( .25vh 0 rgb(175, 175, 175))
+                        drop-shadow( -.25vh 0 rgb(175, 175, 175))
+                        drop-shadow( -.5vh 0 rgb(175, 175, 175))
+                                ;
+                    }
+
+                    .taken-black {
+                        filter:
+                        drop-shadow( 0 .25vh rgb(65, 58, 83))
+                        drop-shadow( 0 -.25vh rgb(65, 58, 83))
+                        drop-shadow( .25vh 0 rgb(65, 58, 83))
+                        drop-shadow( -.25vh 0 rgb(65, 58, 83))
+                        drop-shadow( -.5vh 0 rgb(65, 58, 83))
+                                ;
+                    }
+                }
+            }
+        }
+
+
+        .divider {
+            width: 95%;
+            height: .6rem;
+            background-color: rgb(127, 127, 127);
+            border-radius: 1rem;
+        }
     }
 }
 
-.on-turn, .in-check, .game-end {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    line-height: 4rem;
-}
-
 .player-one-captured {
-    border: .75rem solid $blue;-webkit-text-stroke-width: .1rem;
-    // -webkit-text-stroke-color: rgb(0, 0, 0);
+    border: .75rem solid $blue;
     background-color: rgb(175, 175, 175);
 }
 
 .player-two-captured {
     border: .75rem solid $offwhite;
-    // -webkit-text-stroke-width: .15rem;
-    // -webkit-text-stroke-color: rgb(26, 26, 26);
     background-color: rgb(65, 58, 83);
-}
-
-.taken-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5.5rem;
-    padding: .5rem 0;
-}
-
-.captures {
-    width: 100%;
-    height: 100%;
-    justify-self: flex-end;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-auto-flow: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.details {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 3.6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 48vh;
-    width: 95%;
-}
-
-.divider {
-    width: 95%;
-    height: .6rem;
-    background-color: rgb(127, 127, 127);
-    border-radius: 1rem;
 }
 
 .player-one {
@@ -84,42 +146,6 @@
     color: $blue;
 }
 
-.details-wrap {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
-    justify-content: center;
-    align-items: center;
-}
-
-.nameplate {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
-    font-size: 4rem;
-    line-height: 6rem;
-}
-
-.captured {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-evenly;
-    text-align: center;
-    line-height: 3.5rem;
-    font-size: 3.5rem;
-    height: 4rem;
-}
-
 .single-captured {
     display: none;
-}
-
-.game-end {
-    font-size: 4.5rem;
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
 }

@@ -62,7 +62,7 @@ export default function Table (props) {
 
 
     return (
-        <div className="page-wrap">
+        <div className="page-wrap" style={ activePlayer === "white" ? {backgroundColor: "rgb(251, 255, 188)"} : null}>
         { playerOneData && playerTwoData && playerOne && playerTwo ?
             <div className="table-wrap" style={ activePlayer === "white" ? {backgroundColor: "rgb(251, 255, 188)"} : null}>
                 <CapturedZone />
@@ -74,12 +74,12 @@ export default function Table (props) {
                         </div>
                         : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                         <div className="in-check">
-                        <div>{active}:</div><div>CHECK!</div>
+                            <div className="name">{active}:</div><div>CHECK!</div>
                         </div>
                         :
                         <div className={ inactive === playerTwo ? "player-two on-turn" : "player-one on-turn" } >
-                            {active}:
-                            <div>your move.</div>
+                            <div className="name">{active}:</div>
+                            <div className="your-move">your move.</div>
                         </div>
                     }
                     </div>

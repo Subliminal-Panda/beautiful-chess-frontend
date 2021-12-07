@@ -1,0 +1,91 @@
+﻿@media screen and (max-aspect-ratio: 188/100) {
+    .captured-zone {
+        .details-wrap {
+            .details {
+                .nameplate {
+                    margin-top: 1rem;
+                    font-size: 3vw;
+                    line-height: 5rem;
+
+                    .on-turn, .in-check, .game-end {
+                        line-height: 4rem;
+                    }
+
+                    .game-end {
+                        font-size: 4vw;
+                        gap: 1rem;
+                    }
+
+                    .captured {
+                        line-height: 3.5rem;
+                        font-size: 3vw;
+                    }
+                }
+
+                .captures {
+                    gap: 2.25vw;
+                    padding-right: 3.5vw;
+                    margin: 1.75vw;
+
+                    .captures-pieces {
+                        grid-auto-columns: 1.5vw;
+
+                        * {
+                            font-size: 5vw;
+                        }
+
+                        .taken-white {
+                            filter:
+                            drop-shadow( 0 .12vw rgb(175, 175, 175))
+                            drop-shadow( 0 -.12vw rgb(175, 175, 175))
+                            drop-shadow( .12vw 0 rgb(175, 175, 175))
+                            drop-shadow( -.12vw 0 rgb(175, 175, 175))
+                            drop-shadow( -.24vw 0 rgb(175, 175, 175))
+                                    ;
+                        }
+
+                        .taken-black {
+                            filter:
+                            drop-shadow( 0 .12vw rgb(65, 58, 83))
+                            drop-shadow( 0 -.12vw rgb(65, 58, 83))
+                            drop-shadow( .12vw 0 rgb(65, 58, 83))
+                            drop-shadow( -.12vw 0 rgb(65, 58, 83))
+                            drop-shadow( -.24vw 0 rgb(65, 58, 83))
+                                    ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .login-form-wrap {
+
+        h1 {
+            font-size: 7vw;
+            line-height: 7vw;
+        }
+
+        input {
+            font-size: 3vw;
+            line-height: 3vw;
+            border-radius: 1.5vw;
+        }
+
+        .button-wrapper {
+            grid-template-columns: 27vw 1fr 27vw;
+            margin: 1.5vh 1vh 1vh;
+
+            h2 {
+                font-size: 7vh;
+            }
+        }
+        button {
+            border-radius: 1.5vw;
+        }
+        .error {
+            line-height: 3.75vw;
+            font-size: 3.75vw;
+        }
+    }
+}

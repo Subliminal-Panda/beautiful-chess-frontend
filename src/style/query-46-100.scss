@@ -1,0 +1,103 @@
+﻿@media screen and (max-aspect-ratio: 48/100) {
+    .captured-zone {
+
+        .details-wrap {
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            // flex-direction: column;
+            // justify-content: space-evenly;
+            // align-items: center;
+
+            .details {
+                // flex-grow: 1;
+                // -webkit-user-select: none;
+                // -moz-user-select: none;
+                // -ms-user-select: none;
+                // user-select: none;
+                // display: flex;
+                // // flex-direction: column;
+                // // justify-content: space-evenly;
+                // // align-items: center;
+                // width: 100%;
+
+                .nameplate {
+                    flex-grow: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    margin-top: 1rem;
+                    font-size: 4rem;
+                    line-height: 8vw;
+
+                    .name {
+                        display: block;
+                    }
+
+                    .on-turn, .in-check, .game-end {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        line-height: 4rem;
+                    }
+
+                    .in-check, .game-end {
+                        -webkit-text-stroke-width: .15rem;
+                        -webkit-text-stroke-color: black;
+                        color: $warning;
+                    }
+
+                    .game-end {
+                        font-size: 4.5rem;
+                        gap: 1rem;
+                    }
+
+                    .captured {
+                        display: flex;
+                        gap: 1rem;
+                        justify-content: space-evenly;
+                        text-align: center;
+                        line-height: 6vw;
+                        font-size: 6vw;
+                    }
+                }
+
+                .captures {
+                    display: grid;
+                    gap: 0 4vw;
+                    grid-auto-columns: auto;
+                    grid-template-rows: 1fr 1fr;
+                    padding-right: 2vw;
+                    margin: 1.75vw;
+
+                    .captures-pieces {
+                        grid-row: 2;
+                        grid-auto-columns: 5vw;
+
+                        * {
+                            font-size: 12vw;
+                        }
+                    }
+
+                    .captures-pawns {
+                        grid-column: span 2;
+                        grid-row: 1;
+                    }
+                    .captures-queens {
+                        grid-row: 1;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .login-form-wrap {
+        * {
+            font-size: 8vw;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+﻿@media screen and (max-aspect-ratio: 1/1) {
+
+    .new-game, .promotion-selection {
+        top: 45.5vh;
+        right: 50vw;
+        transform: translate(50%, -50%);
+    }
+
+    // .captures {
+    //     height: calc(19rem + 5vh);
+    // }
+
+    // .divider {
+    //     height: calc(21rem + 5vh);
+    //     width: 1.5rem;
+    //     background-color: rgb(127, 127, 127);
+    //     border-radius: 1rem;
+    // }
+}

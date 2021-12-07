@@ -1,0 +1,74 @@
+﻿@media screen and (max-aspect-ratio: 170/100) {
+    .captured-zone {
+        .details-wrap {
+            .details {
+                .nameplate {
+                    font-size: 2.5vw;
+                    line-height: 2.5vw;
+
+                    .on-turn, .in-check, .game-end {
+                        flex-grow: 1;
+                    }
+
+                    .captured {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        grid-template-rows: 1fr 1fr;
+                        gap: .25rem 1rem;
+                        font-size: 2.5vw;
+                        line-height: 2.5vw;
+                    }
+                }
+
+                .captures {
+                    display: grid;
+                    gap: 0 2.75vw;
+                    grid-auto-columns: auto;
+                    grid-template-rows: 1fr 1fr;
+                    padding-right: 2vw;
+                    margin: 1.75vw;
+
+                    .captures-pieces {
+                        grid-row: 2;
+                    }
+
+                    .captures-pawns {
+                        grid-column: span 2;
+                        grid-row: 1;
+                    }
+                    .captures-queens {
+                        grid-row: 1;
+                    }
+
+                    .captures-pieces {
+                        grid-auto-columns: 1.5vw;
+
+                        * {
+                            font-size: 5vw;
+                        }
+
+                        .taken-white {
+                            filter:
+                            drop-shadow( 0 .12vw rgb(175, 175, 175))
+                            drop-shadow( 0 -.12vw rgb(175, 175, 175))
+                            drop-shadow( .12vw 0 rgb(175, 175, 175))
+                            drop-shadow( -.12vw 0 rgb(175, 175, 175))
+                            drop-shadow( -.24vw 0 rgb(175, 175, 175))
+                                    ;
+                        }
+
+                        .taken-black {
+                            filter:
+                            drop-shadow( 0 .12vw rgb(65, 58, 83))
+                            drop-shadow( 0 -.12vw rgb(65, 58, 83))
+                            drop-shadow( .12vw 0 rgb(65, 58, 83))
+                            drop-shadow( -.12vw 0 rgb(65, 58, 83))
+                            drop-shadow( -.24vw 0 rgb(65, 58, 83))
+                                    ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
