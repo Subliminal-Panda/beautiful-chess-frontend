@@ -1,7 +1,5 @@
 ﻿@media screen and (max-aspect-ratio: 92/100) {
 
-
-
     .new-game, .promotion-selection {
         top: 50vw;
         right: 50vw;
@@ -60,9 +58,10 @@
         button {
             font-size: 5.5vw;
             line-height: 5.5vw;
-            width: 18vw;
+            width: 19vw;
             border-radius: 2.5vw;
         }
+
         .error {
             font-size: 5.25vw;
             line-height: 5.25vw;
@@ -70,6 +69,6 @@
     }
 
     .login-form-wrap {
-        height: 85vh;
+        height: 80vh;
     }
 }

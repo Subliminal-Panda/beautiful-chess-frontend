@@ -4,9 +4,11 @@
             .details {
                 .nameplate {
                     flex-grow: 1;
+
                     .name {
                         display: none;
                     }
+
                     .on-turn, .in-check, .game-end {
                         display: none;
                     }
@@ -33,15 +35,19 @@
                     .captures-pawns {
                         grid-row: 1;
                     }
+
                     .captures-queens {
                         grid-row: 3;
                     }
+
                     .captures-knights {
                         grid-row: 2;
                     }
+
                     .captures-bishops {
                         grid-row: 2;
                     }
+
                     .captures-rooks {
                         grid-row: 3;
                     }
@@ -64,6 +70,7 @@
         order: 0;
         margin-top: 1.25vmin;
         overflow: hidden;
+
         .on-turn, .in-check, .game-end {
             display: flex;
             flex-direction: row;
@@ -83,6 +90,7 @@
         max-width: 85.5vh;
         margin: 0 1.25vmin 1.25vmin;
     }
+
     .game-board {
         min-height: 83vh;
         min-width: 83vh;
@@ -113,7 +121,7 @@
         button {
             font-size: 5vh;
             line-height: 5vh;
-            width: 13vw;
+            width: 14vw;
             border-radius: 1.75vmax;
         }
 

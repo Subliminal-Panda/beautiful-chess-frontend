@@ -1,4 +1,51 @@
 ﻿@media screen and (max-aspect-ratio: 60/100) {
+    .captured-zone {
+        .details-wrap {
+            .details {
+                .nameplate {
+                    margin-top: 1rem;
+                    font-size: 4rem;
+                    line-height: 6rem;
+
+                    .captured {
+                        display: flex;
+                    }
+                }
+
+                .captures {
+                    padding-right: 6vw;
+                    margin: 1.75vw;
+                }
+            }
+        }
+    }
+
+    .new-game, .promotion-selection {
+        top: 49vw;
+        right: 50vw;
+        transform: translate(50%, -50%);
+    }
+
+    .game-board-wrap {
+        margin-top: 1.25vmin;
+    }
+
+    .single-captured {
+        display: none;
+    }
+
+    .table-wrap {
+        .game-wrap {
+            .turn-info {
+                display: flex;
+            }
+        }
+    }
+
+    .login-form-wrap {
+        height: 60vh;
+    }
+
     .app, .page-wrap, .table-wrap {
         min-width: 100vw;
         min-height: 100vh;
