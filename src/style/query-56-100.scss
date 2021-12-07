@@ -12,12 +12,11 @@
                     }
 
                     .on-turn, .in-check, .game-end {
+                        font-size: 4rem;
+                        line-height: 4rem;
                         display: flex;
+                        flex-direction: column;
                         margin: 0;
-                    }
-
-                    .game-end {
-                        flex-direction: row;
                     }
 
                     .captured {

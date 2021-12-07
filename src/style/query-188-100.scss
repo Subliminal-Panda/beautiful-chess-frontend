@@ -8,12 +8,8 @@
                     line-height: 5rem;
 
                     .on-turn, .in-check, .game-end {
+                        font-size: 3vw;
                         line-height: 4rem;
-                    }
-
-                    .game-end {
-                        font-size: 4vw;
-                        gap: 1rem;
                     }
 
                     .captured {
@@ -23,12 +19,12 @@
                 }
 
                 .captures {
-                    gap: 2.25vw;
+                    gap: 1.8vw;
                     padding-right: 3.5vw;
                     margin: 1.75vw;
 
                     .captures-pieces {
-                        grid-auto-columns: 1.5vw;
+                        grid-auto-columns: 1.4vw;
 
                         * {
                             font-size: 5vw;

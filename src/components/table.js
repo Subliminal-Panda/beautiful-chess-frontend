@@ -70,11 +70,13 @@ export default function Table (props) {
                     <div className="turn-info">
                     { gameEnd ?
                         <div className="game-end">
+                            <div className="name">{active}:</div>
                             <div>{`${gameEnd[0]}.`.toUpperCase()}</div>
                         </div>
                         : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                         <div className="in-check">
-                            <div className="name">{active}:</div><div>CHECK!</div>
+                            <div className="name">{active}:</div>
+                            <div>CHECK!</div>
                         </div>
                         :
                         <div className={ inactive === playerTwo ? "player-two on-turn" : "player-one on-turn" } >

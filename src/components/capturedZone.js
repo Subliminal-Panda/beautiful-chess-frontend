@@ -179,12 +179,19 @@ export default function CapturedZone() {
                     <div className="nameplate">
                         { gameEnd ?
                         <div className="game-end">
+                            <div className="name">{active}:</div>
                             <div>{`${gameEnd[0]}.`.toUpperCase()}</div>
                         </div>
                         : inCheck[0] === "white" && activePlayer === "white" || inCheck[1] === "black" && activePlayer === "black" ?
                         <div className="in-check">
-                        <div className="name">{active}:</div><div>CHECK!</div></div>
-                        : <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } ><div className="name">{active}:</div><div className="your-move">your move.</div></div>
+                            <div className="name">{active}:</div>
+                            <div>CHECK!</div>
+                        </div>
+                        :
+                        <div className={ active === playerTwo ? "player-two on-turn" : "player-one on-turn" } >
+                            <div className="name">{active}:</div>
+                            <div className="your-move">your move.</div>
+                        </div>
                         }
                         <div className={ active === playerOne ? "player-one captured" : active === playerTwo ? "player-two captured" : null }>
                             <div>Won: </div>

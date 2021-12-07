@@ -75,7 +75,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 3.5rem;
+                gap: 2.9rem;
 
                 .captures-pieces {
                     display: grid;
@@ -122,7 +122,7 @@
                 }
 
                 .captures-bishops {
-                    margin-left: .75vw;
+                    margin-left: .25vw;
                     margin-right: .5vw;
                 }
 
@@ -137,7 +137,7 @@
                 }
 
                 .captures-queens {
-                    margin-left: .75vw;
+                    margin-left: 1vw;
                 }
             }
         }

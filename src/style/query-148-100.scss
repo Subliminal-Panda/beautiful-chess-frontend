@@ -31,6 +31,11 @@
                 .captures {
                     flex-grow: 4;
                     grid-template-rows: 1fr 1fr 1fr;
+                    gap: 0 2vw;
+
+                    .captures-pieces {
+                        grid-auto-columns: 1.75vw;
+                    }
 
                     .captures-pawns {
                         grid-row: 1;
