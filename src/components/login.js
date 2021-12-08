@@ -1,4 +1,4 @@
-﻿import { faChessKing, faChessQueen, faChessRook, faInfo, faLock, faSpinner } from '@fortawesome/free-solid-svg-icons';
+﻿import { faChessKing, faChessQueen, faChessRook, faInfo, faKey, faLock, faSpinner, faUnlock, faUserLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import Cookies from 'js-cookie';
@@ -223,8 +223,8 @@ export default function Login() {
     }
 
     const nameListener = () => {
-        if(firstInput.current.value.length >= 12) {
-            setGuestError("maximum name reached: 12 characters.")
+        if(firstInput.current.value.length >= 13) {
+            setGuestError("maximum name reached: 13 characters.")
        } else {
            setGuestError('')
        }
@@ -277,7 +277,7 @@ export default function Login() {
                                 ref={firstInput}
                                 type="text"
                                 name="username"
-                                maxLength="12"
+                                maxLength="13"
                                 placeholder="Enter a username"
                                 value={ username }
                                 onChange={ handleChange }
@@ -308,7 +308,7 @@ export default function Login() {
                     </div>
                     <div className="button-form-wrap">
                             <div className="form-group">
-                                <FontAwesomeIcon icon={ faLock } />
+                                <FontAwesomeIcon icon={ faUnlock } />
                                 <input
                                     type="password"
                                     name="confirm"

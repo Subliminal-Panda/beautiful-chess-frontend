@@ -1,0 +1,77 @@
+﻿.white-piece {
+    color: white;
+}
+
+.white-hovered-piece {
+    * {
+        color: $mint;
+        font-size: 9.5vmin;
+        filter: drop-shadow( .25rem .25rem 0 rgba(65, 64, 64, 1));
+    }
+}
+
+.white-selected-piece {
+    * {
+        color: $dark-mint;
+        filter: drop-shadow( .25rem .25rem 0 rgb(32, 32, 32));
+        &:hover {
+            font-size: 9.5vmin;
+        }
+    }
+
+}
+
+.white-ghost {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-size: 6vmin;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-clip: border-box;
+    color: $test;
+    z-index: 2;
+    opacity: .75;
+
+    &:hover {
+        font-size: 7vmin;
+        opacity: 1;
+        filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
+    }
+}
+
+.white-promote {
+    color: $promote;
+    z-index: 2;
+    opacity: .8;
+
+    &:hover {
+        font-size: 9.5vmin;
+        filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
+    }
+}
+
+.white-capture {
+    color: $warning;
+    z-index: 2;
+    opacity: .8;
+    filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
+}
+
+.white-castle {
+    color: $cream;
+    z-index: 2;
+    opacity: .8;
+    filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
+}
+
+.white-getting-promoted {
+    * {
+        color: $promote;
+        font-size: 9.5vmin;
+        text-align: center;
+        filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
+    }
+}
