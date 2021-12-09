@@ -1,4 +1,4 @@
-﻿import { faChessKing, faChessQueen, faChessRook, faInfo, faKey, faLock, faSpinner, faUnlock, faUserLock } from '@fortawesome/free-solid-svg-icons';
+﻿import { faChessQueen, faChessRook, faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import Cookies from 'js-cookie';
