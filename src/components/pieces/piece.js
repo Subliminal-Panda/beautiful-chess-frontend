@@ -34,7 +34,7 @@ export default function Piece (props) {
 
     // secure method of changing username and password
 
-    // update favicon, logo and other minor metadata things
+    // update logo and other minor metadata things
 
     // add some subtle textures to board squares, background of login page
 
