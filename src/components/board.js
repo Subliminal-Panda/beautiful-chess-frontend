@@ -188,8 +188,6 @@ export default function Board () {
                             setPlayerOneData(data[1])
                         } else if(color === "black") {
                             setPlayerTwoData(data[1])
-                        } else {
-                            console.log("for some reason I'm not updating winner. color:", color)
                         }
                         return(data)
                     }
@@ -217,8 +215,6 @@ export default function Board () {
                             setPlayerTwoData(data[1])
                         } else if(color === "black") {
                             setPlayerOneData(data[1])
-                        } else {
-                            console.log("for some reason I'm not updating loser. color:", color)
                         }
                         return(data)
                     }
@@ -228,8 +224,6 @@ export default function Board () {
                 })
             }
             updated.current= true
-        } else {
-            console.log("scores were already updated once! winner:", winner, "loser:", loser)
         }
     }
 

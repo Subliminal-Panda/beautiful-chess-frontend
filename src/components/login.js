@@ -67,7 +67,6 @@ export default function Login() {
                 } else if(data[0] === 'User verified:') {
                     tempUserData.current=(data[1])
                     Cookies.set('username', username);
-                    console.log("cookies:", Cookies)
                     setSignupError('')
                     return(data)
                 }
@@ -120,7 +119,6 @@ export default function Login() {
                         tempUserData.current=(data[1])
                         setError(false);
                         Cookies.set('username', username);
-                        console.log("cookies:", Cookies)
                         setSignupError('');
                         return(data)
                     }
@@ -140,7 +138,7 @@ export default function Login() {
                         setError(true);
                         setSignupError('That username is taken.');
                     } else if(!signupError && err) {
-                        console.log("error:", err)
+                        console.log("New user error:", err)
                         setSignupError('Error creating your user');
                     }
                 })
@@ -216,7 +214,6 @@ export default function Login() {
             setLoginBlack("user")
         }
         setRetrieving(false)
-        console.log("data:", data)
         setUsername('')
         setPassword('')
         setConfirmPassword('')
@@ -229,10 +226,6 @@ export default function Login() {
            setGuestError('')
        }
     };
-
-    useEffect(() => {
-        console.log("login error:", loginError, "sign up error:", signupError, "guest error:", guestError)
-    },[loginError, signupError, guestError])
 
     useEffect(() => {
         setError(false);
@@ -248,7 +241,6 @@ export default function Login() {
 
     useEffect(() => {
         if(playerOneData && playerOne) {
-            console.log("navigating to game. data:", playerOneData, playerOne, playerTwoData, playerTwo)
             navigate('/game')
         }
     },[playerOneData, playerOne])

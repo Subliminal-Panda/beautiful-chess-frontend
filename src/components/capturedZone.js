@@ -80,7 +80,6 @@ export default function CapturedZone() {
                     <FontAwesomeIcon className="taken" icon={pc[0]} />
                     </div>)
                 }
-                console.log(pc[0].iconName)
             } else if(pc[1] === "white") {
                 if(pc[0].iconName === "chess-pawn") {
                     renderedTwo.pawns.push(
@@ -112,7 +111,6 @@ export default function CapturedZone() {
                     <FontAwesomeIcon className="taken" icon={pc[0]} />
                     </div>)
                 }
-                console.log(pc[0].iconName)
             }
         })
         setCapturesOne([
