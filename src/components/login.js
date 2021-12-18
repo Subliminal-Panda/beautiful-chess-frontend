@@ -189,7 +189,7 @@ export default function Login() {
                 username: username
             })
             setPlayerOne(username)
-        } else if((!playerTwoData && !playerTwo) && (username === '' || username === ' ')) {
+        } else if((!playerTwoData && !playerTwo) && (username === '' || username === ' ') && (playerOne !== "Player Two")) {
             setLoginBlack("guest")
             setPlayerTwoData({
                 chess_agreement_draws: 0,
@@ -207,7 +207,25 @@ export default function Login() {
                 username: "Player Two"
             })
             setPlayerTwo("Player Two")
-            } else if( !playerTwoData && !playerTwo && (username !== '') ) {
+            } else if((!playerTwoData && !playerTwo) && (username === '' || username === ' ') && (playerOne === "Player Two")) {
+                setLoginBlack("guest")
+                setPlayerTwoData({
+                    chess_agreement_draws: 0,
+                    chess_checkmate_losses: 0,
+                    chess_checkmate_wins: 0,
+                    chess_fifty_move_draws: 0,
+                    chess_insufficient_material_draws: 0,
+                    chess_repetition_draws: 0,
+                    chess_resignation_losses: 0,
+                    chess_resignation_wins: 0,
+                    chess_stalemate_draws: 0,
+                    chess_timeout_losses: 0,
+                    chess_timeout_wins: 0,
+                    id: "guest",
+                    username: "Player 2"
+                })
+                setPlayerTwo("Player 2")
+                } else if( !playerTwoData && !playerTwo && (username !== '') ) {
             setLoginBlack("guest")
             setPlayerTwoData({
                 chess_agreement_draws: 0,
