@@ -153,9 +153,24 @@ export default function Login() {
         if(username === playerOne) {
             setError(true);
             setGuestError("Players must have different names.")
-        } else if(username === '' || username === ' ') {
-            setError(true);
-            setGuestError("You need a username.")
+        } else if((!playerOneData && !playerOne) && (username === '' || username === ' ')) {
+            setLoginWhite("guest")
+            setPlayerOneData({
+                chess_agreement_draws: 0,
+                chess_checkmate_losses: 0,
+                chess_checkmate_wins: 0,
+                chess_fifty_move_draws: 0,
+                chess_insufficient_material_draws: 0,
+                chess_repetition_draws: 0,
+                chess_resignation_losses: 0,
+                chess_resignation_wins: 0,
+                chess_stalemate_draws: 0,
+                chess_timeout_losses: 0,
+                chess_timeout_wins: 0,
+                id: "guest",
+                username: "Player One"
+            })
+            setPlayerOne("Player One")
         } else if( !playerOneData && !playerOne && (username !== '') ) {
             setLoginWhite("guest")
             setPlayerOneData({
@@ -174,7 +189,25 @@ export default function Login() {
                 username: username
             })
             setPlayerOne(username)
-        } else if( !playerTwoData && !playerTwo && (username !== '') ) {
+        } else if((!playerTwoData && !playerTwo) && (username === '' || username === ' ')) {
+            setLoginBlack("guest")
+            setPlayerTwoData({
+                chess_agreement_draws: 0,
+                chess_checkmate_losses: 0,
+                chess_checkmate_wins: 0,
+                chess_fifty_move_draws: 0,
+                chess_insufficient_material_draws: 0,
+                chess_repetition_draws: 0,
+                chess_resignation_losses: 0,
+                chess_resignation_wins: 0,
+                chess_stalemate_draws: 0,
+                chess_timeout_losses: 0,
+                chess_timeout_wins: 0,
+                id: "guest",
+                username: "Player Two"
+            })
+            setPlayerTwo("Player Two")
+            } else if( !playerTwoData && !playerTwo && (username !== '') ) {
             setLoginBlack("guest")
             setPlayerTwoData({
                 chess_agreement_draws: 0,
