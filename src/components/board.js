@@ -191,7 +191,7 @@ export default function Board () {
                     bishops.push(loc)
                 }
             })
-            if((bishops[0][2] === "f8" && bishops[1][2] === "c1") || (bishops[1][2] === "f8" && bishops[0][2] === "c1") || (bishops[0][2] === "c8" && bishops[1][2] === "f1") || (bishops[1][2] === "c8" && bishops[0][2] === "f1")) {
+            if((bishops.length > 1) && ((bishops[0][2] === "f8" && bishops[1][2] === "c1") || (bishops[1][2] === "f8" && bishops[0][2] === "c1") || (bishops[0][2] === "c8" && bishops[1][2] === "f1") || (bishops[1][2] === "c8" && bishops[0][2] === "f1"))) {
                 console.log ("insufficient material?", bishops)
                 setGameEnd(["draw", activePlayer])
                 updateScores(playerOneData, playerTwoData, "draw")
