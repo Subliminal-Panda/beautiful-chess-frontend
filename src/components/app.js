@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import CurrentGameContext from './currentGame';
+import CurrentGameContext from './gameplayComponents/currentGame';
 import routes from './routes';
 import { useRoutes } from 'hookrouter';
 
