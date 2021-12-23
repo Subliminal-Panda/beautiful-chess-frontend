@@ -312,7 +312,7 @@ export default function Login() {
                 onSubmit={ handleSubmit }
                 className="login-form-wrap"
                 >
-                    <h1 style={ !loginWhite ? {color: "black"} : !loginBlack ? {color: "white"} : null}>{`${ !playerOneData || !playerOne ? "Player 1," : !playerTwoData || !playerTwo ? "Player 2," : '' } what can I call you?`}</h1>
+                    <h1 style={ !loginWhite ? {color: "black"} : !loginBlack ? {color: "white"} : null}>{`${ !playerOneData || !playerOne ? "Player 1," : !playerTwoData || !playerTwo ? "Player 2," : '' } welcome to beautiful chess.`}</h1>
                     <div className="button-form-wrap" >
                         <div className="form-group">
                             <FontAwesomeIcon icon={ faChessRook } />

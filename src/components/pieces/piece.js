@@ -53,6 +53,7 @@ export default function Piece (props) {
     const { taken, setTaken } = useContext(CurrentGameContext)
     const { underAttack, setUnderAttack } = useContext(CurrentGameContext)
     const { castled, setCastled } = useContext(CurrentGameContext)
+    const { doubleStepped, setDoubleStepped } = useContext(CurrentGameContext)
     const { inCheck, setInCheck } = useContext(CurrentGameContext)
     const { assassinAttempts, setAssassinAttempts } = useContext(CurrentGameContext)
     const { moving, setMoving } = useContext(CurrentGameContext)
@@ -175,7 +176,7 @@ export default function Piece (props) {
             }
         })}
 
-        const checkDirection = (vert, horiz, dist = 7, pawn = false, castle = false, king = false) => {
+        const checkDirection = (vert, horiz, dist = 7, pawn = false, castle = false, king = false, doubleStep = false) => {
             let disallowed = false;
             if(pinDown) {
                 disallowed = true;
@@ -213,6 +214,7 @@ export default function Piece (props) {
                 let vertical = currentRank;
                 let ally = false;
                 let capture = false;
+                let enPassant = false;
                 if(!castle) {
                     if(vert === "up") {
                         vertical = (currentRank + i)
@@ -334,6 +336,11 @@ export default function Piece (props) {
                             }
                         } else if(pawn && horizontal !== currentFile) {
                             pawnMoves.push([[horizontal], [vertical]])
+                            if(doubleStepped[0] !== undefined) {
+                                if(horizontal === doubleStepped[0][1] && vertical === doubleStepped[0][2]) {
+                                    usableMoves.push([[horizontal], [vertical], "capture", null, "enPassant"])
+                                }
+                            }
                             break
                         } else if (!king) {
                             if(pawn) {
@@ -347,7 +354,11 @@ export default function Piece (props) {
 
                                     if(blockedBy[0] === undefined || blockedBy.length < 1) {
                                         if(!disallowed) {
-                                            usableMoves.push([[horizontal], [vertical]])
+                                            if((doubleStep) && (i === 2)) {
+                                                usableMoves.push([[horizontal], [vertical], null, null, "doubleStep"])
+                                            } else {
+                                                usableMoves.push([[horizontal], [vertical], null, null])
+                                            }
                                         }
                                     }
                                 }
@@ -425,11 +436,11 @@ export default function Piece (props) {
             if(team === "white" && currentRank < 7) {
                 checkDirection("up", "right", 1, true)
                 checkDirection("up", "left", 1, true)
-                { !quickerMoved ? checkDirection("up", null, 2, true) : checkDirection("up", null, 1, true) }
+                { !quickerMoved ? checkDirection("up", null, 2, true, null, null, true) : checkDirection("up", null, 1, true) }
             } else if(team === "black" && currentRank > 0) {
                 checkDirection("down", "right", 1, true)
                 checkDirection("down", "left", 1, true)
-                { !quickerMoved ? checkDirection("down", null, 2, true) : checkDirection("down", null, 1, true) }
+                { !quickerMoved ? checkDirection("down", null, 2, true, null, null, true) : checkDirection("down", null, 1, true) }
             }
         } else if(typeToMove  === faChessKing) {
             checkDirection("up", "right", 1, false, false, true)
@@ -876,9 +887,11 @@ export default function Piece (props) {
     const makeGhosts = (availMoves = [], pieceType, initposition, team) => {
         const newGhosts = []
         availMoves.forEach((loc) => {
-                let capture = false
-                let castle = false
-                let promote = false
+                let capture = false;
+                let castle = false;
+                let promote = false;
+                let doubleStep = false;
+                let enPassant = false;
                 if(loc[2] === "capture") {
                     capture = true
                 }
@@ -888,6 +901,12 @@ export default function Piece (props) {
                 if(loc[3] === "promote") {
                     promote = true
                 }
+                if(loc[4] === "doubleStep") {
+                    doubleStep = true
+                }
+                if(loc[4] === "enPassant") {
+                    enPassant = true
+                }
                 const ghostPosition = `${files[loc[0][0]]}${ranks[loc[1][0]]}`
                 newGhosts.push(<Ghost
                     key={`${self}${ghostPosition}`}
@@ -895,6 +914,8 @@ export default function Piece (props) {
                     capture={capture}
                     castling={castling}
                     castle={castle}
+                    doubleStep={doubleStep}
+                    enPassant={enPassant}
                     promoting={promoting}
                     promote={promote}
                     team={team}
@@ -919,7 +940,20 @@ export default function Piece (props) {
     }
 
 
-    const move = (newFile, newRank, newPosition) => {
+    const move = (newFile, newRank, newPosition, doubleStep = false) => {
+        setDoubleStepped([])
+        if(doubleStep) {
+            const singleStep = []
+            if(team === "white") {
+                console.log("white pawn double stepped.")
+                singleStep.push([self, initFile, (initRank + 1)]);
+            }
+            if(team === "black") {
+                singleStep.push([self, initFile, (initRank - 1)]);
+                console.log("black pawn double stepped.")
+            }
+            setDoubleStepped(singleStep)
+        }
         setCurrentFile(newFile)
         setCurrentRank(newRank)
         setCurrentPosition(newPosition)
@@ -930,6 +964,7 @@ export default function Piece (props) {
         }
         setMoving(true)
         setSelected(false)
+        console.log("doublestepped:", doubleStepped)
         setTimeout(() => {
             setSelection(false)
             setMoving(false)
@@ -1061,6 +1096,30 @@ export default function Piece (props) {
                 }
             }
         })
+        if(doubleStepped[0][1] === file && doubleStepped[0][2] === rank) {
+            locations.forEach((pc, idx) => {
+                if(pc[2] === doubleStepped[0][0]) {
+                attacked = pc
+                locations.splice(idx, 1)
+                taken.push(attacked)
+                setPieces([pieces[0].filter(item => item.key !== attacked[2])])
+                if(assassinAttempts !== undefined) {
+                    assassinAttempts.forEach((atmpt, indx, arr) => {
+                        if(atmpt[1] === pc[2]) {
+                            arr.splice(indx, 1)
+                        }
+                    })
+                }
+                if(pinned !== undefined) {
+                    pinned.forEach((pin, index, array) => {
+                        if(pin[4] === pc[2]) {
+                            array.splice(index, 1)
+                        }
+                    })
+                }
+            }
+        })
+        }
     }
 
     const isTouchDevice = () => {

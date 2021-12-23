@@ -17,6 +17,7 @@ export default function App () {
   const [ taken, setTaken ] = useState([])
   const [ underAttack, setUnderAttack ] = useState([])
   const [ castled, setCastled ] = useState([])
+  const [ doubleStepped, setDoubleStepped ] = useState([])
   const [ inCheck, setInCheck ] = useState([])
   const [ assassinAttempts, setAssassinAttempts ] = useState([])
   const [ moving, setMoving ] = useState(false)
@@ -31,7 +32,7 @@ export default function App () {
 
   return (
     <div className='app' >
-      <CurrentGameContext.Provider value={{ loginWhite, setLoginWhite, loginBlack, setLoginBlack, newGame, setNewGame, playerOne, setPlayerOne, playerTwo, setPlayerTwo, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData, activePlayer, setActivePlayer, selection, setSelection, pieces, setPieces, locations, setLocations, taken, setTaken, underAttack, setUnderAttack, castled, setCastled, inCheck, setInCheck, assassinAttempts, setAssassinAttempts, moving, setMoving, pinned, setPinned, gameEnd, setGameEnd, updated, setUpdated }}>
+      <CurrentGameContext.Provider value={{ loginWhite, setLoginWhite, loginBlack, setLoginBlack, newGame, setNewGame, playerOne, setPlayerOne, playerTwo, setPlayerTwo, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData, activePlayer, setActivePlayer, selection, setSelection, pieces, setPieces, locations, setLocations, doubleStepped, setDoubleStepped, taken, setTaken, underAttack, setUnderAttack, castled, setCastled, inCheck, setInCheck, assassinAttempts, setAssassinAttempts, moving, setMoving, pinned, setPinned, gameEnd, setGameEnd, updated, setUpdated }}>
         {routeResult}
       </CurrentGameContext.Provider>
     </div>

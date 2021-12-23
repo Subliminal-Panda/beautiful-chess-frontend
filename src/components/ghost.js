@@ -2,10 +2,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Ghost(props) {
-    const { file, rank, position, type, move, initposition, team, capture, castle, promote, capturing, castling, promoting, placeholder } = props
+    const { file, rank, position, type, move, initposition, team, capture, castle, promote, doubleStep, enPassant, capturing, castling, promoting, placeholder } = props
 
     const determineFunctions = () => {
         if(!placeholder) {
+            if(doubleStep) {
+                move(file, rank, position, true);
+            }
             if(capture) {
                 capturing(file, rank, position)
             }
@@ -15,7 +18,7 @@ export default function Ghost(props) {
             if(promote) {
                 promoting(file, rank, position)
             }
-            if(!promote) {
+            if(!promote && !doubleStep) {
                 move(file, rank, position);
             }
         }
@@ -25,8 +28,9 @@ export default function Ghost(props) {
         const first = capture ? `${team}-capture` : null;
         const second = castle ? `${team}-castle` : null;
         const third = promote ? `${team}-promote` : null;
-        const fourth = `${team}-ghost`;
-        const allClasses = `${first} ${second} ${third} ${fourth}`
+        const fourth = enPassant ? `${team}-en-passant` : null;
+        const fifth = `${team}-ghost`;
+        const allClasses = `${first} ${second} ${third} ${fourth} ${fifth}`
         return(allClasses)
     }
 

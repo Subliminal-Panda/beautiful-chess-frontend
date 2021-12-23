@@ -67,6 +67,13 @@
     filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
 }
 
+.black-en-passant {
+    color: $pink;
+    z-index: 2;
+    opacity: .8;
+    filter: drop-shadow( .25rem .25rem 0 rgba(50, 50, 50, 1));
+}
+
 .black-getting-promoted {
     * {
         color: $promote;

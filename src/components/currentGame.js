@@ -41,6 +41,8 @@ const CurrentGameContext = createContext({
     setGameEnd: () => {},
     pinned: [],
     setPinned: () => {},
+    doubleStepped: [],
+    setDoubleStepped: () => {}
 })
 
 export default CurrentGameContext
