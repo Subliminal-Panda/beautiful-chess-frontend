@@ -151,7 +151,7 @@ export default function CapturedZone() {
     useEffect(() => {
         renderTaken();
         findInactive();
-    },[activePlayer, moving, taken, findInactive, renderTaken])
+    },[activePlayer, moving, taken])
 
     useEffect(() => {
         if(playerOneData && (winsOne !== playerOneData.chess_checkmate_wins || lossesOne !== playerOneData.chess_checkmate_losses || drawsOne !== playerOneData.chess_stalemate_draws)) {

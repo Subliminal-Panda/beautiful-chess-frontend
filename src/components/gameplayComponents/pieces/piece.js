@@ -1143,7 +1143,7 @@ export default function Piece (props) {
         if(!selection && selected) {
             toggleSelected();
         }
-    },[selection, selected, toggleSelected])
+    },[selection, selected])
 
     return (
         <div className={activePlayer === "white" ? "normal-game-board game-board" : "reversed-game-board game-board"} style={{ gridColumn: "1 / span8", gridRow: "1 / span8"}}>

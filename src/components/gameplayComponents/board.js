@@ -318,7 +318,7 @@ export default function Board () {
                 checked.current = true;
             }
         }
-    }, [locations.length, taken.length, moving, findCheck, findCheckMate, findStaleMate])
+    }, [locations.length, taken.length, moving])
 
     useEffect(() => {
         checked.current = false;
@@ -333,7 +333,7 @@ export default function Board () {
             setNewGame(false);
             updated.current = false;
         }
-    }, [newGame, makeSquares, setActivePlayer, setBoard, setNewGame])
+    }, [newGame])
 
     return (
         <div className="game-board-wrap">
