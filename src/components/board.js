@@ -167,18 +167,13 @@ export default function Board () {
 
     const findStaleMate = () => {
         const movablePieces = [];
-        console.log("locations:", locations);
-        console.log("active player:", activePlayer);
         if(locations.length < 3) {
-            console.log ("locations less than 3?", locations)
             setGameEnd(["draw", activePlayer])
             updateScores(playerOneData, playerTwoData, "draw")
         }
         if(locations.length < 4) {
             locations.forEach((loc) => {
                 if(loc[0].iconName === "chess-bishop" || loc[0].iconName === "chess-knight") {
-                    console.log("remaining pieces:", locations)
-                    console.log ("insufficient material?", loc)
                     setGameEnd(["draw", activePlayer])
                     updateScores(playerOneData, playerTwoData, "draw")
                 }
@@ -192,7 +187,6 @@ export default function Board () {
                 }
             })
             if((bishops.length > 1) && ((bishops[0][2] === "f8" && bishops[1][2] === "c1") || (bishops[1][2] === "f8" && bishops[0][2] === "c1") || (bishops[0][2] === "c8" && bishops[1][2] === "f1") || (bishops[1][2] === "c8" && bishops[0][2] === "f1"))) {
-                console.log ("insufficient material?", bishops)
                 setGameEnd(["draw", activePlayer])
                 updateScores(playerOneData, playerTwoData, "draw")
             }
@@ -206,7 +200,6 @@ export default function Board () {
                 }
             })
             if(movablePieces[0] === undefined) {
-                console.log("no movable pieces?", movablePieces, "not in check?", activePlayer, inCheck)
                 setGameEnd(["stalemate", activePlayer])
                 updateScores(playerOneData, playerTwoData, "draw")
             }
