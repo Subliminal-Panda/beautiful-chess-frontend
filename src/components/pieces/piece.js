@@ -14,15 +14,9 @@ export default function Piece (props) {
 
     // fix environment variable
 
-    // add en passant rules
-
-    // add checks for draw: stalemate, repetition, insufficient material, 50 move rule
+    // add checks for draw: repetition, 50 move rule
 
     // add resignation option
-
-    // split white and black piece styles into separate scss files
-
-    // break down media queries
 
     // break apart this monstrosity of a piece.js file, especially determineMoves()!
 
@@ -33,8 +27,6 @@ export default function Piece (props) {
     // eventually sounds, animations, some fun music maybe- similar to super stickman golf style elevator music (maybe even different music when in check?)
 
     // secure method of changing username and password
-
-    // update logo and other minor metadata things
 
     // add some subtle textures to board squares, background of login page
 
