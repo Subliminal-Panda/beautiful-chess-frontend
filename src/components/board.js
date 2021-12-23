@@ -157,23 +157,112 @@ export default function Board () {
             if(activePlayer === "black" && inCheck[1] === "black") {
                 setGameEnd(["checkmate", "white"])
                 updateScores(playerOneData, playerTwoData, "white")
-                // setActivePlayer("white")
             }
             if(activePlayer === "white" && inCheck[0] === "white") {
                 setGameEnd(["checkmate", "black"])
                 updateScores(playerTwoData, playerOneData, "black")
-                // setActivePlayer("black")
+            }
+        }
+    }
+
+    const findStaleMate = () => {
+        const movablePieces = [];
+        console.log("locations:", locations);
+        console.log("active player:", activePlayer);
+        if(locations.length < 3) {
+            console.log ("locations less than 3?", locations)
+            setGameEnd(["draw", activePlayer])
+            updateScores(playerOneData, playerTwoData, "draw")
+        }
+        if(locations.length < 4) {
+            locations.forEach((loc) => {
+                if(loc[0].iconName === "chess-bishop" || loc[0].iconName === "chess-knight") {
+                    console.log("remaining pieces:", locations)
+                    console.log ("insufficient material?", loc)
+                    setGameEnd(["draw", activePlayer])
+                    updateScores(playerOneData, playerTwoData, "draw")
+                }
+            })
+        }
+        if(locations.length < 5) {
+            const bishops = []
+            locations.forEach((loc) => {
+                if(loc[0].iconName === "chess-bishop") {
+                    bishops.push(loc)
+                }
+            })
+            if((bishops[0][2] === "f8" && bishops[1][2] === "c1") || (bishops[1][2] === "f8" && bishops[0][2] === "c1") || (bishops[0][2] === "c8" && bishops[1][2] === "f1") || (bishops[1][2] === "c8" && bishops[0][2] === "f1")) {
+                console.log ("insufficient material?", bishops)
+                setGameEnd(["draw", activePlayer])
+                updateScores(playerOneData, playerTwoData, "draw")
+            }
+        }
+        if(activePlayer !== inCheck[1] && activePlayer !== inCheck[0]) {
+        locations.forEach((loc) => {
+                if(loc[7][0] !== undefined) {
+                        if(loc[1] === activePlayer) {
+                            movablePieces.push(loc)
+                        }
+                }
+            })
+            if(movablePieces[0] === undefined) {
+                console.log("no movable pieces?", movablePieces, "not in check?", activePlayer, inCheck)
+                setGameEnd(["stalemate", activePlayer])
+                updateScores(playerOneData, playerTwoData, "draw")
             }
         }
     }
 
     const updateScores = (winner, loser, color) => {
+        console.log("winner id:", winner.id, "loser id:", loser.id)
         if(!updated.current) {
+            if(winner.id === "guest" && color === "draw") {
+                setPlayerOneData({...playerOneData, chess_stalemate_draws: playerOneData.chess_stalemate_draws + 1 })
+            } else if(color === "draw" && winner.id !== "guest") {
+                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${winner.id}`, {
+                    method: "PUT",
+                    headers: {"content-type" : "application/json"},
+                    body: JSON.stringify({
+                        "chess_stalemate_draws": 1
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data[0] === "user updated:") {
+                        setPlayerOneData(data[1])
+                        return(data)
+                    }
+                })
+                .catch(error => {
+                    console.log('Problem updating score.', error);
+                })
+            }
+            if(loser.id === "guest" && color === "draw") {
+                setPlayerTwoData({...playerTwoData, chess_stalemate_draws: playerTwoData.chess_stalemate_draws + 1 })
+            } else if(color === "draw" && loser.id !== "guest") {
+                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${loser.id}`, {
+                    method: "PUT",
+                    headers: {"content-type" : "application/json"},
+                    body: JSON.stringify({
+                        "chess_stalemate_draws": 1
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data[0] === "user updated:") {
+                        setPlayerTwoData(data[1])
+                        return(data)
+                    }
+                })
+                .catch(error => {
+                    console.log('Problem updating score.', error);
+                })
+            }
             if(winner.id === "guest" && color === "white") {
                 setPlayerOneData({...playerOneData, chess_checkmate_wins: playerOneData.chess_checkmate_wins + 1 })
             } else if(winner.id === "guest" && color === "black") {
                 setPlayerTwoData({...playerTwoData, chess_checkmate_wins: playerTwoData.chess_checkmate_wins + 1 })
-            } else {
+            } else if(color !== "draw") {
                 fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${winner.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
@@ -200,7 +289,7 @@ export default function Board () {
                 setPlayerOneData({...playerOneData, chess_checkmate_losses: playerOneData.chess_checkmate_losses + 1 })
             } else if(loser.id === "guest" && color === "white") {
                 setPlayerTwoData({...playerTwoData, chess_checkmate_losses: playerTwoData.chess_checkmate_losses + 1 })
-            } else {
+            } else if(color !== "draw") {
                 fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${loser.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
@@ -232,6 +321,7 @@ export default function Board () {
             if(!moving) {
                 findCheck();
                 findCheckMate();
+                findStaleMate();
                 setChecked(true);
             }
         }

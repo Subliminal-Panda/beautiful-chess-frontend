@@ -3,7 +3,7 @@
         .details-wrap {
             .details {
                 .nameplate {
-                    flex-grow: 1;
+                    flex: 1;
 
                     .name {
                         display: none;
@@ -29,7 +29,7 @@
                 }
 
                 .captures {
-                    flex-grow: 4;
+                    flex: 4;
                     grid-template-rows: 1fr 1fr 1fr;
                     gap: 0 2vw;
 

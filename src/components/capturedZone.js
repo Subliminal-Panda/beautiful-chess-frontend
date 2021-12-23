@@ -19,8 +19,10 @@ export default function CapturedZone() {
     const [ capturesTwo, setCapturesTwo ] = useState([])
     const [ winsOne, setWinsOne ] = useState(0)
     const [ lossesOne, setLossesOne ] = useState(0)
+    const [ drawsOne, setDrawsOne ] = useState(0)
     const [ winsTwo, setWinsTwo ] = useState(0)
     const [ lossesTwo, setLossesTwo ] = useState(0)
+    const [ drawsTwo, setDrawsTwo ] = useState(0)
 
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
@@ -150,13 +152,15 @@ export default function CapturedZone() {
     }
 
     useEffect(() => {
-        if(playerOneData && (winsOne !== playerOneData.chess_checkmate_wins || lossesOne !== playerOneData.chess_checkmate_losses)) {
+        if(playerOneData && (winsOne !== playerOneData.chess_checkmate_wins || lossesOne !== playerOneData.chess_checkmate_losses || drawsOne !== playerOneData.chess_stalemate_draws)) {
             setWinsOne(playerOneData.chess_checkmate_wins)
             setLossesOne(playerOneData.chess_checkmate_losses)
+            setDrawsOne(playerOneData.chess_stalemate_draws)
         }
-        if(playerTwoData && (winsTwo !== playerTwoData.chess_checkmate_wins || lossesTwo !== playerTwoData.chess_checkmate_losses)) {
+        if(playerTwoData && (winsTwo !== playerTwoData.chess_checkmate_wins || lossesTwo !== playerTwoData.chess_checkmate_losses || drawsTwo !== playerTwoData.chess_stalemate_draws)) {
             setWinsTwo(playerTwoData.chess_checkmate_wins)
             setLossesTwo(playerTwoData.chess_checkmate_losses)
+            setDrawsTwo(playerTwoData.chess_stalemate_draws)
         }
     })
 
@@ -167,6 +171,8 @@ export default function CapturedZone() {
                 <div>{ active === playerOne ? winsOne : winsTwo }</div>
                 <div>Lost: </div>
                 <div>{active === playerOne ? lossesOne : lossesTwo }</div>
+                <div>Draw: </div>
+                <div>{active === playerOne ? drawsOne : drawsTwo }</div>
             </div>
 
             <div className="details-wrap" >
@@ -196,6 +202,8 @@ export default function CapturedZone() {
                             <div>{ active === playerOne ? winsOne : winsTwo }</div>
                             <div>Lost: </div>
                             <div>{active === playerOne ? lossesOne : lossesTwo }</div>
+                            <div>Draw: </div>
+                            <div>{active === playerOne ? drawsOne : drawsTwo }</div>
                         </div>
                     </div>
 
@@ -227,6 +235,8 @@ export default function CapturedZone() {
                             <div>{ inactive === playerOne ? winsOne : winsTwo }</div>
                             <div>Lost: </div>
                             <div>{ inactive === playerOne ? lossesOne : lossesTwo }</div>
+                            <div>Draw: </div>
+                            <div>{ inactive === playerOne ? drawsOne : drawsTwo }</div>
                         </div>
                     </div>
 
