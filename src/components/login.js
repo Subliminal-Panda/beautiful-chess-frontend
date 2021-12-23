@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import Cookies from 'js-cookie';
-import CurrentGameContext from './currentGame';
+import CurrentGameContext from './gameplayComponents/currentGame';
 import { navigate } from 'hookrouter';
 
 

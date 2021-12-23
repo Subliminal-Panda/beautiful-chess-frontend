@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChessKing, faChessQueen, faChessRook, faChessBishop, faChessKnight, faChessPawn } from '@fortawesome/free-solid-svg-icons';
-import Ghost from '../ghost';
+import Ghost from './ghost';
 import CurrentGameContext from '../currentGame';
 
 export default function Piece (props) {

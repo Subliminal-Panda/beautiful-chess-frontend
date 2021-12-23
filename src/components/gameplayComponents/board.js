@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useState, useContext, useRef } from 'react';
-import Square from './Square';
+import Square from '../square';
 import Piece from './pieces/piece';
 import { faChessKing, faChessQueen, faChessRook, faChessBishop, faChessKnight, faChessPawn } from '@fortawesome/free-solid-svg-icons';
 import CurrentGameContext from './currentGame';

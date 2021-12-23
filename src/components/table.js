@@ -1,8 +1,8 @@
 ﻿import React, { useState, useEffect, useContext, useRef } from 'react';
 
-import CapturedZone from './capturedZone';
-import Board from './board';
-import CurrentGameContext from './currentGame';
+import CapturedZone from './gameplayComponents/capturedZone';
+import Board from './gameplayComponents/board';
+import CurrentGameContext from './gameplayComponents/currentGame';
 import Login from './login';
 
 export default function Table (props) {
