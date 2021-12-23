@@ -27,10 +27,7 @@ export default function CapturedZone() {
     const [ active, setActive ] = useState(playerOne)
     const [ inactive, setInactive ] = useState(playerTwo)
 
-    useEffect(() => {
-        renderTaken();
-        findInactive();
-    },[activePlayer, moving, taken])
+
 
     const findInactive = () => {
         if(activePlayer === "white") {
@@ -152,6 +149,11 @@ export default function CapturedZone() {
     }
 
     useEffect(() => {
+        renderTaken();
+        findInactive();
+    },[activePlayer, moving, taken, findInactive, renderTaken])
+
+    useEffect(() => {
         if(playerOneData && (winsOne !== playerOneData.chess_checkmate_wins || lossesOne !== playerOneData.chess_checkmate_losses || drawsOne !== playerOneData.chess_stalemate_draws)) {
             setWinsOne(playerOneData.chess_checkmate_wins)
             setLossesOne(playerOneData.chess_checkmate_losses)
@@ -162,7 +164,7 @@ export default function CapturedZone() {
             setLossesTwo(playerTwoData.chess_checkmate_losses)
             setDrawsTwo(playerTwoData.chess_stalemate_draws)
         }
-    })
+    },[playerOneData, winsOne, lossesOne, drawsOne, playerTwoData, winsTwo, lossesTwo, drawsTwo])
 
     return (
         <div className={ active === playerTwo ? "player-two-captured captured-zone" : "player-one-captured captured-zone" }>

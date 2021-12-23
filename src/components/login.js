@@ -25,7 +25,7 @@ export default function Login() {
     const [signupError, setSignupError] = useState('');
 
     const tempUserData = useRef('')
-    let firstInput = useRef(null)
+    const firstInput = useRef(null)
 
     const handleChange = ( event ) => {
         if(event.target.name === "username") {

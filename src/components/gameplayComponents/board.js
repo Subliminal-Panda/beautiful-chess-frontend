@@ -12,7 +12,7 @@ export default function Board () {
     let setup = []
 
     const [ squares, setSquares ] = useState([])
-    const [ checked, setChecked ] = useState(false)
+    // const [ checked, setChecked ] = useState(false)
 
     const { activePlayer, setActivePlayer } = useContext(CurrentGameContext)
     const { playerOneData, setPlayerOneData } = useContext(CurrentGameContext)
@@ -27,6 +27,7 @@ export default function Board () {
     const { newGame, setNewGame } = useContext(CurrentGameContext)
 
     const updated = useRef(false)
+    const checked = useRef(false)
 
     const makeSquares = () => {
         let squareSet = []
@@ -309,18 +310,18 @@ export default function Board () {
     }
 
     useEffect(() => {
-        if(locations.length + taken.length > 31 && checked === false) {
+        if(locations.length + taken.length > 31 && checked.current === false) {
             if(!moving) {
                 findCheck();
                 findCheckMate();
                 findStaleMate();
-                setChecked(true);
+                checked.current = true;
             }
         }
-    })
+    }, [locations.length, taken.length, moving, findCheck, findCheckMate, findStaleMate])
 
     useEffect(() => {
-        setChecked(false)
+        checked.current = false;
     },[activePlayer, locations])
 
 
@@ -332,7 +333,7 @@ export default function Board () {
             setNewGame(false);
             updated.current = false;
         }
-    }, [newGame])
+    }, [newGame, makeSquares, setActivePlayer, setBoard, setNewGame])
 
     return (
         <div className="game-board-wrap">

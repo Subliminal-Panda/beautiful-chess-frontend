@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useContext } from 'react';
+﻿import React, { useState, useEffect, useContext, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChessKing, faChessQueen, faChessRook, faChessBishop, faChessKnight, faChessPawn } from '@fortawesome/free-solid-svg-icons';
 import Ghost from './ghost';
@@ -65,7 +65,7 @@ export default function Piece (props) {
     const [ moves, setMoves ] = useState([])
 
     let quickerMoved = moved
-    let checked = true
+    const checked = useRef(true)
     let availMoves = []
 
     const record = ( typeToRecord , team, initPosition, currentFile, currentRank, moved, attacking, availMoves, lookPast) => {
@@ -88,7 +88,7 @@ export default function Piece (props) {
 
     const handleUnhover = () => {
         setHover(false)
-        { !selected ? setGhosts([]) : null };
+        !selected ? setGhosts([]) : null;
     }
 
     const toggleSelected = () => {
@@ -428,11 +428,11 @@ export default function Piece (props) {
             if(team === "white" && currentRank < 7) {
                 checkDirection("up", "right", 1, true)
                 checkDirection("up", "left", 1, true)
-                { !quickerMoved ? checkDirection("up", null, 2, true, null, null, true) : checkDirection("up", null, 1, true) }
+                !quickerMoved ? checkDirection("up", null, 2, true, null, null, true) : checkDirection("up", null, 1, true);
             } else if(team === "black" && currentRank > 0) {
                 checkDirection("down", "right", 1, true)
                 checkDirection("down", "left", 1, true)
-                { !quickerMoved ? checkDirection("down", null, 2, true, null, null, true) : checkDirection("down", null, 1, true) }
+                !quickerMoved ? checkDirection("down", null, 2, true, null, null, true) : checkDirection("down", null, 1, true)
             }
         } else if(typeToMove  === faChessKing) {
             checkDirection("up", "right", 1, false, false, true)
@@ -791,7 +791,7 @@ export default function Piece (props) {
             oth === mv
         )))
         availMoves = usableMoves.filter((mv, idx, arr) => idx === arr.findIndex((oth) => (
-            (oth[0][0] === mv[0][0]) && (oth[1][0] === mv [1][0])
+            (oth[0][0] === mv[0][0]) && (oth[1][0] === mv[1][0])
         )))
 
         if(typeToMove !== faChessKing) {
@@ -816,7 +816,7 @@ export default function Piece (props) {
                     })
                 })
                 availMoves = inCheckMoves.filter((mv, idx, arr) => idx === arr.findIndex((oth) => (
-                oth[0][0] === mv[0][0] && oth[1][0] === mv [1][0]
+                oth[0][0] === mv[0][0] && oth[1][0] === mv[1][0]
                 )))
             }
         }
@@ -997,7 +997,7 @@ export default function Piece (props) {
         setSelection(self)
         setHover(false)
         setSelected(false)
-        checked = false;
+        checked.current = false;
         setGhosts([])
         setMoving(true)
         setPieceType(icon)
@@ -1121,29 +1121,29 @@ export default function Piece (props) {
 
     useEffect(() => {
         determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
-        checked = false
+        checked.current = false
     },[]);
 
     useEffect(() => {
-        if(checked === false ) {
+        if(checked.current === false ) {
             if(castled[0] !== undefined && castled.length < 3) {
                 moveRook();
             }
             determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
-            checked = true
+            checked.current = true
         }
     })
 
         useEffect(() => {
         determineMoves(pieceType ? pieceType : type , currentFile, currentRank, locations);
-        checked = false
+        checked.current = false
     },[moving, locations, promoted, activePlayer, inCheck])
 
     useEffect(() => {
         if(!selection && selected) {
             toggleSelected();
         }
-    },[selection])
+    },[selection, selected, toggleSelected])
 
     return (
         <div className={activePlayer === "white" ? "normal-game-board game-board" : "reversed-game-board game-board"} style={{ gridColumn: "1 / span8", gridRow: "1 / span8"}}>
