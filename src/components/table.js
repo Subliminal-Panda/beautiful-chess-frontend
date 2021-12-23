@@ -54,6 +54,12 @@ export default function Table (props) {
         }
     }
 
+    const deselectAll = () => {
+        if(selection) {
+            setSelection(false)
+        }
+    }
+
     useEffect(() => {
         findInactive();
     },[activePlayer, moving])
@@ -64,7 +70,7 @@ export default function Table (props) {
     return (
         <div className="page-wrap" style={ activePlayer === "white" ? {backgroundColor: "rgb(251, 255, 188)"} : null}>
         { playerOneData && playerTwoData && playerOne && playerTwo ?
-            <div className="table-wrap" style={ activePlayer === "white" ? {backgroundColor: "rgb(251, 255, 188)"} : null}>
+            <div className="table-wrap" onClick={() => deselectAll()} style={ activePlayer === "white" ? {backgroundColor: "rgb(251, 255, 188)"} : null}>
                 <CapturedZone />
                 <div className="game-wrap">
                     <div className="turn-info">

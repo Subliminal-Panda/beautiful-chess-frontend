@@ -1139,6 +1139,12 @@ export default function Piece (props) {
         checked = false
     },[moving, locations, promoted, activePlayer, inCheck])
 
+    useEffect(() => {
+        if(!selection && selected) {
+            toggleSelected();
+        }
+    },[selection])
+
     return (
         <div className={activePlayer === "white" ? "normal-game-board game-board" : "reversed-game-board game-board"} style={{ gridColumn: "1 / span8", gridRow: "1 / span8"}}>
             {ghosts}
