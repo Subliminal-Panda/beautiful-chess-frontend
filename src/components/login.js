@@ -127,7 +127,6 @@ export default function Login() {
                     if((info[0] !== undefined) && (info[0] !== 'That username is taken.') && (!error)) {
                         handleLogin(info[1]);
                     }
-                    console.log("info:", info)
                     return(info)
                 })
                 .catch(err => {

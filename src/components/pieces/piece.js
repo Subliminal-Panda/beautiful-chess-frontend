@@ -945,12 +945,10 @@ export default function Piece (props) {
         if(doubleStep) {
             const singleStep = []
             if(team === "white") {
-                console.log("white pawn double stepped.")
                 singleStep.push([self, initFile, (initRank + 1)]);
             }
             if(team === "black") {
                 singleStep.push([self, initFile, (initRank - 1)]);
-                console.log("black pawn double stepped.")
             }
             setDoubleStepped(singleStep)
         }
@@ -964,7 +962,6 @@ export default function Piece (props) {
         }
         setMoving(true)
         setSelected(false)
-        console.log("doublestepped:", doubleStepped)
         setTimeout(() => {
             setSelection(false)
             setMoving(false)
@@ -1073,13 +1070,13 @@ export default function Piece (props) {
     }
 
     const capturePiece =  (file, rank, attacker) => {
-            let attacked = []
-            locations.forEach((pc, idx) => {
-                if(pc[3] === file && pc[4] === rank && pc[2] !== attacker) {
-                attacked = pc
-                locations.splice(idx, 1)
-                taken.push(attacked)
-                setPieces([pieces[0].filter(item => item.key !== attacked[2])])
+        let attacked = []
+        locations.forEach((pc, idx) => {
+            if(pc[3] === file && pc[4] === rank && pc[2] !== attacker) {
+            attacked = pc
+            locations.splice(idx, 1)
+            taken.push(attacked)
+            setPieces([pieces[0].filter(item => item.key !== attacked[2])])
                 if(assassinAttempts !== undefined) {
                     assassinAttempts.forEach((atmpt, indx, arr) => {
                         if(atmpt[1] === pc[2]) {
@@ -1096,29 +1093,31 @@ export default function Piece (props) {
                 }
             }
         })
-        if(doubleStepped[0][1] === file && doubleStepped[0][2] === rank) {
-            locations.forEach((pc, idx) => {
-                if(pc[2] === doubleStepped[0][0]) {
-                attacked = pc
-                locations.splice(idx, 1)
-                taken.push(attacked)
-                setPieces([pieces[0].filter(item => item.key !== attacked[2])])
-                if(assassinAttempts !== undefined) {
-                    assassinAttempts.forEach((atmpt, indx, arr) => {
-                        if(atmpt[1] === pc[2]) {
-                            arr.splice(indx, 1)
+        if(doubleStepped[0] !== undefined) {
+            if(doubleStepped[0][1] === file && doubleStepped[0][2] === rank) {
+                locations.forEach((pc, idx) => {
+                    if(pc[2] === doubleStepped[0][0]) {
+                        attacked = pc
+                        locations.splice(idx, 1)
+                        taken.push(attacked)
+                        setPieces([pieces[0].filter(item => item.key !== attacked[2])])
+                        if(assassinAttempts !== undefined) {
+                            assassinAttempts.forEach((atmpt, indx, arr) => {
+                                if(atmpt[1] === pc[2]) {
+                                    arr.splice(indx, 1)
+                                }
+                            })
                         }
-                    })
-                }
-                if(pinned !== undefined) {
-                    pinned.forEach((pin, index, array) => {
-                        if(pin[4] === pc[2]) {
-                            array.splice(index, 1)
+                        if(pinned !== undefined) {
+                            pinned.forEach((pin, index, array) => {
+                                if(pin[4] === pc[2]) {
+                                    array.splice(index, 1)
+                                }
+                            })
                         }
-                    })
-                }
+                    }
+                })
             }
-        })
         }
     }
 

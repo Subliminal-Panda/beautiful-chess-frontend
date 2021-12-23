@@ -207,7 +207,6 @@ export default function Board () {
     }
 
     const updateScores = (winner, loser, color) => {
-        console.log("winner id:", winner.id, "loser id:", loser.id)
         if(!updated.current) {
             if(winner.id === "guest" && color === "draw") {
                 setPlayerOneData({...playerOneData, chess_stalemate_draws: playerOneData.chess_stalemate_draws + 1 })
