@@ -147,6 +147,7 @@ export default function Board () {
     }
 
     const findCheckMate = () => {
+        console.log("searching for checkmate.")
         const movablePieces = []
         locations.forEach((loc) => {
             if(loc[7][0] !== undefined) {
@@ -154,6 +155,9 @@ export default function Board () {
                 movablePieces.push(loc)
             }
         })
+        console.log("movable pieces while in check:", movablePieces[0])
+        console.log("active player:", activePlayer)
+        console.log("incheck 0:", inCheck[0])
         if(movablePieces[0] === undefined) {
             if(activePlayer === "black" && inCheck[1] === "black") {
                 setGameEnd(["checkmate", "white"])
@@ -318,7 +322,7 @@ export default function Board () {
                 checked.current = true;
             }
         }
-    }, [locations.length, taken.length, moving])
+    })
 
     useEffect(() => {
         checked.current = false;
