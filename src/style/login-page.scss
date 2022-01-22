@@ -1,6 +1,6 @@
 ﻿.login-page {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     width: 100vw;
@@ -8,27 +8,45 @@
 }
 
 .login-form-wrap {
+    margin-top: 8vh;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
 
     h1 {
         font-size: 8vh;
         line-height: 8vh;
-        margin: .5rem;
+        margin: 1.5rem;
+    }
+
+    .login-title {
+        height: fit-content;
     }
 
     .button-form-wrap {
+        // flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
+        margin: .5rem;
 
     }
+
+    .buttons-wrapper {
+        margin: 2rem;
+        display: flex;
+        gap: 2rem;
+        button {
+            width: max-content;
+            text-align: center;
+        }
+    }
+
 
     .error {
         display: flex;
@@ -146,4 +164,8 @@
         left: -4rem;
         transform: rotate(30deg)
     }
+}
+.content-loader {
+    min-width: 100vw;
+    min-height: 100vh;
 }
