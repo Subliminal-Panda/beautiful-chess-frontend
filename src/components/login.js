@@ -52,7 +52,7 @@ export default function Login() {
             setLoginError("players must have different names.")
         } else {
             setRetrieving(true)
-            fetch('https://beautiful-chess-backend.herokuapp.com/user/verify', {
+            fetch('https://beautiful-chess-backend-ee3b1e56f6be.herokuapp.com/user/verify', {
                 method: "POST",
                 headers: {"content-type" : "application/json"},
                 body: JSON.stringify({
@@ -101,7 +101,7 @@ export default function Login() {
                 setSignupError("Your passwords don't match.");
             } else {
                 setRetrieving(true)
-                fetch('https://beautiful-chess-backend.herokuapp.com/user/add', {
+                fetch('https://beautiful-chess-backend-ee3b1e56f6be.herokuapp.com/user/add', {
                     method: "POST",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({

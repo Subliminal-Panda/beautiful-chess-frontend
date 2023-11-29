@@ -216,7 +216,7 @@ export default function Board () {
             if(winner.id === "guest" && color === "draw") {
                 setPlayerOneData({...playerOneData, chess_stalemate_draws: playerOneData.chess_stalemate_draws + 1 })
             } else if(color === "draw" && winner.id !== "guest") {
-                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${winner.id}`, {
+                fetch(`https://beautiful-chess-backend-ee3b1e56f6be.herokuapp.com/user/update/${winner.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({
@@ -237,7 +237,7 @@ export default function Board () {
             if(loser.id === "guest" && color === "draw") {
                 setPlayerTwoData({...playerTwoData, chess_stalemate_draws: playerTwoData.chess_stalemate_draws + 1 })
             } else if(color === "draw" && loser.id !== "guest") {
-                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${loser.id}`, {
+                fetch(`https://beautiful-chess-backend-ee3b1e56f6be.herokuapp.com/user/update/${loser.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({
@@ -260,7 +260,7 @@ export default function Board () {
             } else if(winner.id === "guest" && color === "black") {
                 setPlayerTwoData({...playerTwoData, chess_checkmate_wins: playerTwoData.chess_checkmate_wins + 1 })
             } else if(color !== "draw") {
-                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${winner.id}`, {
+                fetch(`https://beautiful-chess-backend-ee3b1e56f6be.herokuapp.com/user/update/${winner.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({
@@ -287,7 +287,7 @@ export default function Board () {
             } else if(loser.id === "guest" && color === "white") {
                 setPlayerTwoData({...playerTwoData, chess_checkmate_losses: playerTwoData.chess_checkmate_losses + 1 })
             } else if(color !== "draw") {
-                fetch(`https://beautiful-chess-backend.herokuapp.com/user/update/${loser.id}`, {
+                fetch(`https://beautiful-chess-backend-ee3b1e56f6be.herokuapp.com/user/update/${loser.id}`, {
                     method: "PUT",
                     headers: {"content-type" : "application/json"},
                     body: JSON.stringify({
